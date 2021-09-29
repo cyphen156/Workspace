@@ -3,20 +3,18 @@
     <head>
         <title>Code6_1</title>
         <style>
-            body{
-                background-image: url('1');
-            }
           .box{
-              display: inline-block;
-              color: red;
+              width: 100px; height: 100px;
+              position: absolute;
           }
+          .box:nth-child(1){background-color: red;}
+          .box:nth-child(2){background-color: green;}
+          .box:nth-child(3){background-color: blue;}
         </style>
     </head>
     <body>
-        <span>Lorem ipsum dolor sit amet</span>
-       <div class="box">
-           Lorem ipsum dolor sit amet
-       </div>
-       <span>Lorem ipsum dolor sit amet<span>
+       <div class="box"></div>
+       <div class="box"></div>
+       <div class="box"></div>
     </body>
 </html>
