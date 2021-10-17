@@ -1,0 +1,2 @@
+//OuterJavaScript.js
+alert('OuterJavaScript');
