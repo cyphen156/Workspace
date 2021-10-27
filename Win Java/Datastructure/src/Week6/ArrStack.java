@@ -1,7 +1,7 @@
 package Week6;
 
 import java.util.Scanner;
-public class Ex6_1 {
+public class ArrStack {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -19,7 +19,7 @@ public class Ex6_1 {
 			menu = sc.nextInt();
 			if (menu == 1) {
 				System.out.print("\npush data ют╥б : ");
-				item = sc.next();
+				item = sc.next(); 
 				AS.push(item);
 			}
 			else if (menu == 2) {

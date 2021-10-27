@@ -1,6 +1,6 @@
 package Week5;
 
-public class Ex5_1 {
+public class DoubleLinked {
 
 	public static void main(String[] args) {
 		DblLinkedList dL = new DblLinkedList();

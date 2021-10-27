@@ -1,6 +1,6 @@
-package Example;
+package Week6;
 
-public class doubleLinked {
+public class LinkedStack {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
