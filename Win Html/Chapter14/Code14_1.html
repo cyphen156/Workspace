@@ -80,7 +80,7 @@
             text-align: center;
         }
 
-        #main-navigation > ul >li {
+        #main-navigation > ul > li {
             display: inline;
             padding: 0 5px;
             line-height: 30px;
@@ -117,7 +117,7 @@
         .input-search:focus {
             border-color: rgba(82, 168, 236, 0.8);
             outline: 0;
-            box-shadow: inset0 1px 1px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
         }
 
         .input-search-submit {
@@ -173,7 +173,7 @@
         /*세 줄*/
         @media (max-width:919px){ #main-section {width: 690px;}}
         /*네줄*/
-        @media (min-width:930px) and (max-width:1149px){ #main-section {width: 920px;}}
+        @media (min-width:920px) and (max-width:1149px){ #main-section {width: 920px;}}
         /*다섯 줄*/
         @media (min-width:1150px) and (max-width:1379px){ #main-section {width: 1150px;}}
         /*여섯 줄*/
@@ -187,14 +187,15 @@
             height: 100%;
 
             display: none;
-            background: rgba(0, 0, 0, 0);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 10000;
-            overflow: scroll;
+            overflow-y: scroll;
         }
 
         #lightbox { 
             width: 700px;
             margin: 20px auto; padding: 15px;
+            border: 1px solid #333333;
             border-radius: 5px;
             background: white;
             box-shadow: 0 5px 5px rgba(34, 25, 25, 0.4);
@@ -208,16 +209,16 @@
     </style>
 
 
-    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="jquery.masonry.min.js"></script>
+    <script src="jquery.imagesloaded.min.js"></script>
     <script>
         //폴다운메뉴
         $(document).ready(function () {
             $('.outer-menu').hover(function (){
-                $('this').find('.inner-menu').css('display', 'block');
+                $(this).find('.inner-menu').css('display', 'block');
             }, function(){
-                $('this').find('inner-menu').css('display', 'none');
+                $(this).find('inner-menu').css('display', 'none');
             });
         });
 
@@ -226,7 +227,7 @@
             //이미지 로드확인
             $('#main-section').imagesLoaded(function () {
                 //jquery masonary 플러그인적용
-                $('main-section').masonry({
+                $('#main-section').masonry({
                     itemSelector: '.paper',
                     columnWidth: 230,
                     isAnimated: true
@@ -238,21 +239,21 @@
         $(document).ready(function () {
             function showLightBox() {
                 //라잍트박스를 보이게 합니다.
-                $('darken-background').show();
-                $('darken-background').css('top', $(window).scrollTop());
+                $('#darken-background').show();
+                $('#darken-background').css('top', $(window).scrollTop());
                 //스크롤 금지
                 $('body').css('overflow', 'hidden');
             }
 
             function hideLightBox() {
                 //라이트박스를 안보이게 합니다.
-                $('darken-background').hide();
+                $('#darken-background').hide();
                 //스크롤 허용
                 $('body').css('overflow', '');
             }
 
             //라이트 박스 제거 이벤트
-            $('darken-background').click(function() {
+            $('#darken-background').click(function() {
                 hideLightBox();
             });
 
@@ -319,12 +320,12 @@
     <section id="main-section">
         <div class="paper">
             <div class="paper-holder">
-                <a><img width="190" src="http://placehold.it/190x306"></a>
+                <a><img width="190" src="http://placekitten.com/190x306"></a>
             </div>
                 <p class="paper-description">lorem ipsum dolor sit amet</p>
                 <div class="paper-content">
                     <a class="paper-link" href="#">
-                        <img src="http://placehold.it/190x100">
+                        <img src="http://placekitten.com/190x100">
                     </a>
                     <p class="paper-text">lorem ipsum dolor sit amet</p>
                 </div>
@@ -336,7 +337,7 @@
         <div id="lightbox">
             <div class="user-information">
                 <a class="user-information-image" href="#">
-                    <img src="http://placehold.it/70x70">
+                    <img src="http://placekitten.com/70x70">
                 </a>
                 <div class="user-information-text">
                     <h3>User</h3>
@@ -344,7 +345,7 @@
                 </div>
             </div>
             <hr class="lightbox-splitter">
-            <img src="http://placehold.it/600x750">
+            <img src="http://placekitten.com/600x750">
         </div>
     </div>
 </body>
