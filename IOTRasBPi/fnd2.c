@@ -1,3 +1,4 @@
+//FND 하나에 숫자 0~9 출력하기
 #include <wiringPi.h>
 #define FND_SEL_S0 4
 #define FND_SEL_S1 17

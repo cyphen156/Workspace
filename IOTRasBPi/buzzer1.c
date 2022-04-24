@@ -1,3 +1,4 @@
+//도레미파솔라시도 사운드 출력하기
 #include <wiringPi.h>
 #include <softTone.h>
 

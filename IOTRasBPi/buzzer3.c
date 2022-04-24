@@ -1,3 +1,4 @@
+//파일에서 음계 읽어와 사운드 출력하기
 #include <wiringPi.h>
 #include <softTone.h>
 #include <stdio.h>

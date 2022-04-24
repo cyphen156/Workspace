@@ -1,3 +1,4 @@
+//파일 읽기
 #include <stdio.h>
 
 int main(void) {

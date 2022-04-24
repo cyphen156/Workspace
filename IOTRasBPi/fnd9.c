@@ -1,3 +1,4 @@
+//스위치를 누르면 여러 개의 FND에 숫자 출력하기
 #include <wiringPi.h>
 
 #define FND_SEL_S0 4

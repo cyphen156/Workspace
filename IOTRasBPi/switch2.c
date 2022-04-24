@@ -1,3 +1,4 @@
+//키패드를 누르면 LED를 켜졌다 꺼졌다
 #include <wiringPi.h>
 #include <stdio.h>
 #define LED_PIN 6

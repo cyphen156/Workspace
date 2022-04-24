@@ -1,3 +1,4 @@
+//FND 하나에 숫자 5 출력하기
 #include <wiringPi.h>
 
 #define FND_SEL_S0      4

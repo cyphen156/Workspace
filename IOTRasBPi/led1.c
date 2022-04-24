@@ -1,3 +1,4 @@
+//LED 한 개 한 번 깜빡이기
 #include <stdio.h>
 #include <wiringPi.h>
 #define LED	4

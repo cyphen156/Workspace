@@ -1,3 +1,4 @@
+//LED 한 개 사용자로부터 입력 받은 숫자만큼 깜빡이기
 #include <stdio.h>
 #include <wiringPi.h>
 #define LED	4
