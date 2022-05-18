@@ -1,4 +1,3 @@
-//LED 모듈의 LED 한 개 밝아지기
 #include <wiringPi.h>
 #include <softPwm.h>
 #define LED_RED_1   4

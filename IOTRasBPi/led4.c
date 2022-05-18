@@ -1,4 +1,3 @@
-//LED 두 개 번갈아 5번 깜빡이기
 #include <stdio.h>
 #include <wiringPi.h>
 

@@ -1,4 +1,3 @@
-//LED 두 개 동시에 여러 번 깜빡이기
 #include <wiringPi.h>
 #include <stdio.h>
 #define LedGreenPin 4

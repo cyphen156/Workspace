@@ -1,4 +1,3 @@
-//LED모듈의 LED 한 개 여러 번 깜빡이기
 #include <wiringPi.h>
 #define LED_RED_1   4
 

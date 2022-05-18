@@ -1,4 +1,3 @@
-//키패드(8개)를 누르면 LED(8개) 켜졌다 꺼지기(INTERRUPT처리)
 #include <wiringPi.h>
 
 #define LED_PIN_1	4

@@ -1,4 +1,3 @@
-//zlvoem(8개)를 누르면 LED(8개) 켜지기
 #include <wiringPi.h>
 
 #define LED_PIN_1	4

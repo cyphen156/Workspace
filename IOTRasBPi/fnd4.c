@@ -1,4 +1,3 @@
-//FND 하나에 사용자로부터 입력받은 숫자 출력하기
 #include <wiringPi.h>
 #include <stdio.h>
 #define FND_SEL_S0 4

@@ -1,4 +1,3 @@
-//LED 모듈의 8개 LED 점점 밝아지기
 #include <wiringPi.h>
 #include <softPwm.h>
 #define LED_PIN_1   4   

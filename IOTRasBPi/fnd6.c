@@ -1,4 +1,3 @@
-//FND 6개에 숫자 0~5 출력하기
 #include <wiringPi.h>
 #include <stdio.h>
 

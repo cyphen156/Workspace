@@ -1,4 +1,3 @@
-//LED 10번 밝아졌다 어두워지기
 #include <stdio.h>
 #include <wiringPi.h>
 #include <softPwm.h>

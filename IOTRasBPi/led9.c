@@ -1,4 +1,3 @@
-//LED 모듈의 LED 8 개가 순서대로 번갈아 계속  깜빡이기
 #include <wiringPi.h>
 #define LED_PIN_1   4   
 #define LED_PIN_2   17

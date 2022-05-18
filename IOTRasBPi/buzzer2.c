@@ -1,4 +1,3 @@
-//학교 종이 땡땡땡 사운드 출력하기
 #include <wiringPi.h>
 #include <softTone.h>
 

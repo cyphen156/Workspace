@@ -1,4 +1,3 @@
-//LED 점점 밝아지기
 #include <stdio.h>
 #include <wiringPi.h>
 #include <softPwm.h>

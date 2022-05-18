@@ -1,4 +1,3 @@
-//CLEAR_FND
 #include <wiringPi.h>
 #include <stdio.h>
 

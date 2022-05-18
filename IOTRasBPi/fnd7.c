@@ -1,4 +1,3 @@
-//시간 출력하기
 #include <wiringPi.h>
 #include <time.h>
 #include <stdio.h>
