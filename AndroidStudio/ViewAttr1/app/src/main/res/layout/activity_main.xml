@@ -10,8 +10,9 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:alpha="0.5"
-        android:text="alpha 속성 사용"/>
+        android:alpha="0.3"
+        android:text="alpha 속성 사용"
+        android:onClick="mOnClick1"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -35,4 +36,15 @@
         android:layout_height="wrap_content"
         android:rotation="-20"
         android:text="rotation 속성 사용"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imagePic1"
+        android:src="@drawable/acac"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imagePic2"
+        android:src="@drawable/acac"/>
+
 </LinearLayout>
