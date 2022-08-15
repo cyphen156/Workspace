@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>쇼핑몰 웹서비스</title>
+    <script>
+    function run() {
+    var id = document.getElementsByName("id")[0].value;
+    var name = document.getElementsByName("name")[0].value;
+    var quantity = document.getElementsByName("quantity")[0].value;
+    var date = document.getElementsByName("date")[0].value;
+    
+    $(location).attr('href', 'http://127.0.0.1:8982/?id='+id+'&name='+name+'&quantity='+quantity+'&date='+date);
+    //ajax로 호출 (get방식이어도 좋은가?)
+    //서버로부터 ajax로 response를 주니까 값을 받아와서
+    //document.set뭐든.해서 값을 set 한다.
+}
+
+    </script>
+    </head>
+    <body>
+
+    <form action="http://127.0.0.1:8982" method="get" onsubmit="run();">
+        
+    <p>상품 ID : <input type="text" name="id"/><br></p>
+    <p>상품 이름 : <input type="text" name="name": /><br></p>
+    <p>수량: <input type="number" name="quantity" /><br></p>
+    <p>주문일: <input type="date" name="date" /><br></p>
+    <p>상품 입력: <input type="submit", value="input"/></p>
+
+    </form>
+    </body>
+</html>
