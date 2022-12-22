@@ -59,6 +59,8 @@ B = [3, 5, 7, 9, 1, 2, 4, 6, 8]
 quick_sort(B)
 print(B)
 """
+
+"""
 from random import random
 
 
@@ -69,3 +71,13 @@ for i in range(len(A)):
     else:
         print(A[i])
 
+
+"""
+
+A= { ‘A’ : {‘B’, ‘D’, ‘E’},
+    ‘B’ : {‘A’, ‘C’, ‘E’, ‘F’},
+    ‘C’ : {‘B’, ‘G’},
+    ‘D’ : {‘A’, ‘E’},
+    ‘E’ : {‘A’, ‘B’, ‘D’},
+    ‘F’ : {‘B’, ‘G’},
+    ‘G’ : {‘C’, ‘F’}}
