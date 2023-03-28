@@ -1,0 +1,3 @@
+읽기 전용 텍스트파일
+read only txt file
+cls = console.log();
