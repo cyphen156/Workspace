@@ -1,5 +1,8 @@
 import math
 import csv
+import tracemalloc
+
+tracemalloc.start()
 fs = open("seoul.csv", "r", encoding="cp949")
 
 data = csv.reader(fs)
