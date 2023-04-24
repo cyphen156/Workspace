@@ -6,4 +6,5 @@
  *
  */
 module SWAD {
+    requires java.desktop;
 }
