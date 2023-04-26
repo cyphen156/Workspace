@@ -7,5 +7,6 @@ EEE = {
     'color': ['hotpink', 'skyblue', 'black', 'green']
 }
 
-plt.axis('gender')
-plt.pie(EEE.size, labels=EEE.label, colors=EEE.color, explode=(0, 0, 0.1, 0))
+plt.axis('equal')
+plt.pie(EEE['size'], labels=EEE['label'], colors=EEE['color'], explode=(0, 0, 0.1, 0))
+plt.show()

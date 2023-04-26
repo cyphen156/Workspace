@@ -13,9 +13,9 @@ for i in range(0, 50, 2):
     p3.append(res ** 3)
 print(t, p2, p3)
 
-plt.plot(t, t, 'r--')
-plt.plot(t, p2, 'bs')
-plt.plot(t, p3, 'g^')
+plt.plot(p3, t, 'r')
+plt.plot(p3, p2, 'b')
+plt.plot(p3, p3, 'g')
 ## = plt.plot(t, t, 'r--', t, p2, 'bs', t, p3, 'g^')
 ##            x, y, RGB
 plt.show()
