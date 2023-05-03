@@ -5,7 +5,7 @@ public class TicketManager {
     private int cnt = 0;
     private TicketManager() {}
 
-    public static TicketManager getTicketManager{
+    public static TicketManager getTicketManager(){
         return ticketManager;
     }
 }
