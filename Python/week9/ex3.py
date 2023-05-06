@@ -19,7 +19,7 @@ for row in data:
     plt.title(row[3] + row[1])
     plt.pie(row[4:8], labels = label, autopct='%.1f%%')
     plt.axis('equal')
-    plt.savefig('C:/Workspace/python/week9/plt/' + row[3] + " " + row[1] + 'png')
+    # plt.savefig('C:/Workspace/python/week9/plt/' + row[3] + " " + row[1] + 'png')
     plt.clf()
     # plt.show()
 
