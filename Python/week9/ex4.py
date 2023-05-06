@@ -13,12 +13,12 @@ next(data)
 mx = [[0, 0] for i in range(24)]
 mx_stat = [['', ''] for i in range(24)]
 
-# t = input('어떤의 시간대별 승하차 인원이 궁금한가요?')
+t = input('어떤의 시간대별 승하차 인원이 궁금한가요?')
 
 for row in data:
     row[4:] = map(int, row[4:])
 
-    # if row[3] == t:
+    if row[3] == t:
     for i in range(24):
         a = row[i * 2 + 4]
         b = row[i * 2 + 5]

@@ -5,43 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="842e7b76-0b67-4fe1-8535-d304241abe49" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Python.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/ex3.py" beforeDir="false" afterPath="$PROJECT_DIR$/week9/ex3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/week9/ex4.py" beforeDir="false" afterPath="$PROJECT_DIR$/week9/ex4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/강남 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/강남 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/강변(동서울터미널) 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/강변(동서울터미널) 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/건대입구 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/건대입구 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/구의(광진구청) 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/구의(광진구청) 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/동대문 1호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/동대문 1호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/동대문역사문화공원(DDP) 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/동대문역사문화공원(DDP) 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/동묘앞 1호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/동묘앞 1호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/뚝섬 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/뚝섬 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/삼성(무역센터) 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/삼성(무역센터) 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/상왕십리 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/상왕십리 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/서울역 1호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/서울역 1호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/선릉 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/선릉 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/성수 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/성수 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/시청 1호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/시청 1호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/시청 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/시청 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/신당 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/신당 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/신설동 1호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/신설동 1호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/역삼 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/역삼 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/왕십리(성동구청) 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/왕십리(성동구청) 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/을지로3가 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/을지로3가 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/을지로4가 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/을지로4가 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/을지로입구 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/을지로입구 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/잠실(송파구청) 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/잠실(송파구청) 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/잠실나루 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/잠실나루 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/잠실새내 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/잠실새내 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/제기동 1호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/제기동 1호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/종각 1호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/종각 1호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/종로3가 1호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/종로3가 1호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/종로5가 1호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/종로5가 1호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/종합운동장 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/종합운동장 2호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/청량리(서울시립대입구) 1호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/청량리(서울시립대입구) 1호선png.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/week9/plt/한양대 2호선png.png" beforeDir="false" afterPath="$PROJECT_DIR$/week9/plt/한양대 2호선png.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
