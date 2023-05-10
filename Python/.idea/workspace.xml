@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="842e7b76-0b67-4fe1-8535-d304241abe49" name="Changes" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/week9/ex4.py" beforeDir="false" afterPath="$PROJECT_DIR$/week9/ex4.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/../testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/../testing.py" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
