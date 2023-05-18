@@ -1,0 +1,50 @@
+무엇을 만들것인가?
+이번 6~8, 9~11, 12~2월에 만들 프로그램
+레이드 형식의 TPP게임 만들기
+레고 마인드스톰 and 라즈베리파이를 이용한 사운드 생성기
+내가 만들 프로그램의 최종장 : 인공지능 악보생성기 & 추천기
+
+
+--> 인공지능 악보 생성기에 대한 데이터베이스 설계
+1. UserData {
+    Email(Id) : "String",
+    PASSWORD : "String",
+    NAME : "String",
+    관심분야(분석기) : [],
+    자주사용하는 코드(분석기): [], 
+    친구목록 : [],
+    보유 악보(Sheet mapping) : [sheet Unique key : int],
+}
+
+2. Sheet {
+    sheet Unique key : int,
+    소유자(mapping) : ""NAME : "String"",
+    song name : "String",
+    song discription : "String",
+    size : int, 
+    가사 : [],
+    장르 : [],
+    사용되는 코드(chords mapping) : [chrod Unique index : int],
+    패턴 : [],
+    주법 : [],
+}
+
+3. chrods {
+    chrod Unique index : int,
+    화음 : [],
+    코드 : [],
+    음표 : [],
+    박자 : [],
+} 
+
+4. 인공지능의 학습 데이터셋 {
+    유저별 선호도 {
+        장르별,
+        연령별,
+        성별,
+    },
+    장르별 선호도 {
+        시간대별,
+        지역별,
+    }
+}
