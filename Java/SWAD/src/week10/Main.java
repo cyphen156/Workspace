@@ -9,6 +9,13 @@ public class Main {
         Command PoewerCommand = new PowerCommand(tv);
         Command MuteCommand = new MuteCommand(tv);
 
+        rc.setCommand(MuteCommand, PoewerCommand);
 
+        rc.Button1pressed();
+        rc.Button2pressed();
+        rc.Button1pressed();
+        rc.Button1pressed();
+        rc.Button2pressed();
+        rc.Button1pressed();
     }
 }
