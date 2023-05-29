@@ -1,18 +1,17 @@
 from bs4 import BeautifulSoup
 import urllib.request
 
-store_center = []
-page = 1
-for i in range(52):
-    hollys_url = 'https://www.hollys.co.kr/store/korea/korStore2.do?pageNo=%d&sido=&gugun=&store=' % page
-    html = urllib.request.urlopen(hollys_url)
-    soup = BeautifulSoup(html, 'html.parser')
-    tag_tbody = soup.find('tbody')
-    for store in tag_tbody.find_all('tr'):
-        store_td = store.find_all('td')
-        store_center.append([store_td[0].string, store_td[1].string, store_td[3].string, store_td[5].string])
-    page = page + 1
-    print(store_center[i])
+theaters_center = {}
+CGV_url = 'http://www.cgv.co.kr/theaters/'
+html = urllib.request.urlopen(CGV_url)
+soup = BeautifulSoup(html, 'html.parser')
+sect_city = soup.find('div', class_='sect-city') #지역별 크롤링
+city_ul = sect_city.find('ul')
+city_li = city_ul.find_all('li')
+
+for theaters in sect_city.find_all('ul'):
+    theaters_a = theaters.find_all('a')
+print(theaters_center)
 
 
 

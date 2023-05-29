@@ -28,3 +28,34 @@ for index in range(1, 11):
 
 print(result)
 
+
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from bs4 import BeautifulSoup
+# import pandas as pd
+#
+# wd = webdriver.Chrome('./webDriver/chromedriver.exe')
+# CGV_url = 'http://www.cgv.co.kr/theaters/'
+# wd.get(CGV_url)
+#
+# wait = WebDriverWait(wd, 30)
+# element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'sect_city')))
+#
+# html = wd.page_source
+# soup = BeautifulSoup(html, 'html.parser')
+# city_list = soup.select('div.sect_city > ul')[0]
+# for city in city_list.select('li'):
+#     city_name = city.find('a').get_text()
+#     print('City:', city_name)
+#
+#     theater_list = city.select('div.area > ul')[0]
+#     for theater in theater_list.select('li'):
+#         theater_name = theater.find('a').get_text()
+#         theater_link = theater.find('a')['href']
+#         print('Theater:', theater_name, 'Link:', theater_link)
+#
+# wd.close()
+#
+
