@@ -1,6 +1,6 @@
 package Week12.example1;
 
-public class BatteryLevelDisplay {
+public class BatteryLevelDisplay implements Observer{
     private Battery battery;
 
     public BatteryLevelDisplay (Battery battery) {
