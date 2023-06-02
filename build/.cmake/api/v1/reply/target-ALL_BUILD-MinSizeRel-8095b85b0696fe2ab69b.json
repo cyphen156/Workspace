@@ -1,0 +1,33 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"Source/Runtime/Renderer/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "RendererModule::@2ab814afe0c860879a9f"
+		}
+	],
+	"id" : "ALL_BUILD::@2ab814afe0c860879a9f",
+	"isGeneratorProvided" : true,
+	"name" : "ALL_BUILD",
+	"paths" : 
+	{
+		"build" : "Source/Runtime/Renderer",
+		"source" : "Source/Runtime/Renderer"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

@@ -1,0 +1,9 @@
+C:/Workspace/build/CMakeFiles/ALL_BUILD.dir
+C:/Workspace/build/Source/Runtime/Math/CMakeFiles/MathModule.dir
+C:/Workspace/build/Source/Runtime/Math/CMakeFiles/ALL_BUILD.dir
+C:/Workspace/build/Source/Runtime/Renderer/CMakeFiles/RendererModule.dir
+C:/Workspace/build/Source/Runtime/Renderer/CMakeFiles/ALL_BUILD.dir
+C:/Workspace/build/Source/Runtime/Engine/CMakeFiles/EngineModule.dir
+C:/Workspace/build/Source/Runtime/Engine/CMakeFiles/ALL_BUILD.dir
+C:/Workspace/build/Source/Player/CMakeFiles/SoftRendererPlayer.dir
+C:/Workspace/build/Source/Player/CMakeFiles/ALL_BUILD.dir
