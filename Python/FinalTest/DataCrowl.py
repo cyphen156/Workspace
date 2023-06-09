@@ -7,53 +7,60 @@ import pandas as pd
 
 wd = webdriver.Chrome('./WebDriver/chromedriver.exe')
 
-CGV_url = 'http://www.cgv.co.kr/theaters/'
-Lotte_url = 'http://www.lottecinema.co.kr/'
-Megabox_url = 'https://megabox.co.kr/'
-wd.get(CGV_url)
-wait = WebDriverWait(wd, 10)
-element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'sect-city')))
+cinemas = ['www.cgv', 'www.lottecinema', 'megabox'] # 영화회사 리스트
 
-html = wd.page_source
-soup = BeautifulSoup(html, 'html.parser')
+for cinema in cinemas:  # 각 회사 반복
+    url = 'https://%s.co.kr' % cinema
+    print(url)
+    wd.get(url)
+    wait = WebDriverWait(wd, 3)
+    html = wd.page_source
+    soup = BeautifulSoup(html, 'html.parser')
 
-city_list = soup.select('div.sect-city > ul > li')
-print(city_list)
-theaters = {}
-
-for city in city_list:
-    city_name = city.find('a').get_text().strip()
-    theater_ul = city.find('div').find('ul')
-    theater_list = theater_ul.find_all('li')
-
-    city_theaters = []
-
-    for theater in theater_list:
-        theater_info = {}
-        theater_name = theater.find('a').get_text().strip()
-        theater_link = theater.find('a')['href']
-        theater_info['Theater'] = theater_name
-        theater_info['Link'] = 'http://www.cgv.co.kr' + theater_link
-        city_theaters.append(theater_info)
-
-    theaters[city_name] = city_theaters
-
-    for city, city_theaters in theaters.items():
-        print(city)
-        for theater in city_theaters:
-            print('\t', theater)
-
-data = []
-for city, theaters_list in theaters.items():
-    for theater in theaters_list:
-        theater['city'] = city
-        data.append(theater)
-
-# Creating a dataframe
-df = pd.DataFrame(data)
-
-df.to_csv('theaters.csv', index=True, encoding='cp949')
-print("CSV저장 완료")
-wd.close()
+wd.close() # 웹드라이버 종료
+# wd.get(url)
+# wait = WebDriverWait(wd, 10)
+# element = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'sect-city')))
+#
+# html = wd.page_source
+# soup = BeautifulSoup(html, 'html.parser')
+#
+# city_list = soup.select('div.sect-city > ul > li')
+# print(city_list)
+# theaters = {}
+#
+# for city in city_list:
+#     city_name = city.find('a').get_text().strip()
+#     theater_ul = city.find('div').find('ul')
+#     theater_list = theater_ul.find_all('li')
+#
+#     city_theaters = []
+#
+#     for theater in theater_list:
+#         theater_info = {}
+#         theater_name = theater.find('a').get_text().strip()
+#         theater_link = theater.find('a')['href']
+#         theater_info['Theater'] = theater_name
+#         theater_info['Link'] = 'http://www.cgv.co.kr' + theater_link
+#         city_theaters.append(theater_info)
+#
+#     theaters[city_name] = city_theaters
+#
+#     for city, city_theaters in theaters.items():
+#         print(city)
+#         for theater in city_theaters:
+#             print('\t', theater)
+#
+# data = []
+# for city, theaters_list in theaters.items():
+#     for theater in theaters_list:
+#         theater['city'] = city
+#         data.append(theater)
+#
+# # Creating a dataframe
+# df = pd.DataFrame(data)
+#
+# df.to_csv('theaters.csv', index=True, encoding='cp949')
+# print("CSV저장 완료")
 
 
