@@ -325,24 +325,24 @@ for cinema in cinemas:  # 각 회사 반복
         print(reviews)
 
 
-# CSV 파일로 결과 저장
-for i, cinema in enumerate(cinemas):
-    result_file_name = f"{cinema.split('.')[1]}.csv"
-    review_file_name = f"{cinema.split('.')[1]}_reviews.csv"
-
-    # 결과 데이터프레임 생성
-    result_df = pd.DataFrame(result[i], columns=['Title', 'Grade Point', 'Reservation Rate', 'Genre'])
-    review_dfs = []  # 빈 리스트 생성
-
-    # 리뷰 데이터프레임 생성
-    for review_data in reviews[i]:
-        review_dfs.append(pd.DataFrame(review_data['reviews'], columns=['Review Text', 'Score']))
-
-    review_df = pd.concat(review_dfs, ignore_index=True)  # 데이터프레임 합치기
-
-    # 결과를 CSV 파일로 저장 (cp949 인코딩)
-    result_df.to_csv(result_file_name, index=False, encoding='cp949')
-    review_df.to_csv(review_file_name, index=False, encoding='cp949')
+# # CSV 파일로 결과 저장
+# for i, cinema in enumerate(cinemas):
+#     result_file_name = f"{cinema.split('.')[1]}.csv"
+#     review_file_name = f"{cinema.split('.')[1]}_reviews.csv"
+#
+#     # 결과 데이터프레임 생성
+#     result_df = pd.DataFrame(result[i], columns=['Title', 'Grade Point', 'Reservation Rate', 'Genre'])
+#     review_dfs = []  # 빈 리스트 생성
+#
+#     # 리뷰 데이터프레임 생성
+#     for review_data in reviews[i]:
+#         review_dfs.append(pd.DataFrame(review_data['reviews'], columns=['Review Text', 'Score']))
+#
+#     review_df = pd.concat(review_dfs, ignore_index=True)  # 데이터프레임 합치기
+#
+#     # 결과를 CSV 파일로 저장 (cp949 인코딩)
+#     result_df.to_csv(result_file_name, index=False, encoding='cp949')
+#     review_df.to_csv(review_file_name, index=False, encoding='cp949')
 
 wd.close()  # 웹드라이버 종료
 
