@@ -1,12 +1,12 @@
 package week14.example;
 
 public class Basic extends Decorator{
-	
-	public Basic(Stirng content) {
-		super(content);
+    private String content;
+
+	public Basic(String content) {
 		this.content = content;
 	}
 	public String getContent() {
-		return this.content;
+		return content;
 	}
 }

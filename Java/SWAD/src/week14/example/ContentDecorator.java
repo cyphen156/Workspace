@@ -1,14 +1,13 @@
 package week14.example;
 
 public abstract class ContentDecorator extends Decorator{
-	private Decorator content;
-	
+	private Decorator decorator;
+
 	public ContentDecorator(Decorator content) {
-		this.content = content;
-	}
-	
-	public String getContent(String str) {
-		return this.content;
+		this.decorator = content;
 	}
 
+	public String getContent() {
+		return decorator.getContent();
+	}
 }

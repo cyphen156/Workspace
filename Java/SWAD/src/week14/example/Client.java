@@ -4,13 +4,16 @@ public class Client {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		BasicEMailContent simple = new BasicEMailContent("Hello");
+		Decorator simple = new Basic("Hello");
 		System.out.println(simple.getContent());
-		
-		ExternalEMailContent external = new ExternalEMailContent("Hello");
+
+		Decorator external = new External(simple);
 		System.out.println(external.getContent());
-		
-		SecureEMailContent secure = new SecureEMailContent("Hello");
+
+		Decorator secure = new Secure(simple);
 		System.out.println(secure.getContent());
+
+		Decorator translate = new Transcribe(simple);
+		System.out.println(translate.getContent());
 	}
 }
