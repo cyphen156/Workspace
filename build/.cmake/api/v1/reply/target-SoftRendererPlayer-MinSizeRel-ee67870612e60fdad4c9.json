@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "C:/Workspace/gamemath-main/Output/Windows/Binary/Debug/SoftRendererPlayer.exe"
+			"path" : "C:/Workspace/gamemath-main/Output/Windows/Binary/MinSizeRel/SoftRendererPlayer.exe"
 		},
 		{
-			"path" : "C:/Workspace/gamemath-main/Output/Windows/Binary/Debug/SoftRendererPlayer.pdb"
+			"path" : "C:/Workspace/gamemath-main/Output/Windows/Binary/MinSizeRel/SoftRendererPlayer.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -63,7 +63,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG -std:c++17"
 				},
 				{
 					"fragment" : "/Yc\"Precompiled.h\""
@@ -125,7 +125,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG -std:c++17"
 				},
 				{
 					"fragment" : "/Yu\"Precompiled.h\""
@@ -191,7 +191,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-DWIN32 -D_DEBUG"
+					"fragment" : "-DWIN32"
 				}
 			],
 			"defines" : 
@@ -243,11 +243,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "MathModule::@f761a79db46c0041bb14"
+			"id" : "RendererModule::@2ab814afe0c860879a9f"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "RendererModule::@2ab814afe0c860879a9f"
+			"id" : "MathModule::@f761a79db46c0041bb14"
 		},
 		{
 			"backtrace" : 2,
@@ -260,36 +260,36 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:windows",
+				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:windows",
 				"role" : "flags"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Workspace\\gamemath-main\\Output\\Windows\\Library\\Debug\\MathModule.lib",
+				"fragment" : "C:\\Workspace\\gamemath-main\\Output\\Windows\\Library\\MinSizeRel\\MathModule.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Workspace\\gamemath-main\\Output\\Windows\\Library\\Debug\\RendererModule.lib",
+				"fragment" : "C:\\Workspace\\gamemath-main\\Output\\Windows\\Library\\MinSizeRel\\RendererModule.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Workspace\\gamemath-main\\Output\\Windows\\Library\\Debug\\EngineModule.lib",
+				"fragment" : "C:\\Workspace\\gamemath-main\\Output\\Windows\\Library\\MinSizeRel\\EngineModule.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Workspace\\gamemath-main\\Output\\Windows\\Library\\Debug\\RendererModule.lib",
+				"fragment" : "C:\\Workspace\\gamemath-main\\Output\\Windows\\Library\\MinSizeRel\\RendererModule.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Workspace\\gamemath-main\\Output\\Windows\\Library\\Debug\\MathModule.lib",
+				"fragment" : "C:\\Workspace\\gamemath-main\\Output\\Windows\\Library\\MinSizeRel\\MathModule.lib",
 				"role" : "libraries"
 			},
 			{
