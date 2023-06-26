@@ -4,13 +4,10 @@
 
 int main(void) {
     int num;
-
-    while (1) {
-        printf("Enter a number to be converted.\n");
+    do {
+        printf("Enter a number to converted.\n");
         scanf("%d", &num);
-        if (!(num >= 0))
-            break;
         printf("%d is %X in hexadecimal.\n", num, num);
-    }
+    } while (num >= 0);
     return 0;
 }
