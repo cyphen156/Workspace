@@ -3,14 +3,15 @@
 #include <stdio.h>
 
 int main(void) {
-    int num;
+    int num, max, sum = 0;
 
-    printf("Enter a number to be converted.\n");
-    scanf("%d", &num);
-    while (num >= 0) {
-        printf("%d is %X in hexadecimal.\n", num, num);
-        printf("Enter a number to be converted.\n");
-        scanf("%d", &num);
+    printf("Enter an integer larger than 1.\n");
+    scanf("%d", &max);
+    for (num = 1; num <= max; num++) {
+        if (num % 2 == 0)
+            continue;
+        sum += num;
     }
+    printf("Sum of odd numbers from 1 to %d is %d.\n", max, sum);
     return 0;
 }
