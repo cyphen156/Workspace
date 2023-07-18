@@ -2,15 +2,19 @@
 
 #include <stdio.h>
 
+int power(int a, int b);
+
 int main(void) {
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
-            if (i == 1 && j == 1)
-                continue;
-            if (i % j == 0)
-                break;
-            
-        }
-    }
+    int a, b;
+    printf("Enter a natural number.\n");
+    scanf("%d %d", &a, &b);
+    printf("%d to the power of %d is %d.", a, b, power(a, b));
     return 0;
+}
+
+int power(int a, int b) {
+    if (b == 0)
+        return 1;
+    else
+        return a * power(a, b - 1);
 }

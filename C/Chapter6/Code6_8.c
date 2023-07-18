@@ -3,14 +3,15 @@
 #include <stdio.h>
 
 int main(void) {
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
-            if (i == 1 && j == 1)
-                continue;
-            if (i % j == 0)
-                break;
-            
-        }
+    int n, num = 0, sum = 0;
+
+    printf("Enter the number of terms.\n");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        num = 10 * num + 9;
+        sum += num;
     }
+    printf("The sum is %d.\n", sum);
     return 0;
 }

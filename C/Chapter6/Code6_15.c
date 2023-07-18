@@ -3,14 +3,18 @@
 #include <stdio.h>
 
 int main(void) {
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
-            if (i == 1 && j == 1)
-                continue;
-            if (i % j == 0)
-                break;
-            
-        }
+    int len = 0;
+    double n, sum = 0.0f, avg = 0.0f;
+
+    while (1) {
+        printf("Enter a natural number.\n");
+        scanf("%lf", &n);
+        if (n <= 0)
+            break;
+        sum += n;
+        len++;
+        avg = sum / len;
+        printf("Current avverage is %.3lf\n", avg);
     }
     return 0;
 }

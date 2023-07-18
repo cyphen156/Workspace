@@ -2,15 +2,26 @@
 
 #include <stdio.h>
 
+void reverse_it(int num);
+
 int main(void) {
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
-            if (i == 1 && j == 1)
-                continue;
-            if (i % j == 0)
-                break;
-            
-        }
+    int n;
+
+    while (1) {
+        printf("Enter a natural number.\n");
+        scanf("%d", &n);
+        if (n <= 0)
+            break;
+        reverse_it(n);
+        printf("\n");
     }
     return 0;
+}
+
+void reverse_it(int num) {
+    while (num != 0) {
+        int k = num % 10;
+        num /= 10;
+        printf("%d", k);
+    }
 }

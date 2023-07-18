@@ -3,14 +3,18 @@
 #include <stdio.h>
 
 int main(void) {
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
-            if (i == 1 && j == 1)
-                continue;
-            if (i % j == 0)
-                break;
-            
-        }
+    int n;
+    double sum = 0.0f;
+
+    printf("Enter the number of terms.\n");
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++) {
+        if (i % 2 == 0)
+            sum -= 4 / (2.0 * i - 1.0);
+        else 
+            sum += 4 / (2.0 * i - 1.0);
+        
     }
+    printf("PI evaluated to %d terms is %.12f.", n, sum);
     return 0;
 }

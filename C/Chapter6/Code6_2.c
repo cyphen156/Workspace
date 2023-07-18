@@ -3,14 +3,14 @@
 #include <stdio.h>
 
 int main(void) {
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
-            if (i == 1 && j == 1)
-                continue;
-            if (i % j == 0)
-                break;
-            
-        }
+    int n, sum = 0, i = 0;
+
+    printf("Enter a maximum number.\n");
+    scanf("%d", &n);
+    while (sum + i < n) {
+        i++;
+        sum += i;
     }
+    printf("The sum from 1 to %d is %d", i, sum);
     return 0;
 }

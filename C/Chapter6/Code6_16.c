@@ -2,15 +2,17 @@
 
 #include <stdio.h>
 
-int main(void) {
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
-            if (i == 1 && j == 1)
-                continue;
-            if (i % j == 0)
-                break;
-            
-        }
+int main() {
+    char ch; int sum = 0;
+    int value;
+    printf("Enter a natural number.\n");
+    while (1) {
+        scanf("%c", &ch);
+        if (ch == '\n')
+            break;
+        value = ch - '0';
+        sum = sum * 10 + value;
     }
+    printf("You entered %d in decimal.\n", sum);
     return 0;
 }
