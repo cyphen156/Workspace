@@ -5,5 +5,15 @@
         "string.h": "c"
     },
     "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-    "cmake.sourceDirectory": "C:/Workspace/gamemath-main"
+    "cmake.sourceDirectory": "C:/Workspace/gamemath-main",
+    "editor.codeActionsOnSave": {
+        
+    },
+    "files.exclude": {
+        "c:/Workspace/Java/source/**": true
+    },
+    "search.exclude": {
+        "c:/Workspace/Java/source/**": true
+    }
+    
 }
