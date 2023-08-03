@@ -10,6 +10,9 @@
     -> 등차 수열의 합 1001 * 500
 
     1차 알고리즘 브루트포스
+    -> insufficientSpace 에러 발생
+
+    2차 알고리즘 tri 브루트 포스
  */
 /*
     제한사항
@@ -20,14 +23,15 @@
     0 < len <= 1,000
 */
 /*
-    문제 풀이 시간 : 20분
+    문제 풀이 시간 : 300분
 */
 
 // 브루트 포스
+/*
 #include <stdio.h>
 
-char s[1000];   //원본 문자열
-char S2[1000][1000];    //부분 문자열
+char s[1001];   //원본 문자열
+char S2[1001][1001];    //부분 문자열
 int S_len = 0;  // 부분 문자열 배열의 길이
 
 int strcmp(char* s1, char* s2);
@@ -89,4 +93,33 @@ void strcpy(char* dest, char* src, int len) {
         dest[i] = src[i];
     }
     dest[len] = '\0';
+}
+*/
+
+#include <stdio.h>
+
+char s[1001];
+int trie[1000000][27]; // 최대 1000 * 26개의 노드를 가질 수 있음.
+int nodeIdx = 1;  // 0은 root 노드.
+
+void insert(int node, char* str);
+
+int main() {
+    scanf("%s", s);
+    int len = 0;
+    for (len = 0; s[len]; ++len);
+    for (int i = 0; i < len; ++i) {
+        insert(0, s + i);  // 각 위치부터 시작하는 부분 문자열을 트라이에 삽입
+    }
+    printf("%d\n", nodeIdx - 1);  // 노드의 수 (루트 제외)가 서로 다른 부분 문자열의 수
+    return 0;
+}
+
+void insert(int node, char* str) {
+    if (*str == '\0') return;
+    int c = *str - 'a';
+    if (!trie[node][c]) {  // 아직 해당 문자의 노드가 없다면 새 노드 생성
+        trie[node][c] = nodeIdx++;
+    }
+    insert(trie[node][c], str + 1);
 }
