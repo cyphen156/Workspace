@@ -3,14 +3,30 @@
 #include <stdio.h>
 
 int main(void) {
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
-            if (i == 1 && j == 1)
-                continue;
-            if (i % j == 0)
-                break;
-            
+    char ch;
+    int state = 0, n = 0;
+    printf("Enter a sentence.\n");
+
+    while (1) {
+        scanf("%c", &ch);
+        if (ch == '\n')
+            break;
+        if (ch == 'i') {
+            state = 1;
+            continue;
         }
+        if (state == 1 && ch == 'n') {
+            state = 2;
+            continue;
+        }
+        if (state == 2 && ch == ' ') {
+            n++;
+            state = 0;
+            continue;
+        }
+        else
+            state = 0;
     }
+    printf("The preposition 'in' appears %d times.\n", n);
     return 0;
 }

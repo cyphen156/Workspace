@@ -3,14 +3,16 @@
 #include <stdio.h>
 
 int main(void) {
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
-            if (i == 1 && j == 1)
-                continue;
-            if (i % j == 0)
-                break;
-            
-        }
+    int n = 0;
+    char s[1000];
+
+    printf("Enter a sentence.\n");
+    fgets(s, sizeof(s), stdin);
+    for (int i = 0; s[i] != '\0'; i++) {
+        if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i'
+            || s[i] == 'o' || s[i] == 'u')
+            n++;
     }
+    printf("Vowel appears %d times.", n);
     return 0;
 }

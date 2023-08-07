@@ -3,14 +3,25 @@
 #include <stdio.h>
 
 int main(void) {
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
-            if (i == 1 && j == 1)
-                continue;
-            if (i % j == 0)
-                break;
-            
+    char ch;
+    int len = 0, isNum = 0, head = 0;
+
+    printf("Enter an identifier.\n");
+    while (1) {
+        scanf("%c", &ch);
+        if (ch == '\n')
+            break;
+        if (len == 0 && ch >= 'a' && ch <= 'z') {
+            head = 1;
         }
+        if (ch >= '0' && ch <= '9') {
+            isNum = 1;
+        }
+        len++;
     }
+    if (isNum == 1 && len <= 8 && head == 1)
+        printf("It's a legal ID.\n");
+    else
+        printf("It's a Unlegal ID.\n");
     return 0;
 }

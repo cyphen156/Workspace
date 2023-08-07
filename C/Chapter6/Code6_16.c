@@ -10,6 +10,10 @@ int main() {
         scanf("%c", &ch);
         if (ch == '\n')
             break;
+        if (ch < '0' || ch > '9') {
+            printf("잘못된 입력입니다 숫자를 입력해주세요.\n");
+            return 1;
+        }
         value = ch - '0';
         sum = sum * 10 + value;
     }
