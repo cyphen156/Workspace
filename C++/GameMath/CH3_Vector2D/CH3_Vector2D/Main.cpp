@@ -12,7 +12,7 @@ int main() {
                 std::cout << "*"; // 점을 그립니다.
             }
             else if (i == 0 || j == 0) {
-                std::cout << "#"; // 축을 그립니다.
+                std::cout << "#\t"; // 축을 그립니다.
             }
             else {
                 std::cout << ".\t"; // 빈 공간을 그립니다.

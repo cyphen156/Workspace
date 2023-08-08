@@ -20,3 +20,4 @@ int main() {
 	printf("Result is %d\n", is_larger(first, second));
 	return 0;
 }
+	strcm
