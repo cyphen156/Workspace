@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Open hello.html",
-            "file": "c:\\Workspace\\Vue\\hello.html"
+            "file": "${file}"
         }
     ]
 }
