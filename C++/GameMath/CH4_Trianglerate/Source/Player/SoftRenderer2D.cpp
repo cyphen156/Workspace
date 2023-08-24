@@ -162,7 +162,7 @@ void SoftRenderer::Render2D()
 
 		// 2. 크기가 변한 점을 회전
 		Vector2 rotateV = Vector2(scaledV.X * cos - scaledV.Y * sin, scaledV.X * sin + scaledV.Y * cos);
-		
+
 		// 3. 회전시킨 점을 이동
 		Vector2 translatedV = rotateV + currentPosotion;
 

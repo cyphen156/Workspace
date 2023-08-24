@@ -109,6 +109,20 @@ void SoftRenderer::Render2D()
 
 	r.PushStatisticText("Coordinate : " + currentPosition.ToString());
 
+	//// y = x^2 그래프 그리기
+	//static float step = 1.0f;  // x값의 간격입니다. 이 값은 원하는 대로 조절할 수 있습니다.
+	//LinearColor graphColor(0.0f, 0.0f, 0.0f, 1.0f);  // Black
+
+	//float scale = 1.0f / _Grid2DUnit; // 이 값은 y = x^2 그래프의 y 값을 격자 크기에 맞게 스케일링합니다.
+
+	//Vector2 prevPoint = currentPosition + Vector2(-lineLength, (-lineLength) * (-lineLength) * scale);
+	//for (float x = -lineLength + step; x <= lineLength; x += step)
+	//{
+	//	float y = x * x;
+	//	Vector2 currentPoint = currentPosition + Vector2(x, y * scale);
+	//	r.DrawLine(prevPoint, currentPoint, graphColor);
+	//	prevPoint = currentPoint;
+	//}
 
 	// 렌더링 로직의 로컬 변수
 	// Circle그리기
@@ -120,7 +134,7 @@ void SoftRenderer::Render2D()
 		for (float x = -radius; x <= radius; ++x)
 		{
 			for (float y = -radius; y <= radius; ++y)
-			{
+				{
 				Vector2 pointToTest = Vector2(x, y);
 				float squaredLength = pointToTest.SizeSquared();
 				if (squaredLength <= radius * radius)

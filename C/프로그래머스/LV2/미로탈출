@@ -1,0 +1,165 @@
+#define _CRT_SECURE_NO_WARNINGS
+/*
+    프로그래머스 미로탈출
+    1*1 직사각형 격자 미로 탈출
+    통로 or 벽
+    통로중 한칸은 미로를 나가는 문, 레버를 당겨야 열린다.
+    레버는 통로중 한칸이 있는데 문과는 다른 칸이다.
+    => 레버찾기, 문찾기
+    문칸은 레버를 찾지 않아도 통과 가능 ==> 상태 조정 필요
+    1칸 이동시 걸리는 시간 == 1초
+    입출력 예
+        maps	result
+    ["SOOOL",
+     "XXXXO",
+     "OOOOO",
+     "OXXXX",
+     "OOOOE"]	16
+
+    ["LOOXS",
+     "OOOOX",
+     "OOOOO",
+     "OOOOO",
+     "EOOOO"]	-1
+
+     생각하기
+     1. s위치 찾기, l위치 찾기, e위치찾기
+     2. s에서 l로 이동하기 경로는 아직 모른다고 가정
+     3. l에서 e로가는 위치 찾기 필요한 경우 역주행 할 수 잇음
+
+     .1 l찾을 때 이미 방문한 곳을 재 탐색하는 경우는 없다.
+     .2 l을 찾고난 뒤 상태를 초기화 함으로써 e로 가는 경로를 역주행하는 것을 가능하게 할 수 있다.
+
+     -> O or X
+*/
+/*
+    제한사항
+    ***
+    라이브러리는 stdio.h만 사용
+    struct 구조 사용불가
+    ***
+    5 ≤ maps의 길이 ≤ 100
+    5 ≤ maps[i]의 길이 ≤ 100
+    maps[i]는 다음 5개의 문자들로만 이루어져 있습니다.
+    S : 시작 지점
+    E : 출구
+    L : 레버
+    O : 통로
+    X : 벽
+    시작 지점과 출구, 레버는 항상 다른 곳에 존재하며 한 개씩만 존재합니다.
+    출구는 레버가 당겨지지 않아도 지나갈 수 있으며, 모든 통로, 출구, 레버, 시작점은 여러 번 지나갈 수 있습니다.
+*/
+/*
+    문제 풀이 시간 : 180분
+    문풀 알고리즘 시간 : 60분
+    초기화 문제 찾는데 걸린시간 : 120분
+*/
+#include <stdio.h>
+
+#define MAX 100
+
+int visited[MAX][MAX] = { 0 };
+int queue[MAX * MAX][2] = { 0 };
+int front = 0, rear = 0;
+
+int dx[] = { -1, 1, 0, 0 };
+int dy[] = { 0, 0, -1, 1 };
+
+int strlen(const char* str) {
+    int len = 0;
+    while (str[len] != '\0') {
+        len++;
+    }
+    return len;
+}
+
+void reset(int h, int w) {
+    for (int row = 0; row < h; row++) {
+        for (int col = 0; col < w; col++) {
+            visited[row][col] = 0;
+        }
+    }
+    front = 0;
+    rear = 0;
+}
+
+void enqueue(int row, int col) {
+    queue[rear][0] = row;
+    queue[rear][1] = col;
+    rear++;
+}
+
+void dequeue(int* row, int* col) {
+    *row = queue[front][0];
+    *col = queue[front][1];
+    front++;
+}
+
+int isEmpty() {
+    return front == rear;
+}
+
+int bfs(const char* maps[], int startRow, int startCol, int endRow, int endCol, int w, int h) {
+    enqueue(startRow, startCol);
+    visited[startRow][startCol] = 1;
+
+    while (!isEmpty()) {
+        int row, col;
+        dequeue(&row, &col);
+
+        if (row == endRow && col == endCol) {
+            return visited[row][col] - 1;
+        }
+
+        for (int dir = 0; dir < 4; dir++) {
+            int newRow = row + dy[dir];
+            int newCol = col + dx[dir];
+
+            if (newRow >= 0 && newRow < h && newCol >= 0 && newCol < w && !visited[newRow][newCol] && maps[newRow][newCol] != 'X') {
+                visited[newRow][newCol] = visited[row][col] + 1;
+                enqueue(newRow, newCol);
+            }
+        }
+    }
+
+    return -1;
+}
+
+int solution(const char* maps[], size_t maps_len) {
+    int start[2] = { 0 }, end[2] = { 0 }, labor[2] = { 0 };
+    int w = strlen(maps[0]), h = maps_len;
+
+    for (int row = 0; row < h; row++) {
+        for (int col = 0; col < w; col++) {
+            if (maps[row][col] == 'S') {
+                start[0] = row;
+                start[1] = col;
+            }
+            else if (maps[row][col] == 'E') {
+                end[0] = row;
+                end[1] = col;
+            }
+            else if (maps[row][col] == 'L') {
+                labor[0] = row;
+                labor[1] = col;
+            }
+        }
+    }
+    reset(h, w);
+    int start_to_labor = bfs(maps, start[0], start[1], labor[0], labor[1], w, h);
+
+    for (int row = 0; row < h; row++) {
+        for (int col = 0; col < w; col++) {
+            visited[row][col] = 0;
+        }
+    }
+    reset(h, w);
+    int labor_to_end = bfs(maps, labor[0], labor[1], end[0], end[1], w, h);
+
+    if (start_to_labor == -1 || labor_to_end == -1) {
+        return -1;
+    }
+
+    return start_to_labor + labor_to_end;
+}
+

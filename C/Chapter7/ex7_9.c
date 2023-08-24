@@ -2,25 +2,25 @@
 
 #include <stdio.h>
 
-int mutually_prime(int a, int b) {
-    int min, i, prime = 1;
-    printf("Entering function, a = %d, b = %d.\n", a, b);
-    min = (a < b) ? a : b;
-    printf("Currently, min is %d.\n", min);
-    for (i = 2; i <= min; i++) 
-        if (a % i == 0 && b % i == 0) {
-            printf("Inside if.\n");
-            prime = 0;
-            break;
-        }
-    return prime;
-}
-
 int main() {
-    int first, second;
-    printf("Enter two integers.\n");
-    scanf("%d%d", &first, &second);
-    mutually_prime(first, second) ? printf("They are mutually prime.\n")
-        : printf("They are NOT mutually prime.\n");
+    int turn, game_over = 0, state;
+    char board[][];
+
+    welcome_message();
+    init_board(board);
+    turn = who_first();
+    while (!game_over){
+        if (turn == 1) {
+            human_move(board);
+            state = check(board);
+        }
+        else {
+            computer_move(board);
+            state = check(board);
+        }
+        draw_board(board);
+        respond(state);
+        toggle_turn(turn);
+    }
     return 0;
 }

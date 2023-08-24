@@ -1,26 +1,41 @@
 #define _CRT_SECURE_NO_WARNINGS
+#define true 1
+#define false 0
 
 #include <stdio.h>
 
-int mutually_prime(int a, int b) {
-    int min, i, prime = 1;
-    printf("Entering function, a = %d, b = %d.\n", a, b);
-    min = (a < b) ? a : b;
-    printf("Currently, min is %d.\n", min);
-    for (i = 2; i <= min; i++) 
-        if (a % i == 0 && b % i == 0) {
-            printf("Inside if.\n");
-            prime = 0;
-            break;
-        }
-    return prime;
+// 윤년인지 평년인지 판단하는 함수
+int leap_year(int y) {
+    if ((y % 4 == 0 && y % 100 != 0) || (y % 4 == 0 && y % 400 == 0))
+        
+        return true;
+    else
+        return false;
+}
+
+// 서기 1년 1월 1일부터 작년 말 까지의 날짜 수를 돌려주는 함수
+int to_last_year(int year) {
+    int i, total = 0;
+
+    for (i = 1; i <= (year - 1); i++) {
+        if(leap_year(i))
+            total += 366;
+        else 
+            total += 365;
+    }
+    return total;
 }
 
 int main() {
-    int first, second;
-    printf("Enter two integers.\n");
-    scanf("%d%d", &first, &second);
-    mutually_prime(first, second) ? printf("They are mutually prime.\n")
-        : printf("They are NOT mutually prime.\n");
+    int year;
+
+    while (1)
+    {
+        printf("Enter year.\n");
+        scanf("%d", &year);
+        printf("Days up to last year is %d.\n", to_last_year(year));
+        if (year == -1)
+            break;
+    }
     return 0;
 }
