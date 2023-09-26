@@ -4,8 +4,10 @@ using namespace std;
 
 int main()
 {
-    long long int A, B, C;
-    cin >> A >> B >> C;
-    cout << A + B + C << endl;
+    cout << "\"|\\_/|" << '\n'
+        << "|q p|   /}" << '\n'
+        << "( 0 )\"\"\"\\" << '\n'
+        << "|\"^\"`    |" << '\n'
+        << "|| _ /= \\\\__ |" << endl;
     return 0;
 }
