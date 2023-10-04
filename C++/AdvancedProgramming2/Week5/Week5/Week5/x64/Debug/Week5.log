@@ -1,0 +1,9 @@
+﻿  solve.c
+C:\Workspace\C++\AdvancedProgramming2\Week5\Week5\Week5\solve.c(15,11): warning C4047: '=': 'int'의 간접 참조 수준이 'int *'과(와) 다릅니다.
+C:\Workspace\C++\AdvancedProgramming2\Week5\Week5\Week5\solve.c(18,37): warning C4311: '형식 캐스트': 'int *'에서 'int'(으)로 포인터가 잘립니다.
+C:\Workspace\C++\AdvancedProgramming2\Week5\Week5\Week5\solve.c(28,11): warning C4047: '=': 'int'의 간접 참조 수준이 'int *'과(와) 다릅니다.
+C:\Workspace\C++\AdvancedProgramming2\Week5\Week5\Week5\solve.c(33,36): warning C4311: '형식 캐스트': 'int *'에서 'int'(으)로 포인터가 잘립니다.
+C:\Workspace\C++\AdvancedProgramming2\Week5\Week5\Week5\solve.c(53,35): warning C4312: '형식 캐스트': 'int'에서 더 큰 'int *'(으)로의 변환입니다.
+C:\Workspace\C++\AdvancedProgramming2\Week5\Week5\Week5\solve.c(66,33): warning C4312: '형식 캐스트': 'int'에서 더 큰 'int *'(으)로의 변환입니다.
+C:\Workspace\C++\AdvancedProgramming2\Week5\Week5\Week5\solve.c(99,3): warning C4013: 'gets'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  Week5.vcxproj -> C:\Workspace\C++\AdvancedProgramming2\Week5\Week5\x64\Debug\Week5.exe
