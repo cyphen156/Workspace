@@ -4,7 +4,7 @@ using namespace std;
 
 int main() 
 {
-	int korArr[] = { 60, 70, 80, 90, 100 };
+	/*int korArr[] = { 60, 70, 80, 90, 100 };
 	int engArr[] = { 65, 75, 85, 95, 99 };
 	int matArr[] = { 66, 77, 88, 99, 55 };
 
@@ -42,6 +42,12 @@ int main()
 		tot += *(pm + i);
 	}
 	avg = tot / size(matArr);
-	cout << '\n' << "ÃÑÁ¡ : " << tot << '\t' << "Æò±Õ : " << avg << '\n';
+	cout << '\n' << "ÃÑÁ¡ : " << tot << '\t' << "Æò±Õ : " << avg << '\n';*/
+	
+	int a[10] = { 1, 2, 3, 4, 5, 6 };
+	int* p = a;
+	int* q = a + 3;
+
+	cout << *(a + 1) << '\n' << *(p + 2) << '\n' << *(q + 3) << endl;
 	return 0;
 }

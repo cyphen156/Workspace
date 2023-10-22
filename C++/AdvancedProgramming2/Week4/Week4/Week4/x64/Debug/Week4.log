@@ -1,5 +1,2 @@
 ﻿  ptr_array.cpp
-C:\Workspace\C++\AdvancedProgramming2\Week4\Week4\Week4\ptr_array.cpp(24,12): warning C4244: '=': 'size_t'에서 'double'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Workspace\C++\AdvancedProgramming2\Week4\Week4\Week4\ptr_array.cpp(34,12): warning C4244: '=': 'size_t'에서 'double'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Workspace\C++\AdvancedProgramming2\Week4\Week4\Week4\ptr_array.cpp(44,12): warning C4244: '=': 'size_t'에서 'double'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Week4.vcxproj -> C:\Workspace\C++\AdvancedProgramming2\Week4\Week4\x64\Debug\Week4.exe
