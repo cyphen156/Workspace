@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.html": "html",
+        "*.js": "javascript",
+        "괄호.C": "cpp",
+        "dasda": "cpp"
+    }
+}
