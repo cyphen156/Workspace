@@ -1,0 +1,22 @@
+﻿  ex1.cpp
+  ex2.cpp
+  ex3.cpp
+  ex4.cpp
+C:\Workspace\C++\AdvancedProgramming2\Week13\Week13\Week13\ex4.cpp(19,8): error C2228: '.getRadius' 왼쪽에는 클래스/구조체/공용 구조체가 있어야 합니다.
+  C:\Workspace\C++\AdvancedProgramming2\Week13\Week13\Week13\ex4.cpp(19,8):
+  'T' 형식입니다.
+          with
+          [
+              T=int
+          ]
+  C:\Workspace\C++\AdvancedProgramming2\Week13\Week13\Week13\ex4.cpp(19,8):
+  템플릿 인스턴스화 컨텍스트(가장 오래된 인스턴스화 컨텍스트)가
+  	C:\Workspace\C++\AdvancedProgramming2\Week13\Week13\Week13\ex4.cpp(28,6):
+  	컴파일되는 함수 템플릿 인스턴스화 'T bigger<int>(T,T)'에 대한 참조를 확인하세요.
+          with
+          [
+              T=int
+          ]
+  
+  genericClass.cpp
+  코드를 생성하고 있습니다...
