@@ -1,0 +1,1 @@
+C:\Workspace\C#\MAUIEX\MAUIEX.csproj;x64
