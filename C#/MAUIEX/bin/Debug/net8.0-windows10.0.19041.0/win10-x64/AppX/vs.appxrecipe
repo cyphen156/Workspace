@@ -29,13 +29,13 @@
     <AppXManifest Include="C:\Workspace\C#\MAUIEX\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-11-30T06:34:23.425</Modified>
+      <Modified>2023-12-01T07:11:52.668</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Workspace\C#\MAUIEX\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-11-30T04:12:41.485</Modified>
+      <Modified>2023-12-01T06:28:17.199</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Workspace\C#\MAUIEX\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MAUIEX.runtimeconfig.json">
       <PackagePath>MAUIEX.runtimeconfig.json</PackagePath>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Workspace\C#\MAUIEX\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MAUIEX.dll">
       <PackagePath>MAUIEX.dll</PackagePath>
-      <Modified>2023-11-30T04:12:39.608</Modified>
+      <Modified>2023-12-01T07:11:52.407</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Workspace\C#\MAUIEX\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>MAUIEX.exe</PackagePath>
-      <Modified>2023-11-30T04:12:39.618</Modified>
+      <Modified>2023-12-01T07:11:52.410</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Workspace\C#\MAUIEX\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -287,7 +287,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Workspace\C#\MAUIEX\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MAUIEX.deps.json">
       <PackagePath>MAUIEX.deps.json</PackagePath>
-      <Modified>2023-11-30T04:12:40.913</Modified>
+      <Modified>2023-12-01T06:28:16.762</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dbdxo\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.31\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>
