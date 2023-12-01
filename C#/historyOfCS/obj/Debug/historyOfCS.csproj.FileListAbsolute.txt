@@ -1,7 +1,0 @@
-C:\Workspace\C#\historyOfCS\obj\Debug\historyOfCS.csproj.AssemblyReference.cache
-C:\Workspace\C#\historyOfCS\obj\Debug\historyOfCS.csproj.CoreCompileInputs.cache
-C:\Workspace\C#\historyOfCS\bin\Debug\historyOfCS.exe.config
-C:\Workspace\C#\historyOfCS\bin\Debug\historyOfCS.exe
-C:\Workspace\C#\historyOfCS\bin\Debug\historyOfCS.pdb
-C:\Workspace\C#\historyOfCS\obj\Debug\historyOfCS.exe
-C:\Workspace\C#\historyOfCS\obj\Debug\historyOfCS.pdb

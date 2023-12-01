@@ -1,0 +1,15 @@
+C:\Workspace\C#\historyOfCSharp\obj\Debug\net8.0\historyOfCSharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Workspace\C#\historyOfCSharp\obj\Debug\net8.0\historyOfCSharp.AssemblyInfoInputs.cache
+C:\Workspace\C#\historyOfCSharp\obj\Debug\net8.0\historyOfCSharp.AssemblyInfo.cs
+C:\Workspace\C#\historyOfCSharp\obj\Debug\net8.0\historyOfCSharp.csproj.CoreCompileInputs.cache
+C:\Workspace\C#\historyOfCSharp\obj\Debug\net8.0\historyOfCSharp.sourcelink.json
+C:\Workspace\C#\historyOfCSharp\bin\Debug\net8.0\historyOfCSharp.exe
+C:\Workspace\C#\historyOfCSharp\bin\Debug\net8.0\historyOfCSharp.deps.json
+C:\Workspace\C#\historyOfCSharp\bin\Debug\net8.0\historyOfCSharp.runtimeconfig.json
+C:\Workspace\C#\historyOfCSharp\bin\Debug\net8.0\historyOfCSharp.dll
+C:\Workspace\C#\historyOfCSharp\bin\Debug\net8.0\historyOfCSharp.pdb
+C:\Workspace\C#\historyOfCSharp\obj\Debug\net8.0\historyOfCSharp.dll
+C:\Workspace\C#\historyOfCSharp\obj\Debug\net8.0\refint\historyOfCSharp.dll
+C:\Workspace\C#\historyOfCSharp\obj\Debug\net8.0\historyOfCSharp.pdb
+C:\Workspace\C#\historyOfCSharp\obj\Debug\net8.0\historyOfCSharp.genruntimeconfig.cache
+C:\Workspace\C#\historyOfCSharp\obj\Debug\net8.0\ref\historyOfCSharp.dll
