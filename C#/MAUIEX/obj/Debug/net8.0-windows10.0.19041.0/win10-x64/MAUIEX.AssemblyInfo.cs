@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MAUIEX")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+6747399dc52141441554dd9f8acae86761db2235")]
 [assembly: System.Reflection.AssemblyProductAttribute("MAUIEX")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MAUIEX")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
