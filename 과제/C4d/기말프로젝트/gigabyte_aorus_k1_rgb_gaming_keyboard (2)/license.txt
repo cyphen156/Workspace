@@ -1,0 +1,11 @@
+Model Information:
+* title:	Gigabyte Aorus K1 RGB Gaming keyboard
+* source:	https://sketchfab.com/3d-models/gigabyte-aorus-k1-rgb-gaming-keyboard-d5b913461f8d4e0abf012aaf6f00ec9e
+* author:	Yolala1232 (https://sketchfab.com/Yolala1232)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Gigabyte Aorus K1 RGB Gaming keyboard" (https://sketchfab.com/3d-models/gigabyte-aorus-k1-rgb-gaming-keyboard-d5b913461f8d4e0abf012aaf6f00ec9e) by Yolala1232 (https://sketchfab.com/Yolala1232) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
