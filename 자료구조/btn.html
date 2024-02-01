@@ -1,0 +1,134 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<title>경기도교육청</title>
+<link rel="stylesheet" type="text/css" href="/css_new/ui.css">
+<script type="text/javascript" src="jquery.js"></script>	 
+<script type="text/javascript" src="/js_new/navigation.js"></script>
+<script type="text/javascript" src="/js_new/jquery.bxslider.min.js"></script> 
+<script type="text/javascript" src="/js_new/form.js"></script>
+<script type="text/javascript" src="/js_new/jRespond.js"></script>
+<script type="text/javascript" src="/js_new/ui.js"></script>
+
+
+
+<!--[if IE 7]><link rel="stylesheet" href="/include/commonfile/css/ie7.css" type="text/css"><![endif]-->
+<!--[if IE 8]><link rel="stylesheet" href="/include/commonfile/css/ie8.css" type="text/css"><![endif]-->
+<script type="text/javascript" src="/include/commonfile/js/sns.js"></script> 
+<script type="text/javascript" src="/include/commonfile/js/default.js"></script> 
+<script type="text/javascript" src="/crosseditor/js/namo_scripteditor.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145133324-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-145133324-1');
+</script>
+<script>
+var serverNum = "1";
+
+//프린터 버튼 클릭시 페이지 프린트
+$(function(){
+	$('#printThis').click(function(e) {
+		window.print();
+	});
+	// if($('#contents').is('.mSafty')){
+	// 	$('.ls input').attr('name',$('.ls input').attr('name').replace('radi1','score'));
+	// 	$('.ls input').attr('id',$('.ls input').attr('id').replace('labelSafty','score'));
+	// 	$('.ls label').attr('for',$('.ls label').attr('for').replace('labelSafty','score'));
+	// };
+	$("#pollBtn").click(function(){
+		//$(":input:radio[name=score]:checked").val();
+		if($(":input:radio[name=score]:checked").val() == "" || $(":input:radio[name=score]:checked").val() ==null){
+			alert("만족도를 선택해주세요.");
+			return false;
+		}
+		$.ajax({
+	           type:"POST",
+	           url: "/edu/menu/insertSatisfact.do",
+	           dataType : "json",
+	           data:  {"score" : $(":input:radio[name=score]:checked").val(), "menuId" : ""},
+	           success: function(data){
+	        	   if(data.flag=="Y"){
+	        		   alert("만족도를 등록하였습니다.");
+	        	   }else{
+	        		   alert("만족도는 하루에 한번만 등록가능합니다.");
+	        	   }
+	           },
+	           error : function(request, status, error) {
+				alert("에러코드 : " + request.status +"\n" + "메시지 :"+ request.responseText);
+			}
+	     });	
+	});
+	var $ico = $(".iKakaostory");
+	$ico.after("<a href='https://www.youtube.com/results?search_query=%EA%B2%BD%EA%B8%B0%EB%8F%84%EA%B5%90%EC%9C%A1%EC%B2%AD' title='유튜브 새창에서 열림' target='_blank' class='iYoutube'><img src='/images/new/ico_youtube.png' alt='youtube'></a>");
+	$ico.remove();
+});
+function searchEngine() {
+    if( $.trim(searchForm.qt.value) == '' ) {
+      alert('검색어를 입력하십시오.');
+      searchForm.qt.focus();
+      return;
+    }
+    document.searchForm.submit();
+}
+function searchEngine2() {
+    if( $.trim($("#qt2").val()) == '' ) {
+      alert('검색어를 입력하십시오.');
+      searchForm.qt2.focus();
+      return;
+    }
+    searchForm.qt.value=$("#qt2").val();
+    document.searchForm.submit();
+}
+</script>
+<script type="text/javascript">
+	$(function(){
+		$("#schBtn").click(function(){
+			//$("#schFrm").attr("action","/edu/exam/selectExamInquery.do").submit();
+			if($("#examSeq").val()!=""){
+				$("#schFrm").attr("action","/edu/exam/selectExamInquery.do").submit();
+			}else{
+				alert("시험제목을 선택하세요.");
+			}
+		});
+	})
+</script>
+</head>
+ 
+<body>
+<form name="schFrm"  id="schFrm" method="post" action="/edu/exam/selectExam.do">
+	<div class="PopDiv01">
+		<div class="PopTit">
+			<h2>시험 선택</h2>
+			<a href="#a" onclick="window.close();">닫기</a>
+			<div class="clear"></div>
+		</div>
+		<ul>
+			<li>
+				<label>
+	<select name=examSeq id="examSeq" class="select01" title="시험을 선택하세요">
+		<option value=""  selected="selected">시험명을 선택하세요</option>
+		
+	</select>
+				</label>
+			</li>
+	<li class="f_r"><a href="javascript:void(0);" id="schBtn" >조회</a></li>
+	</ul>
+	</div>
+</form>
+
+</body>
+</html>
