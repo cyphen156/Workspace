@@ -1,4 +1,5 @@
 // 최대공약수
+// 시간복잡도 O(logN)
 int GCD(int A, int B) {
     int C;
     while(B != 0) {
