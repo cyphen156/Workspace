@@ -1,0 +1,6 @@
+﻿  소스.c
+  자료구조.c
+  코드를 생성하고 있습니다...
+x64\Debug\소스.obj : warning LNK4042: 개체가 두 번 이상 지정되었습니다. 나머지는 무시됩니다.
+x64\Debug\자료구조.obj : warning LNK4042: 개체가 두 번 이상 지정되었습니다. 나머지는 무시됩니다.
+  Project1.vcxproj -> C:\Users\dbdxo\source\repos\Project1\x64\Debug\Project1.exe
