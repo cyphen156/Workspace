@@ -1,11 +1,11 @@
 /**
 *
-* 스택자료구조 구현하기
-* //리스트
+* 큐 자료구조 구현하기
+* // 단일연결리스트
 * 
 * using class
 */
-/*
+
 #include <iostream>
 #include <string>
 
@@ -19,150 +19,163 @@ public:
 	Node(string data) : data(data), next(nullptr) {}
 };
 
-class Stack {
+class Queue {
 private:
-	Node* top;
-	int stackSize;
+	Node* front;
+	Node* rear;
 
 public:
 	// 생성자
-	Stack() : top(nullptr), stackSize(0){}
+	Queue() : front(nullptr), rear(nullptr){}
 
 	// 소멸자
-	~Stack() {
-		freeStack();
+	~Queue() {
+		freeQueue();
 	}
 	bool isEmpty();
-	int push();
-	void pop();
+	int enQueue();
+	int deQueue();
 	void search();
-	void printStack();
-	void freeStack();
+	void printQueue();
+	void freeQueue();
 };
 
-void menu(int n, Stack& stack)
+void menu(int n, Queue& queue)
 {
 
 	switch(n)
 	{
 	case 0:
-		stack.freeStack();
+		queue.freeQueue();
 		cout << "프로그램을 종료합니다." << endl;
 		exit(0);
 	case 1:
-		stack.push();
+		queue.enQueue();
 		break;
 	case 2:
-		stack.pop();
+		queue.deQueue();
 		break;
 	case 3:
-		stack.search();
+		queue.search();
 		break;
 	case 4:
-		stack.printStack();
+		queue.printQueue();
 		break;
 	default:
 		cout << "잘못된 입력입니다. 다시 입력해주세요" << endl;
 	}
 }
 
-bool Stack::isEmpty()
+bool Queue::isEmpty()
 {
-	if (this->top == nullptr)
+	if (this->front == nullptr)
 	{
-		cout << "스택이 비어있습니다. 문장을 저장해주세요." << endl;
+		cout << "스택이 비었습니다." << endl;
 		return true;
 	}
+	return false;
+}
+
+int Queue::enQueue()
+{
+	cout << "저장할 문장을 입력해주세요.\n";
+	string data;
+	getline(cin, data);
+	Node* newNode = new Node(data);
+	if (this->front == nullptr)
+	{
+		printf("첫번째 데이터를 입력합니다.\n");
+		front = rear = newNode;
+	}
 	else
-		return false;
+	{
+		rear->next = newNode;	// 새 노드로 가는 길뚫기
+		rear = newNode;			// 뚫은 길에 할당하기
+	}
+	return 1;
 }
 
-int Stack::push()
-{
-	cout << "저장할 문장을 입력해주세요." << endl;
-	string src;
-	getline(cin, src);
-	Node* newNode = new Node(src);
-	newNode->next = top;
-	top = newNode;
-	stackSize++;
-	return 0;
-}
-
-void Stack::pop()
+int Queue::deQueue()
 {
 	if (isEmpty())
 	{
-		return;
+		printf("단어를 저장해주세요.\n");
+		return 0;
 	}
-	Node* temp = top;
-	cout << "제거된 문장: " << temp->data << endl;
-	top = temp->next;
+	Node* temp = this->front;
+	this->front = this->front->next;
+	if (front == nullptr)
+	{
+		rear = nullptr;
+	}
+	cout << "제거된 문장 : " << temp->data << endl;	
 	delete temp;
-	stackSize--;
+	return 1;
 }
 
-void Stack::search()
+void Queue::search()
 {
 	if (isEmpty())
 	{
+		printf("단어를 저장해주세요.\n");
 		return;
 	}
-	cout << "찾고 싶은 문장을 입력하세요: \n";
-	string src;
-	getline(cin, src);
-	int i;
-	Node* temp = top;
-	for (i = stackSize; i > 0; --i)
+	cout << "찾고싶은 문장을 입력해주세요.\n";
+	string str;
+	getline(cin, str);
+	Node* temp = front;
+	int i = 1;
+	while (temp != nullptr)
 	{
-		if (temp->data == src)
+		if (temp->data == str)
 		{
-			cout << src << "는 스택의" << i << "번째에 있습니다." << endl;
-			break;
+			cout << str << "의 위치는 " << i << "입니다." << endl;
+			return;
 		}
+		++i;
 		temp = temp->next;
 	}
-	cout << src << "는 스택에 없습니다." << endl;
+	cout << "찾으시는 문장은 큐에 없습니다.\n";
 
 }
 
-void Stack::printStack()
+void Queue::printQueue()
 {
 	if (isEmpty())
 	{
+		printf("단어를 저장해주세요.\n");
 		return;
 	}
-
-	int i;
-	Node* temp = top;
-	for (i = stackSize; i > 0; --i)
+	int i = 1;
+	Node* temp = front;
+	while (temp != nullptr)
 	{
-		cout << "스택의 위치 : " << i << 
-			", 저장된 단어 : " << temp->data << endl;
+		
+		cout << temp->data << "의 위치는 " << i << "입니다." << endl;		
+		++i;
 		temp = temp->next;
 	}
 }
 
-void Stack::freeStack()
+void Queue::freeQueue()
 {
-	while (this->top != nullptr)
+	while (!isEmpty())
 	{
-		pop();
+		deQueue();
 	}
 }
 
 
 int main()
 {
-	Stack stack;
+	Queue queue;
 	while (1)
 	{
 		int input;
-		cout << "1 : stack push , 2 : stack pop, 3 : search data, 4 : print stack, 0 : 프로그램 종료" << endl;
+		cout << "1 : enQueue, 2 : deQueue, 3 : search data, 4 : print Queue, 0 : 프로그램 종료" << endl;
 		cin >> input;
-		getchar();
-		menu(input, stack);
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		menu(input, queue);
 	}
 	return 0;
 }
-*/

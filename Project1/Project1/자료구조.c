@@ -1,6 +1,6 @@
 ///**
-//* 스택자료구조 구현하기
-//* //리스트
+//* 큐 자료구조 구현하기
+//* // 단일연결리스트
 //* using struct
 //* 
 //*/
@@ -9,51 +9,58 @@
 //#include <stdio.h>
 //#include <stdlib.h>
 //#include <string.h>
+//#include <stdbool.h>
 //
-//typedef struct Node{
+//typedef struct Node {
 //	struct Node* next;
 //	char* data;
 //} Node;
 //
-////초기 공백노드 설정
-//int stackSize = 0;
-//Node* top = NULL;
+//typedef struct Queue {
+//	Node* front;	//헤드
+//	Node* rear;		//테일
+//} Queue;
 //
 //void menu(int n);
-//int isEmpty();
-//int push();
-//void pop();
-//void search();
-//void printStack();
-//void freeStack();
+//bool isEmpty();
+//int enQueue();
+//int deQueue();
+//int search();
+//void printQueue();
+//void freeQueue();
 //
-//int main() {
+//Queue queue;
 //
+//int main() {	
+//	queue.front = NULL;
+//	queue.rear = NULL;
 //	while (1)
 //	{
 //		int input;
-//		printf("1 : stack push , 2 : stack pop, 3 : search data, 4 : print stack, 0 : 프로그램 종료\n");
+//		printf("1 : enQueue, 2 : deQueue, 3 : search data, 4 : print Queue, 0 : 프로그램 종료\n");
 //		scanf("%d", &input);
 //		menu(input);
 //	}
+//
 //	return 0;
 //}
 //
 //// 명령어 입력기
 //void menu(int n) {
+//	getchar();
 //	if (n == 0)
 //	{
-//		freeStack();
+//		freeQueue();
 //		printf("프로그램을 종료합니다.\n");
 //		exit(0);
 //	}
 //	else if (n == 1)
 //	{
-//		push();
+//		enQueue();
 //	}
 //	else if (n == 2)
 //	{
-//		pop();
+//		deQueue();
 //	}
 //	else if (n == 3)
 //	{
@@ -61,7 +68,7 @@
 //	}
 //	else if (n == 4)
 //	{
-//		printStack();
+//		printQueue();
 //	}
 //	else
 //	{
@@ -69,101 +76,106 @@
 //	}
 //}
 //
-//int isEmpty()
+//bool isEmpty()
 //{
-//	//스택이 비었다면 true
-//	if (stackSize == 0)
+//	if(queue.front == NULL)
 //	{
 //		printf("스택이 비어있습니다.\n");
-//		return 1;
+//		return true;	// return 1;
+//	}
+//	return false;		// return 0
+//}
+//
+//int enQueue()
+//{
+//	Node* newNode = (Node*)malloc(sizeof(Node));
+//	char src[256];
+//	printf("저장할 단어를 입력해주세요. 단어의 길이는 최대 255입니다.\n");
+//	fgets(src, 256, stdin);
+//	src[strcspn(src, "\n")] = 0;
+//	newNode->data = _strdup(src);
+//	newNode->next = NULL;
+//
+//	if (queue.front == NULL)
+//	{
+//		printf("첫번째 데이터를 입력합니다.\n");
+//		queue.front = queue.rear = newNode;
 //	}
 //	else
 //	{
-//		return 0;
+//		queue.rear->next = newNode;
+//		queue.rear = newNode;
 //	}
-//}
-//
-//int push()
-//{
-//	printf("저장할 단어를 입력해주세요. 단어의 길이는 최대 255입니다.\n");
-//	char inputData[256] ;
-//	scanf("%255s", inputData);
-//	getchar();
-//
-//	Node* newNode = (Node*)malloc(sizeof(Node));
-//	if (newNode == NULL) {
-//		printf("push실패!! 다시 시도해주세요.\n");
-//		return -1;
-//	}
-//	newNode->data = _strdup(inputData);
-//	newNode->next = top;
-//	top = newNode;
-//	++stackSize;
 //	return 0;
 //}
 //
-//void pop()
+//int deQueue()
 //{
 //	if (isEmpty())
 //	{
 //		printf("단어를 저장해주세요.\n");
-//		return;
+//		return 0;
 //	}
-//	Node* temp = top;
-//	top = top->next;
+//	Node* temp = queue.front;		//첫번째 노드 뽑아내기
+//	queue.front = queue.front->next; // 다음 노드 가져오기
+//	if (queue.front == NULL) // 큐가 모두 비워졌음을 의미한다.
+//	{
+//		queue.rear == NULL; 
+//	}
 //	printf("제거된 단어 : %s\n", temp->data);
 //	free(temp->data);
 //	free(temp);
-//	stackSize--;
+//	return 1;
 //}
 //
-//void search()
+//int search()
 //{
 //	if (isEmpty())
 //	{
 //		printf("단어를 저장해주세요.\n");
 //		return;
 //	}
-//	printf("찾고  싶은 단어를 입력하세요.\n");
-//	char inputData[256];
-//	scanf("%255s", inputData);
-//	getchar();
-//
-//	Node* temp = top;
-//	int isFounded = 0;
-//	for (int i = stackSize; i > 0; --i) 
+//	char src[256];
+//	printf("찾고싶은 단어를 입력해주세요. 단어의 길이는 최대 255입니다.\n");
+//	fgets(src, 256, stdin);
+//	src[strcspn(src, "\n")] = 0;
+//	Node* temp = queue.front;
+//	int i = 0;
+//	while (temp != NULL)
 //	{
-//		if (strcmp(inputData, temp->data) == 0)
+//		++i;
+//		if (strcmp(src, temp->data) == 0)
 //		{
-//			isFounded = 1;
-//			printf("%s의 위치는 %d입니다.\n", inputData, i);
-//			break;
+//			printf("%s의 위치는 %d입니다.\n", src, i);
+//			return 1;
 //		}
 //		temp = temp->next;
 //	}
-//	if (!isFounded)
-//	{
-//		printf("%s은/는 스택에 없습니다.\n", inputData);
-//	}
+//	printf("찾으시는 단어는 스택에 없습니다.\n");
+//	return 1;
 //}
 //
-//void printStack()
+//void printQueue()
 //{
 //	if (isEmpty())
 //	{
 //		printf("단어를 저장해주세요.\n");
 //		return;
 //	}
-//	Node* temp = top;
-//	for (int i = stackSize; i > 0; --i)
+//	Node* temp = queue.front;
+//	int i = 0;
+//	while (temp != NULL)
 //	{
-//		printf("스택의 위치 : %d, 저장된 단어 : %s\n", i, temp->data);
+//		++i;
+//		printf("큐의 위치 : %d, 저장된 단어 : %s\n", i, temp->data);
 //		temp = temp->next;
 //	}
 //}
 //
-//void freeStack() {
-//	while (top != NULL) {
-//		pop();
+//void freeQueue()
+//{
+//	while (!isEmpty())
+//	{
+//		deQueue();
 //	}
 //}
