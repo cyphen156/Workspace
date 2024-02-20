@@ -1,5 +1,7 @@
-﻿  자료구조.cpp
-x64\Debug\소스.obj : warning LNK4042: 개체가 두 번 이상 지정되었습니다. 나머지는 무시됩니다.
-x64\Debug\알고리듬.obj : warning LNK4042: 개체가 두 번 이상 지정되었습니다. 나머지는 무시됩니다.
-x64\Debug\자료구조.obj : warning LNK4042: 개체가 두 번 이상 지정되었습니다. 나머지는 무시됩니다.
+﻿  test.c
+C:\Workspace\Project1\Project1\test.c(8,17): warning C4013: 'callMyFunc2'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Workspace\Project1\Project1\test.c(8,9): warning C4477: 'printf' : 서식 문자열 '%p'에 'void *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int'입니다.
+C:\Workspace\Project1\Project1\test.c(8,9): warning C4313: 'printf': 서식 문자열의 '%p'이(가) int' 형식의 인수 1과(와) 충돌합니다.
+C:\Workspace\Project1\Project1\test.c(21,9): warning C4477: 'printf' : 서식 문자열 '%p'에 'void *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int'입니다.
+C:\Workspace\Project1\Project1\test.c(21,9): warning C4313: 'printf': 서식 문자열의 '%p'이(가) int' 형식의 인수 1과(와) 충돌합니다.
   Project1.vcxproj -> C:\Workspace\Project1\x64\Debug\Project1.exe

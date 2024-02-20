@@ -11,5 +11,16 @@
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-
+    <ShellContent
+        Title="Hello"
+        ContentTemplate="{DataTemplate local:firstStack}"
+        Route="firstStack" />
+    <ShellContent
+        Title="Hello"
+        ContentTemplate="{DataTemplate local:secondStack}"
+        Route="secondStack" />
+    <ShellContent
+        Title="Hello"
+        ContentTemplate="{DataTemplate local:thirdStack}"
+        Route="thirdStack" />
 </Shell>

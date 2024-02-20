@@ -29,25 +29,25 @@
     <AppXManifest Include="C:\Workspace\C#\MAUIEX\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-12-04T04:33:21.650</Modified>
+      <Modified>2024-02-20T01:06:22.598</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Workspace\C#\MAUIEX\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-12-04T04:33:21.497</Modified>
+      <Modified>2024-02-20T01:00:14.004</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Workspace\C#\MAUIEX\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MAUIEX.runtimeconfig.json">
       <PackagePath>MAUIEX.runtimeconfig.json</PackagePath>
-      <Modified>2023-11-30T04:12:41.015</Modified>
+      <Modified>2024-02-20T01:00:13.743</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Workspace\C#\MAUIEX\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MAUIEX.dll">
       <PackagePath>MAUIEX.dll</PackagePath>
-      <Modified>2023-12-04T04:33:20.370</Modified>
+      <Modified>2024-02-20T01:06:22.341</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Workspace\C#\MAUIEX\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>MAUIEX.exe</PackagePath>
-      <Modified>2023-12-04T04:33:20.413</Modified>
+      <Modified>2024-02-20T01:06:22.344</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Workspace\C#\MAUIEX\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -287,7 +287,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Workspace\C#\MAUIEX\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MAUIEX.deps.json">
       <PackagePath>MAUIEX.deps.json</PackagePath>
-      <Modified>2023-12-04T04:33:21.268</Modified>
+      <Modified>2024-02-20T01:00:13.640</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\dbdxo\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.31\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>
