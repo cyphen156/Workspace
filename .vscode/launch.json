@@ -4,24 +4,37 @@
     // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
     "version": "0.2.0",
     "configurations": [
-    {
-        "name": "Launch Chrome",
-        "request": "launch",
-        "type": "chrome",
-        "url": "http://localhost:8080",
-        "webRoot": "${workspaceFolder}"
-    },
         // {
-        //     "name": ".NET MAUI",
-        //     "type": "maui",
+        //     "name": "Launch Chrome",
         //     "request": "launch",
-        //     "preLaunchTask": "maui: Build"
+        //     "type": "chrome",
+        //     "url": "http://localhost:8080",
+        //     "webRoot": "${workspaceFolder}"
+        // },
+        // // {
+        // //     "name": ".NET MAUI",
+        // //     "type": "maui",
+        // //     "request": "launch",
+        // //     "preLaunchTask": "maui: Build"
+        // // },
+        // {
+        //     "type": "chrome",
+        //     "request": "launch",
+        //     "name": "run JS",
+        //     "file": "${file}"
         // },
         {
-            "type": "chrome",
+            "name": "C/C++: cl.exe build and debug active file",
+            "type": "cppvsdbg",
             "request": "launch",
-            "name": "run JS",
-            "file": "${file}"
+            "program": "${workspaceFolder}\\tmp\\${fileBasenameNoExtension}.exe",  // 상위 tmp 폴더에서 실행
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "console": "externalTerminal",
+            "preLaunchTask": "cl.exe build active file"
         }
     ]
 }
+    
