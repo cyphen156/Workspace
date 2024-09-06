@@ -11,12 +11,74 @@ using namespace cv;
 
 int main()
 {
-    cout << "Hello CV2" << endl;
+    cout << "Hello CV2" << CV_VERSION << endl;
     string path = "Resources/test.png";
     Mat img = imread(path);
-    imshow("img", img);
-    waitKey(0);
 
+    // 이미지 불러오기 실패 처리
+    if (img.empty())
+    {
+        cerr << "img read failed" << endl;
+        return -1;
+    }
+
+    // (입력데이터, 출력데이터, 사이즈기반 크기조정, X비율, Y비율) 원본사이즈 2060 X 2060;;;;
+    resize(img, img, Size(), 0.1, 0.1); 
+
+    // 이미지 크기 row, col
+    int imsize[] = { img.rows, img.cols };
+    cout << "행 크기 : " << imsize[0] << "\t" << "열 크기 : " << imsize[1] << endl;
+
+    // 원본 크기가 너무 크기 때문에 출력문도 너무 많다. 그러니까 보기 쉽게 전체를 10등분 해서 보여준다.
+    // 격자의 간격 206px
+    int gridSize = imsize[0] / 10;
+
+    // 수평선 그리기
+    for (int i = 0; i <= imsize[0]; i += gridSize)
+    {
+        line(img, Point(0, i), Point(imsize[1], i), Scalar(0, 0, 0), 1); // 검은선, 두께 1
+    }
+
+    // 수직선 그리기
+    for (int j = 0; j <= imsize[1]; j += gridSize)
+    {
+        line(img, Point(j, 0), Point(j, imsize[0]), Scalar(0, 0, 0), 1); // 검은 선, 두께 1
+    }
+
+    for (int i = gridSize / 2; i < imsize[0]; i += gridSize)
+    {
+        for (int j = gridSize / 2; j < imsize[1]; j += gridSize)
+        {
+            // 이미지가 컬러일 경우 BGR 픽셀 값을 추출
+            Vec3b pixel = img.at<Vec3b>(i, j);
+
+            // 텍스트로 표시할 내용 "(B, G, R)" 형식으로 변환
+            // 흰색 공간은 \t로 무시하기
+            if ((int)pixel[0] == 255 && (int)pixel[1] == 255 && (int)pixel[2] == 255)
+            {
+                cout << "\t";
+            }
+            else
+            {
+                string pixelText = to_string((int)pixel[0]) + ","
+                    + to_string((int)pixel[1]) + ","
+                    + to_string((int)pixel[2]);         
+                cout << pixelText << "\t";
+            }
+        }
+        cout << endl;
+    }
+    cv::imshow("img", img);
+
+    namedWindow("namedImg", WINDOW_NORMAL);
+
+    imshow("namedImg", img);
+
+    waitKey(0);
+    vector<int> params;
+    params.push_back(IMWRITE_JPEG_QUALITY);
+    params.push_back(95);
+    imwrite("sample.jpeg", img, params);
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
