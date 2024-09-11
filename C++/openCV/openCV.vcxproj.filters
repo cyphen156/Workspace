@@ -15,6 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CV_Class.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="openCV.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>

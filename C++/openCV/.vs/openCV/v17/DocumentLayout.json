@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Workspace\\C\u002B\u002B\\openCV\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{67C263D9-E715-4B3F-B7C7-96A7A4CB51B9}|openCV.vcxproj|C:\\Workspace\\C\u002B\u002B\\openCV\\openCV.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{67C263D9-E715-4B3F-B7C7-96A7A4CB51B9}|openCV.vcxproj|solutionrelative:openCV.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{67C263D9-E715-4B3F-B7C7-96A7A4CB51B9}|openCV.vcxproj|C:\\Workspace\\C\u002B\u002B\\openCV\\CV_Class.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{67C263D9-E715-4B3F-B7C7-96A7A4CB51B9}|openCV.vcxproj|solutionrelative:CV_Class.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "openCV.cpp",
-              "DocumentMoniker": "C:\\Workspace\\C\u002B\u002B\\openCV\\openCV.cpp",
-              "RelativeDocumentMoniker": "openCV.cpp",
-              "ToolTip": "C:\\Workspace\\C\u002B\u002B\\openCV\\openCV.cpp",
-              "RelativeToolTip": "openCV.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAFAAAAAAAAAA==",
+              "Title": "CV_Class.cpp",
+              "DocumentMoniker": "C:\\Workspace\\C\u002B\u002B\\openCV\\CV_Class.cpp",
+              "RelativeDocumentMoniker": "CV_Class.cpp",
+              "ToolTip": "C:\\Workspace\\C\u002B\u002B\\openCV\\CV_Class.cpp",
+              "RelativeToolTip": "CV_Class.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-07-10T23:26:28.663Z",
+              "WhenOpened": "2024-09-11T05:16:40.229Z",
               "EditorCaption": ""
             }
           ]
