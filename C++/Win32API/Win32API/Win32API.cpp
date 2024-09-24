@@ -124,6 +124,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    static HFONT hFont;
+    static HPEN hPen;
+    static HBRUSH hBrush, hBrush2;
+
     switch (message)
     {
     case WM_COMMAND:
@@ -161,10 +165,146 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+            WCHAR str[128] = L"Hello World!";
+            TextOut(hdc, 10, 10, str, 20);
+            SetTextColor(hdc, RGB(255, 0, 0));
+            SetBkColor(hdc, RGB(0, 0, 255));
+            WCHAR str2[128] = L"안녀어어어어엉";
+            TextOut(hdc, 25, 200, str2, 20);
+            RECT RT;
+            GetClientRect(hWnd, &RT);
+            DrawText(hdc, L"텍스트그리기", -1, &RT, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+
+            // 선그리기
+            LineTo(hdc, 100, 100); // 0, 0 -> 100, 100
+            //Sleep(1000);
+            LineTo(hdc, 75, 240); // 100, 100 -> 75, 240
+            //Sleep(1000);
+            MoveToEx(hdc, 25, 300, NULL); // 75, 240 -> 25, 300
+            //Sleep(1000);
+            LineTo(hdc, 300, 25);
+            // 사각형 그리기
+            Rectangle(hdc, 50, 50, 150, 150);
+
+            // 타원그리기
+            Ellipse(hdc, 200, 200, 300, 300);
+            
+
+            //폰트 바꿔서 그리기
+
+            // 기존 폰트가 사라지는것을 방지하기 위한 변수 할당
+            // SelectObject는 새로운 객체를 클라이언트에 할당하고
+            // 반환 값으로 이전 객체를 반환 하기 때문이다.            
+            HFONT holdFont = (HFONT)SelectObject(hdc, hFont);
+
+
+            SetTextColor(hdc, RGB(0, 255, 0));
+            WCHAR changeFont[128] = L"폰트가 바뀌어서 출력되요";
+            TextOut(hdc, 150, 150, changeFont, 15);
+            
+            SelectObject(hdc, holdFont);
+
+            // 기본 폰트로 복귀
+            SetTextColor(hdc, RGB(0, 0, 255));
+            SetBkColor(hdc, RGB(128, 0, 0));
+            WCHAR defalutFont[128] = L"기본 폰트로 돌아왔어요";
+            TextOut(hdc, 150, 175, changeFont, 20);
+
+            // 펜과 브러시 실습하기
+            HPEN hOldPen = (HPEN)SelectObject(hdc, hPen);
+            HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hBrush);
+
+            // 큰 사각형 생성
+            Rectangle(hdc, 400, 400, 500, 500);
+            
+            //HBrush2사용
+            SelectObject(hdc, hOldPen);
+            SelectObject(hdc, hBrush2);
+            Ellipse(hdc, 400, 400, 450, 450);
+
+
+            // 스톡 실습
+            HPEN hPen = (HPEN)GetStockObject(DC_PEN);         // 스톡 펜 사용
+            HBRUSH hBrush = (HBRUSH)GetStockObject(DC_BRUSH); // 스톡 브러시 사용
+
+            // DC 펜과 브러시의 색상 설정
+            SetDCPenColor(hdc, RGB(0, 0, 255));  // 파란색 펜
+            SetDCBrushColor(hdc, RGB(0, 255, 0)); // 녹색 브러시
+
+            // 사각형 그리기
+            Rectangle(hdc, 100, 100, 200, 200);
+
+            // 레스터 그래픽 실습
+            SetROP2(hdc, R2_XORPEN);
+
+            // XOR 연산용 색상 설정
+            HPEN xorPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));  // 빨간색 펜
+            HPEN oldPen = (HPEN)SelectObject(hdc, xorPen);
+
+            // 선 그리기
+            MoveToEx(hdc, 50, 50, NULL);
+            LineTo(hdc, 200, 200);
+
+            // 펜 복구
+            SelectObject(hdc, oldPen);
+            DeleteObject(xorPen);
+
+
+            // 벡터 그래픽 실습
+            HRGN hRgn = CreateEllipticRgn(300, 300, 450, 450); // 타원형 리전 생성
+            SelectClipRgn(hdc, hRgn);  // 리전 클리핑 설정
+
+            // 벡터 그래픽용 색상 설정
+            HPEN vectorPen = CreatePen(PS_SOLID, 2, RGB(128, 0, 255));  // 보라색 계열 펜
+            HBRUSH vectorBrush = CreateSolidBrush(RGB(255, 128, 0));    // 주황색 계열 브러시
+
+            HPEN oldVectorPen = (HPEN)SelectObject(hdc, vectorPen);
+            HBRUSH oldVectorBrush = (HBRUSH)SelectObject(hdc, vectorBrush);
+
+            // 타원 그리기
+            Ellipse(hdc, 300, 300, 450, 450);  // 리전 내에서만 그리기
+
+            // 원래의 펜과 브러시 복구
+            SelectObject(hdc, oldVectorPen);
+            SelectObject(hdc, oldVectorBrush);
+            DeleteObject(hRgn);
+            DeleteObject(vectorPen);
+            DeleteObject(vectorBrush);
+
+
             EndPaint(hWnd, &ps);
         }
         break;
+    case WM_CREATE:
+        {
+            hFont = CreateFont(
+                20,         // 세로 길이
+                10,         // 가로 길이 (0으로 두면 자동 조정)
+                0,          // 문자열 기울기 (단위: 0.1도)
+                0,          // 문자 회전 각도
+                FW_NORMAL,  // 두께 (FW_NORMAL, FW_BOLD 등)
+                FALSE,      // 이탤릭 여부
+                FALSE,      // 밑줄 여부
+                FALSE,      // 취소선 여부
+                DEFAULT_CHARSET, // 문자셋 (한글은 HANGUL_CHARSET)
+                OUT_DEFAULT_PRECIS, // 출력 정밀도
+                CLIP_DEFAULT_PRECIS, // 클리핑 정밀도
+                DEFAULT_QUALITY,     // 출력 품질
+                DEFAULT_PITCH | FF_SWISS, // 글꼴 스타일
+                TEXT("Arial"));      // 글꼴 이름
+
+            // 펜 설정
+            hPen = CreatePen(PS_DASH, 2, RGB(127, 127, 127));
+            
+            // 브러쉬 설정
+            hBrush = CreateSolidBrush(RGB(255, 0, 255));
+            hBrush2 = CreateHatchBrush(HS_BDIAGONAL, RGB(0, 255, 255));
+            break;
+        }
     case WM_DESTROY:
+        DeleteObject(hFont);
+        DeleteObject(hPen);
+        DeleteObject(hBrush);
         PostQuitMessage(0);
         break;
     default:
