@@ -24,6 +24,17 @@
         //     "file": "${file}"
         // },
         {
+            "type": "node",
+            "request": "launch",
+            "name": "Run JS File",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "skipFiles": ["<node_internals>/**"],
+            "sourceMaps": true,
+            "runtimeExecutable": "node" 
+        },
+        {
             "name": "C/C++: cl.exe build and debug active file",
             "type": "cppvsdbg",
             "request": "launch",
