@@ -41,19 +41,5 @@
             "dependsOn": "Make tmp directory",  // 빌드 전에 tmp 폴더 생성
             "detail": "컴파일러: cl.exe"
         },
-        {
-            "label": "Create Baekjoon Template",
-            "type": "shell",
-            "command": "touch",
-            "args": ["${file}"],
-            "group": {
-              "kind": "build",
-              "isDefault": true
-            },
-            "problemMatcher": [],
-            "runOptions": {
-              "runOn": "folderOpen"
-            }
-        }
     ]
 }
