@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "z0DR/UbtCnMGKXelUYX8xQEtU2EbKQ6vL7yRKv5hUGpCTitKdmSPGmlAuT+hy7vQb/Y7oYmtnZVITMW0Po2Www==",
+  "dgSpecHash": "k9mpY86Danw=",
   "success": true,
   "projectFilePath": "C:\\Workspace\\C#\\historyOfCSharp\\historyOfCSharp.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\dbdxo\\.nuget\\packages\\microsoft.dotnet.ilcompiler\\8.0.0\\microsoft.dotnet.ilcompiler.8.0.0.nupkg.sha512",
-    "C:\\Users\\dbdxo\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.0\\microsoft.net.illink.tasks.8.0.0.nupkg.sha512",
-    "C:\\Users\\dbdxo\\.nuget\\packages\\runtime.win-x64.microsoft.dotnet.ilcompiler\\8.0.0\\runtime.win-x64.microsoft.dotnet.ilcompiler.8.0.0.nupkg.sha512"
+    "C:\\Users\\dbdxo\\.nuget\\packages\\microsoft.dotnet.ilcompiler\\8.0.12\\microsoft.dotnet.ilcompiler.8.0.12.nupkg.sha512",
+    "C:\\Users\\dbdxo\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.12\\microsoft.net.illink.tasks.8.0.12.nupkg.sha512",
+    "C:\\Users\\dbdxo\\.nuget\\packages\\runtime.win-x64.microsoft.dotnet.ilcompiler\\8.0.12\\runtime.win-x64.microsoft.dotnet.ilcompiler.8.0.12.nupkg.sha512"
   ],
   "logs": []
 }
