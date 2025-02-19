@@ -13,12 +13,12 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MAUIEX")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+c5068d22798e3113c20cd9478be6fce8fb8e1b11")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c20940b2432eaf4b92b2d6d9d4f22b74b7f76546")]
 [assembly: System.Reflection.AssemblyProductAttribute("MAUIEX")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MAUIEX")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
-[assembly: System.Runtime.Versioning.TargetPlatformAttribute("Android34.0")]
-[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Android21.0")]
+[assembly: System.Runtime.Versioning.TargetPlatformAttribute("android0.0")]
+[assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("android21.0")]
 
 // MSBuild WriteCodeFragment 클래스에서 생성되었습니다.
 
