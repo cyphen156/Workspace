@@ -23,7 +23,7 @@ using namespace std;
 
 int main(void)
 {
-    int n;
+    long long int n;
     cin >> n;
 
     cout << 4 * n << endl;
