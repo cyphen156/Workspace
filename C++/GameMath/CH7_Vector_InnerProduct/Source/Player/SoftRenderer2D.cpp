@@ -53,11 +53,14 @@ void SoftRenderer::LoadScene2D()
 }
 
 // 게임 로직과 렌더링 로직이 공유하는 변수
-float fovAngle = 60.f;
-Vector2 playerPosition(0.f, 0.f);
+float fovAngle = 60.f;	// 시야각	
+Vector2 playerPosition(0.f, 0.f);	// 위치값
 LinearColor playerColor = LinearColor::Gray;
-Vector2 targetPosition(0.f, 100.f);
-LinearColor targetColor = LinearColor::Blue;
+Vector2 targetPosition(0.f, 100.f);	// 목표 위치값
+bool isVisible = false;
+LinearColor nonVisibleColor = LinearColor::Blue;
+LinearColor targetColor = nonVisibleColor;
+LinearColor visibleColor = LinearColor::Red;
 
 // 게임 로직을 담당하는 함수
 void SoftRenderer::Update2D(float InDeltaSeconds)
@@ -67,16 +70,19 @@ void SoftRenderer::Update2D(float InDeltaSeconds)
 	const InputManager& input = g.GetInputManager();
 
 	// 게임 로직의 로컬 변수
-	static float moveSpeed = 100.f;
+	static float moveSpeed = 100.f;	
+	//	랜덤 위치 변환 범위
 	static std::random_device rd;
 	static std::mt19937 mt(rd());
 	static std::uniform_real_distribution<float> randomPosX(-300.f, 300.f);
 	static std::uniform_real_distribution<float> randomPosY(-200.f, 200.f);
+	
 	static float duration = 3.f;
 	static float elapsedTime = 0.f;
 	static Vector2 targetStart = targetPosition;
 	static Vector2 targetDestination = Vector2(randomPosX(mt), randomPosY(mt));
 
+	static float halfFovCos = cosf(Math::Deg2Rad(fovAngle * 0.5f));
 	elapsedTime = Math::Clamp(elapsedTime + InDeltaSeconds, 0.f, duration);
 
 	// 지정한 시간이 경과하면 새로운 이동 지점을 랜덤하게 설정
@@ -101,8 +107,17 @@ void SoftRenderer::Update2D(float InDeltaSeconds)
 	Vector2 deltaPosition = inputVector * moveSpeed * InDeltaSeconds;
 
 	// 물체의 최종 상태 설정
-	playerColor = LinearColor::Gray;
-	targetColor = LinearColor::Blue;
+
+	Vector2 f = Vector2::UnitY;
+	Vector2 v = (targetPosition - playerPosition).GetNormalize();
+	if (v.Dot(f) >= halfFovCos || v.Dot(f) <= -halfFovCos)
+	{
+		targetColor = visibleColor;
+	}
+	else
+	{
+		targetColor = nonVisibleColor;
+	}
 	playerPosition += deltaPosition;
 }
 
