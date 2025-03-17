@@ -53,6 +53,9 @@ void SoftRenderer::LoadScene2D()
 }
 
 // 게임 로직과 렌더링 로직이 공유하는 변수
+
+/// 7_1 예제
+/// 시야각 계산하기
 float fovAngle = 60.f;	// 시야각	
 Vector2 playerPosition(0.f, 0.f);	// 위치값
 LinearColor playerColor = LinearColor::Gray;
@@ -61,6 +64,19 @@ bool isVisible = false;
 LinearColor nonVisibleColor = LinearColor::Blue;
 LinearColor targetColor = nonVisibleColor;
 LinearColor visibleColor = LinearColor::Red;
+
+/// 7_2 예제
+/// 조명 모델 구현하기
+Vector2 lightPosition;	// 광원
+LinearColor lightColor;
+Vector2 circlePosition;	// 빛을 반사할 물체
+
+
+/// 7_3 예제
+/// 직교투영
+Vector2 point(0.f, 250.f);
+Vector2 lineStart(-400.f, 0.f);
+Vector2 lineEnd(400.f, 0.f);
 
 // 게임 로직을 담당하는 함수
 void SoftRenderer::Update2D(float InDeltaSeconds)
@@ -71,14 +87,17 @@ void SoftRenderer::Update2D(float InDeltaSeconds)
 
 	// 게임 로직의 로컬 변수
 	static float moveSpeed = 100.f;	
+
+	/// 7_1 예제
+	/// 시야각 계산하기
 	//	랜덤 위치 변환 범위
 	static std::random_device rd;
 	static std::mt19937 mt(rd());
+	static float duration = 3.f;
+	static float elapsedTime = 0.f;
 	static std::uniform_real_distribution<float> randomPosX(-300.f, 300.f);
 	static std::uniform_real_distribution<float> randomPosY(-200.f, 200.f);
 	
-	static float duration = 3.f;
-	static float elapsedTime = 0.f;
 	static Vector2 targetStart = targetPosition;
 	static Vector2 targetDestination = Vector2(randomPosX(mt), randomPosY(mt));
 
@@ -110,7 +129,7 @@ void SoftRenderer::Update2D(float InDeltaSeconds)
 
 	Vector2 f = Vector2::UnitY;
 	Vector2 v = (targetPosition - playerPosition).GetNormalize();
-	if (v.Dot(f) >= halfFovCos || v.Dot(f) <= -halfFovCos)
+	if ((v.Dot(f) >= halfFovCos && v.Dot(f) >= -halfFovCos))
 	{
 		targetColor = visibleColor;
 	}
@@ -119,6 +138,54 @@ void SoftRenderer::Update2D(float InDeltaSeconds)
 		targetColor = nonVisibleColor;
 	}
 	playerPosition += deltaPosition;
+
+
+	/// 7_2 예제
+	/// 조명 모델 구현하기
+	static float duration_2 = 20.0f;
+	static float elapsedTime_2 = 0.0f;
+	static float currentDegree_2 = 0.0f;
+	static float lightDistance = 200.0f;
+	static HSVColor lightHSVColor;
+
+	// 경과된 시간에 따른 현재 각과 이를 사용한 [0, 1] 값의 생성
+	elapsedTime_2 += InDeltaSeconds;
+	elapsedTime_2 = Math::FMod(elapsedTime_2, duration_2);
+	float currentRad = (elapsedTime_2 / duration_2) * Math::TwoPI;	// 현재 각 라디안으로 계산하기
+	float alpha = (sinf(currentRad) + 1) * 0.5f;
+
+	// [0, 1]을 사용해 주기적으로 크기 반복하기
+	currentDegree_2 = Math::Lerp(0.f, 360.f, alpha);
+
+	// 광원 좌표, 색상
+	float sin = 0.0f, cos = 0.0f;
+	Math::GetSinCosRad(sin, cos, currentRad);
+	lightPosition = Vector2(sin, cos) * lightDistance;
+	lightHSVColor.H = currentRad * Math::InvPI * 0.5f;
+	lightColor = lightHSVColor.ToLinearColor();
+
+
+	/// 7_3 예제
+	/// 직교투영
+	static float duration_3 = 6.f;
+	static float elapsedTime_3 = 0.0f;
+	static float currentDegree_3 = 0.0f;
+	static float rotateSpeed_3 = 180.f;
+	static float distance_3 = 250.0f;
+	static std::uniform_real_distribution<float> randomY(-200.f, 200.f);
+
+	if (elapsedTime_3 == duration_3)
+	{
+		lineStart = Vector2(-400.f, randomY(mt));
+		lineEnd = Vector2(-400.f, randomY(mt));
+		elapsedTime_3 = 0;
+	}
+
+	// 점의 위치를 결정
+	currentDegree_3 = Math::FMod(currentDegree_3 + rotateSpeed_3 * InDeltaSeconds, 360.f);
+	float sin_3 = 0.f, cos_3 = 0.f;
+	Math::GetSinCos(sin, cos, currentDegree_3);
+	point = Vector2(cos, sin) * distance_3;
 }
 
 // 렌더링 로직을 담당하는 함수
@@ -129,6 +196,9 @@ void SoftRenderer::Render2D()
 	const auto& g = Get2DGameEngine();
 
 	// 렌더링 로직의 로컬 변수
+
+	/// 7_1 예제
+	/// 시야각 계산하기
 	static float radius = 5.f;
 	static std::vector<Vector2> sphere;
 	static float sightLength = 300.f;
@@ -162,7 +232,7 @@ void SoftRenderer::Render2D()
 	{
 		r.DrawPoint(v + playerPosition, playerColor);
 	}
-
+	
 	// 타겟 렌더링
 	for (auto const& v : sphere)
 	{
@@ -172,6 +242,106 @@ void SoftRenderer::Render2D()
 	// 주요 정보 출력
 	r.PushStatisticText(std::string("Player Position : ") + playerPosition.ToString());
 	r.PushStatisticText(std::string("Target Position : ") + targetPosition.ToString());
+
+	/// 7_2 예제
+	/// 조명 모델 구현하기
+	
+	// 광원과 원 그리기
+	static std::vector<Vector2> light;
+	static float lightRadius = 10.0f;
+	static std::vector<Vector2> circle;
+	static float circleRadius = 50.0f;
+
+	// 광원을 표현하는 구체
+	if (light.empty())
+	{
+		float lightRadius = 10.f;
+		for (float x = -lightRadius; x <= lightRadius; ++x)
+		{
+			for (float y = -lightRadius; y <= lightRadius; ++y)
+			{
+				Vector2 target(x, y);
+				float sizeSquared = target.SizeSquared();
+				float rr = lightRadius * lightRadius;
+				if (sizeSquared < rr)
+				{
+					light.push_back(target);
+				}
+			}
+		}
+	}
+
+	// 빛을 받는 물체
+	if (circle.empty())
+	{
+		for (float x = -circleRadius; x <= circleRadius; ++x)
+		{
+			for (float y = -circleRadius; y <= circleRadius; ++y)
+			{
+				Vector2 target(x, y);
+				float sizeSquared = target.SizeSquared();
+				float rr = circleRadius * circleRadius;
+				if (sizeSquared < rr)
+				{
+					circle.push_back(target);
+				}
+			}
+		}
+	}
+	circlePosition = playerPosition;
+
+	// 광원 그리기
+	static float lightLineLength = 50.f;
+	r.DrawLine(lightPosition, circlePosition - lightPosition.GetNormalize() * lightLineLength, lightColor);
+	for (auto const& v : light)
+	{
+		r.DrawPoint(v + lightPosition, lightColor);
+	}
+
+	// 광원을 받는 구체의 모든 픽셀에 NdotL을 계산해 음영을 산출하고 이를 최종 색상에 반영
+	for (auto const& v : circle)
+	{
+		Vector2 n = (v + circlePosition - circlePosition).GetNormalize(); // 원의 중심 기준으로 노멀 벡터 계산
+		Vector2 l = (lightPosition - (v + circlePosition)).GetNormalize(); // 광원 방향 벡터
+		float shading = Math::Clamp(n.Dot(l), 0.f, 1.f); // 조명 효과 계산
+		r.DrawPoint(v + circlePosition, lightColor * shading); // 원의 중심(circlePosition) 기준으로 색상 적용
+	}
+
+	// 현재 조명의 위치를 화면에 출력
+	r.PushStatisticText(std::string("Position : ") + lightPosition.ToString());
+
+	/// 7_3 예제
+	/// 직교투영
+	// 붉은 색으로 점 그리기
+	for (auto const& v : circle)
+	{
+		r.DrawPoint(v + point, LinearColor::Red);
+	}
+
+	// 투영할 라인 그리기
+	r.DrawLine(lineStart, lineEnd, LinearColor::Black);
+	r.DrawLine(lineStart, point, LinearColor::Red);
+
+	// 투영된 위치와 거리 계산
+	Vector2 unitV = (lineEnd - lineStart).GetNormalize();
+	Vector2 u = point - lineStart;
+	Vector2 projV = unitV * (u.Dot(unitV));
+	Vector2 projectedPoint = lineStart + projV;
+	float distance = (projectedPoint - point).Size();
+
+	// 투영된 점 그리기
+	for (auto const& v : circle)
+	{
+		r.DrawPoint(v + projectedPoint, LinearColor::Blue);
+	}
+
+	// 투영 라인 그리기
+	r.DrawLine(projectedPoint, point, LinearColor::Gray);
+
+	// 관련 데이터 화면 출력
+	r.PushStatisticText(std::string("Point : ") + point.ToString());
+	r.PushStatisticText(std::string("Projected Point : ") + projectedPoint.ToString());
+	r.PushStatisticText(std::string("Distance : ") + std::to_string(distance));
 }
 
 // 메시를 그리는 함수
