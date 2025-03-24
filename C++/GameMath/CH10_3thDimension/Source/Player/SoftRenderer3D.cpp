@@ -1,16 +1,16 @@
-
+ï»¿
 #include "Precompiled.h"
 #include "SoftRenderer.h"
 #include <random>
 using namespace CK::DDD;
 
-// ±âÁî¸ğ¸¦ ±×¸®´Â ÇÔ¼ö
+// ê¸°ì¦ˆëª¨ë¥¼ ê·¸ë¦¬ëŠ” í•¨ìˆ˜
 void SoftRenderer::DrawGizmo3D()
 {
 	auto& r = GetRenderer();
 	const GameEngine& g = Get3DGameEngine();
 
-	// ºä ±âÁî¸ğ ±×¸®±â
+	// ë·° ê¸°ì¦ˆëª¨ ê·¸ë¦¬ê¸°
 	std::vector<Vertex3D> viewGizmo = {
 		Vertex3D(Vector4(Vector3::Zero)),
 		Vertex3D(Vector4(Vector3::UnitX * _GizmoUnitLength)),
@@ -21,7 +21,7 @@ void SoftRenderer::DrawGizmo3D()
 	Matrix4x4 viewMatRotationOnly = g.GetMainCamera().GetViewMatrixRotationOnly();
 	VertexShader3D(viewGizmo, viewMatRotationOnly);
 
-	// Ãà ±×¸®±â
+	// ì¶• ê·¸ë¦¬ê¸°
 	Vector2 v0 = viewGizmo[0].Position.ToVector2() + _GizmoPositionOffset;
 	Vector2 v1 = viewGizmo[1].Position.ToVector2() + _GizmoPositionOffset;
 	Vector2 v2 = viewGizmo[2].Position.ToVector2() + _GizmoPositionOffset;
@@ -31,59 +31,96 @@ void SoftRenderer::DrawGizmo3D()
 	r.DrawLine(v0, v3, LinearColor::Blue);
 }
 
-// °ÔÀÓ ¿ÀºêÁ§Æ® ¸ñ·Ï
+// ê²Œì„ ì˜¤ë¸Œì íŠ¸ ëª©ë¡
 static const std::string PlayerGo = "Player";
 
-// ÃÖÃÊ ¾À ·ÎµùÀ» ´ã´çÇÏ´Â ÇÔ¼ö
+// ìµœì´ˆ ì”¬ ë¡œë”©ì„ ë‹´ë‹¹í•˜ëŠ” í•¨ìˆ˜
 void SoftRenderer::LoadScene3D()
 {
 	GameEngine& g = Get3DGameEngine();
 
-	// ÇÃ·¹ÀÌ¾î
+	// í”Œë ˆì´ì–´
 	constexpr float playerScale = 100.f;
 
+
+	/// ï»¿ì˜ˆì œ 10_1 ë¨¸ë¦¬ ë°”ë¡œ ìœ„ì—ì„œ ê³µê°„ê° ì—†ì´ ì§êµ(Orthographic) íˆ¬ì˜ ë°©ì‹ìœ¼ë¡œ ë°”ë¼ë³´ê¸°
+	GameObject& goPlayer = g.CreateNewGameObject(PlayerGo);
+	goPlayer.SetMesh(GameEngine::CubeMesh);
+	goPlayer.GetTransform().SetPosition(Vector3::Zero);
+	goPlayer.GetTransform().SetScale(Vector3::One * playerScale);
+	goPlayer.GetTransform().SetRotation(Rotator(0.f, 0.f, 0.f));
+
+	goPlayer.SetColor(LinearColor::Blue);
+
+	CameraObject& mainCamera = g.GetMainCamera();
+
+	// 0, 0, 0ìœ¼ë¡œ ì§€ì •í•˜ë©´í”Œë ˆì´ì–´ ëª»ë³¸ë‹¤
+	// why? í”Œë ˆì´ì–´ ë¨¸ë¦¬ ìœ„ì—ì„œ ë´ì•¼ í•˜ê¸° ë•Œë¬¸ì—
+	// && íšŒì „ë„ í•´ì•¼í•œë‹¤. 
+	mainCamera.GetTransform().SetPosition(Vector3(0.f, 0.f, 500.f));
+	mainCamera.GetTransform().SetRotation(Rotator(180.f, 0.f, 0.f));
 }
 
-// °ÔÀÓ ·ÎÁ÷°ú ·»´õ¸µ ·ÎÁ÷ÀÌ °øÀ¯ÇÏ´Â º¯¼ö
+// ê²Œì„ ë¡œì§ê³¼ ë Œë”ë§ ë¡œì§ì´ ê³µìœ í•˜ëŠ” ë³€ìˆ˜
 
-// °ÔÀÓ ·ÎÁ÷À» ´ã´çÇÏ´Â ÇÔ¼ö
+// ê²Œì„ ë¡œì§ì„ ë‹´ë‹¹í•˜ëŠ” í•¨ìˆ˜
 void SoftRenderer::Update3D(float InDeltaSeconds)
 {
-	// °ÔÀÓ ·ÎÁ÷¿¡¼­ »ç¿ëÇÏ´Â ¸ğµâ ³» ÁÖ¿ä ·¹ÆÛ·±½º
+	// ê²Œì„ ë¡œì§ì—ì„œ ì‚¬ìš©í•˜ëŠ” ëª¨ë“ˆ ë‚´ ì£¼ìš” ë ˆí¼ëŸ°ìŠ¤
 	GameEngine& g = Get3DGameEngine();
 	const InputManager& input = g.GetInputManager();
 
-	// °ÔÀÓ ·ÎÁ÷ÀÇ ·ÎÄÃ º¯¼ö
-	static float moveSpeed = 500.f;
+	// ê²Œì„ ë¡œì§ì˜ ë¡œì»¬ ë³€ìˆ˜
+	static float moveSpeed = 50.f;
 	static float rotateSpeed = 180.f;
 
-	// °ÔÀÓ ·ÎÁ÷¿¡¼­ »ç¿ëÇÒ °ÔÀÓ ¿ÀºêÁ§Æ® ·¹ÆÛ·±½º
+	// ê²Œì„ ë¡œì§ì—ì„œ ì‚¬ìš©í•  ê²Œì„ ì˜¤ë¸Œì íŠ¸ ë ˆí¼ëŸ°ìŠ¤
 	GameObject& goPlayer = g.GetGameObject(PlayerGo);
 	CameraObject& camera = g.GetMainCamera();
 
+	/// ï»¿ì˜ˆì œ 10_2 í”Œë ˆì´ì–´ ì´ë™ ì½”ë“œ ì¶”ê°€í•˜ê¸°(ì¹´ë©”ë¼ ì¢…ì†ì‹œí‚¤ê¸°)
+	goPlayer.GetTransform().AddPosition(Vector3::UnitZ * input.GetAxis(InputAxis::ZAxis) * moveSpeed * InDeltaSeconds);
+	goPlayer.GetTransform().AddPitchRotation(-input.GetAxis(InputAxis::WAxis) * rotateSpeed * InDeltaSeconds);
+
+	camera.GetTransform().AddYawRotation(-input.GetAxis(InputAxis::XAxis) * rotateSpeed * InDeltaSeconds);
+	camera.GetTransform().AddPitchRotation(-input.GetAxis(InputAxis::YAxis) * rotateSpeed * InDeltaSeconds);
+
+	/// ì˜ˆì œ 10_4 ì§ë²Œë½ ì²´í—˜í•´ë³´ê¸°
+	Rotator r = goPlayer.GetTransform().GetRotation();
+	if (input.IsPressed(InputButton::Space))
+	{
+		r.Pitch = -90;
+	}
+	else
+	{
+		r.Pitch += input.GetAxis(InputAxis::ZAxis) * rotateSpeed * InDeltaSeconds;
+	}
+
+	r.Roll += input.GetAxis(InputAxis::YAxis) * rotateSpeed * InDeltaSeconds;
+	goPlayer.GetTransform().SetRotation(r);
 }
 
-// ¾Ö´Ï¸ŞÀÌ¼Ç ·ÎÁ÷À» ´ã´çÇÏ´Â ÇÔ¼ö
+// ì• ë‹ˆë©”ì´ì…˜ ë¡œì§ì„ ë‹´ë‹¹í•˜ëŠ” í•¨ìˆ˜
 void SoftRenderer::LateUpdate3D(float InDeltaSeconds)
 {
-	// ¾Ö´Ï¸ŞÀÌ¼Ç ·ÎÁ÷¿¡¼­ »ç¿ëÇÏ´Â ¸ğµâ ³» ÁÖ¿ä ·¹ÆÛ·±½º
+	// ì• ë‹ˆë©”ì´ì…˜ ë¡œì§ì—ì„œ ì‚¬ìš©í•˜ëŠ” ëª¨ë“ˆ ë‚´ ì£¼ìš” ë ˆí¼ëŸ°ìŠ¤
 	GameEngine& g = Get3DGameEngine();
 
-	// ¾Ö´Ï¸ŞÀÌ¼Ç ·ÎÁ÷ÀÇ ·ÎÄÃ º¯¼ö
+	// ì• ë‹ˆë©”ì´ì…˜ ë¡œì§ì˜ ë¡œì»¬ ë³€ìˆ˜
 }
 
-// ·»´õ¸µ ·ÎÁ÷À» ´ã´çÇÏ´Â ÇÔ¼ö
+// ë Œë”ë§ ë¡œì§ì„ ë‹´ë‹¹í•˜ëŠ” í•¨ìˆ˜
 void SoftRenderer::Render3D()
 {
-	// ·»´õ¸µ ·ÎÁ÷¿¡¼­ »ç¿ëÇÏ´Â ¸ğµâ ³» ÁÖ¿ä ·¹ÆÛ·±½º
+	// ë Œë”ë§ ë¡œì§ì—ì„œ ì‚¬ìš©í•˜ëŠ” ëª¨ë“ˆ ë‚´ ì£¼ìš” ë ˆí¼ëŸ°ìŠ¤
 	const GameEngine& g = Get3DGameEngine();
 	auto& r = GetRenderer();
 	const CameraObject& mainCamera = g.GetMainCamera();
 
-	// ¹è°æ¿¡ ±âÁî¸ğ ±×¸®±â
+	// ë°°ê²½ì— ê¸°ì¦ˆëª¨ ê·¸ë¦¬ê¸°
 	DrawGizmo3D();
 
-	// ·»´õ¸µ ·ÎÁ÷ÀÇ ·ÎÄÃ º¯¼ö
+	// ë Œë”ë§ ë¡œì§ì˜ ë¡œì»¬ ë³€ìˆ˜
 	const Matrix4x4 vMatrix = mainCamera.GetViewMatrix();
 
 	for (auto it = g.SceneBegin(); it != g.SceneEnd(); ++it)
@@ -94,16 +131,16 @@ void SoftRenderer::Render3D()
 			continue;
 		}
 
-		// ·»´õ¸µ¿¡ ÇÊ¿äÇÑ °ÔÀÓ ¿ÀºêÁ§Æ®ÀÇ ÁÖ¿ä ·¹ÆÛ·±½º¸¦ ¾ò±â
+		// ë Œë”ë§ì— í•„ìš”í•œ ê²Œì„ ì˜¤ë¸Œì íŠ¸ì˜ ì£¼ìš” ë ˆí¼ëŸ°ìŠ¤ë¥¼ ì–»ê¸°
 		const Mesh& mesh = g.GetMesh(gameObject.GetMeshKey());
 		const TransformComponent& transform = gameObject.GetTransform();
 
 		Matrix4x4 finalMatrix = vMatrix * transform.GetModelingMatrix();
 
-		// ¸Ş½Ã ±×¸®±â
+		// ë©”ì‹œ ê·¸ë¦¬ê¸°
 		DrawMesh3D(mesh, finalMatrix, gameObject.GetColor());
 
-		// ºä °ø°£¿¡¼­ÀÇ ÇÃ·¹ÀÌ¾î À§Ä¡¸¦ È­¸é¿¡ Ç¥½Ã
+		// ë·° ê³µê°„ì—ì„œì˜ í”Œë ˆì´ì–´ ìœ„ì¹˜ë¥¼ í™”ë©´ì— í‘œì‹œ
 		if (gameObject == PlayerGo)
 		{
 			Vector3 viewPosition = vMatrix * transform.GetPosition();
@@ -112,14 +149,14 @@ void SoftRenderer::Render3D()
 	}
 }
 
-// ¸Ş½Ã¸¦ ±×¸®´Â ÇÔ¼ö
+// ë©”ì‹œë¥¼ ê·¸ë¦¬ëŠ” í•¨ìˆ˜
 void SoftRenderer::DrawMesh3D(const Mesh& InMesh, const Matrix4x4& InMatrix, const LinearColor& InColor)
 {
 	size_t vertexCount = InMesh.GetVertices().size();
 	size_t indexCount = InMesh.GetIndices().size();
 	size_t triangleCount = indexCount / 3;
 
-	// ·»´õ·¯°¡ »ç¿ëÇÒ Á¤Á¡ ¹öÆÛ¿Í ÀÎµ¦½º ¹öÆÛ·Î º¯È¯
+	// ë Œë”ëŸ¬ê°€ ì‚¬ìš©í•  ì •ì  ë²„í¼ì™€ ì¸ë±ìŠ¤ ë²„í¼ë¡œ ë³€í™˜
 	std::vector<Vertex3D> vertices(vertexCount);
 	std::vector<size_t> indice(InMesh.GetIndices());
 	for (size_t vi = 0; vi < vertexCount; ++vi)
@@ -137,10 +174,10 @@ void SoftRenderer::DrawMesh3D(const Mesh& InMesh, const Matrix4x4& InMatrix, con
 		}
 	}
 
-	// Á¤Á¡ º¯È¯ ÁøÇà
+	// ì •ì  ë³€í™˜ ì§„í–‰
 	VertexShader3D(vertices, InMatrix);
 
-	// »ï°¢Çü º°·Î ±×¸®±â
+	// ì‚¼ê°í˜• ë³„ë¡œ ê·¸ë¦¬ê¸°
 	for (int ti = 0; ti < triangleCount; ++ti)
 	{
 		int bi0 = ti * 3, bi1 = ti * 3 + 1, bi2 = ti * 3 + 2;
@@ -156,7 +193,7 @@ void SoftRenderer::DrawMesh3D(const Mesh& InMesh, const Matrix4x4& InMatrix, con
 	}
 }
 
-// »ï°¢ÇüÀ» ±×¸®´Â ÇÔ¼ö
+// ì‚¼ê°í˜•ì„ ê·¸ë¦¬ëŠ” í•¨ìˆ˜
 void SoftRenderer::DrawTriangle3D(std::vector<Vertex3D>& InVertices, const LinearColor& InColor, FillMode InFillMode)
 {
 	auto& r = GetRenderer();
