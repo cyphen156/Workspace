@@ -7,38 +7,38 @@ using namespace CK::DD;
 // 격자를 그리는 함수
 void SoftRenderer::DrawGizmo2D()
 {
-	auto& r = GetRenderer();
-	const auto& g = Get2DGameEngine();
+    auto& r = GetRenderer();
+    const auto& g = Get2DGameEngine();
 
-	// 그리드 색상
-	LinearColor gridColor(LinearColor(0.8f, 0.8f, 0.8f, 0.3f));
+    // 그리드 색상
+    LinearColor gridColor(LinearColor(0.8f, 0.8f, 0.8f, 0.3f));
 
-	// 뷰의 영역 계산
-	Vector2 viewPos = g.GetMainCamera().GetTransform().GetPosition();
-	Vector2 extent = Vector2(_ScreenSize.X * 0.5f, _ScreenSize.Y * 0.5f);
+    // 뷰의 영역 계산
+    Vector2 viewPos = g.GetMainCamera().GetTransform().GetPosition();
+    Vector2 extent = Vector2(_ScreenSize.X * 0.5f, _ScreenSize.Y * 0.5f);
 
-	// 좌측 하단에서부터 격자 그리기
-	int xGridCount = _ScreenSize.X / _Grid2DUnit;
-	int yGridCount = _ScreenSize.Y / _Grid2DUnit;
+    // 좌측 하단에서부터 격자 그리기
+    int xGridCount = _ScreenSize.X / _Grid2DUnit;
+    int yGridCount = _ScreenSize.Y / _Grid2DUnit;
 
-	// 그리드가 시작되는 좌하단 좌표 값 계산
-	Vector2 minPos = viewPos - extent;
-	Vector2 minGridPos = Vector2(ceilf(minPos.X / (float)_Grid2DUnit), ceilf(minPos.Y / (float)_Grid2DUnit)) * (float)_Grid2DUnit;
-	ScreenPoint gridBottomLeft = ScreenPoint::ToScreenCoordinate(_ScreenSize, minGridPos - viewPos);
+    // 그리드가 시작되는 좌하단 좌표 값 계산
+    Vector2 minPos = viewPos - extent;
+    Vector2 minGridPos = Vector2(ceilf(minPos.X / (float)_Grid2DUnit), ceilf(minPos.Y / (float)_Grid2DUnit)) * (float)_Grid2DUnit;
+    ScreenPoint gridBottomLeft = ScreenPoint::ToScreenCoordinate(_ScreenSize, minGridPos - viewPos);
 
-	for (int ix = 0; ix < xGridCount; ++ix)
-	{
-		r.DrawFullVerticalLine(gridBottomLeft.X + ix * _Grid2DUnit, gridColor);
-	}
+    for (int ix = 0; ix < xGridCount; ++ix)
+    {
+        r.DrawFullVerticalLine(gridBottomLeft.X + ix * _Grid2DUnit, gridColor);
+    }
 
-	for (int iy = 0; iy < yGridCount; ++iy)
-	{
-		r.DrawFullHorizontalLine(gridBottomLeft.Y - iy * _Grid2DUnit, gridColor);
-	}
+    for (int iy = 0; iy < yGridCount; ++iy)
+    {
+        r.DrawFullHorizontalLine(gridBottomLeft.Y - iy * _Grid2DUnit, gridColor);
+    }
 
-	ScreenPoint worldOrigin = ScreenPoint::ToScreenCoordinate(_ScreenSize, -viewPos);
-	r.DrawFullHorizontalLine(worldOrigin.Y, LinearColor::Red);
-	r.DrawFullVerticalLine(worldOrigin.X, LinearColor::Green);
+    ScreenPoint worldOrigin = ScreenPoint::ToScreenCoordinate(_ScreenSize, -viewPos);
+    r.DrawFullHorizontalLine(worldOrigin.Y, LinearColor::Red);
+    r.DrawFullVerticalLine(worldOrigin.X, LinearColor::Green);
 }
 
 // 게임 오브젝트 목록
@@ -96,6 +96,27 @@ void SoftRenderer::Update2D(float InDeltaSeconds)
     transform.SetScale(Vector2::One * newScale);
     transform.AddRotation(input.GetAxis(InputAxis::XAxis) * rotateSpeed * InDeltaSeconds);
     transform.AddPosition(transform.GetLocalY() * input.GetAxis(InputAxis::YAxis) * moveSpeed * InDeltaSeconds);
+
+    ///예제 9_1 카메라 구현해보기
+    static float minDistance = 1.f;
+    static float lerpSpeed = 2.f;
+
+    // 메인 카메라의 트랜스폼
+    TransformComponent& cameraTransform = g.GetMainCamera().GetTransform();
+    Vector2 playerPos = transform.GetPosition();
+    Vector2 cameraPos = cameraTransform.GetPosition();
+
+    // 카메라 안에서 플레이어가 자유롭게 돌아다닐 영역
+    if ((playerPos - cameraPos).SizeSquared() < minDistance * minDistance)
+    {
+        cameraTransform.SetPosition(playerPos);
+    }
+    else
+    {
+        float ratio = Math::Clamp(lerpSpeed * InDeltaSeconds, 0.f, 1.f);
+        Vector2 newCameraPos = cameraPos + (playerPos - cameraPos) * ratio;
+        cameraTransform.SetPosition(newCameraPos);
+    }
 }
 
 // 렌더링 로직을 담당하는 함수
@@ -111,6 +132,9 @@ void SoftRenderer::Render2D()
     // 렌더링 로직의 로컬 변수
     size_t totalObjectCount = g.GetScene().size();
 
+    // 카메라 행렬 가져오기
+    Matrix3x3 viewMatrix = g.GetMainCamera().GetViewMatrix();
+
     // 씬을 구성하는 모든 게임 오브젝트의 순회
     for (auto it = g.SceneBegin(); it != g.SceneEnd(); ++it)
     {
@@ -124,7 +148,7 @@ void SoftRenderer::Render2D()
         // 렌더링에 필요한 게임 오브젝트의 주요 레퍼런스를 얻기
         const Mesh& mesh = g.GetMesh(gameObject.GetMeshKey());
         const TransformComponent& transform = gameObject.GetTransform();
-        Matrix3x3 finalMatrix = transform.GetModelingMatrix();
+        Matrix3x3 finalMatrix = viewMatrix * transform.GetModelingMatrix();
 
         // 게임 오브젝트의 렌더링 수행
         DrawMesh2D(mesh, finalMatrix, gameObject.GetColor());

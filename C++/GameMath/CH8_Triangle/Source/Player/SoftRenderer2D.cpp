@@ -39,6 +39,7 @@ void SoftRenderer::DrawGizmo2D()
 	ScreenPoint worldOrigin = ScreenPoint::ToScreenCoordinate(_ScreenSize, -viewPos);
 	r.DrawFullHorizontalLine(worldOrigin.Y, LinearColor::Red);
 	r.DrawFullVerticalLine(worldOrigin.X, LinearColor::Green);
+
 }
 
 // 게임 오브젝트 목록
@@ -56,10 +57,12 @@ void SoftRenderer::LoadScene2D()
 Vector2 currentPosition;
 float currentScale = 100.f;
 float currentDegree = 0.f;
-
+float currentTime = 0.f;
 // 게임 로직을 담당하는 함수
 void SoftRenderer::Update2D(float InDeltaSeconds)
 {
+	currentTime += InDeltaSeconds;
+
 	// 게임 로직에서 사용하는 모듈 내 주요 레퍼런스
 	auto& g = Get2DGameEngine();
 	const InputManager& input = g.GetInputManager();
@@ -88,6 +91,9 @@ void SoftRenderer::Render2D()
 	// 렌더링 로직에서 사용하는 모듈 내 주요 레퍼런스
 	auto& r = GetRenderer();
 	const auto& g = Get2DGameEngine();
+
+	const auto& texture = g.GetTexture(GameEngine::BaseTexture);
+
 
 	// 배경에 격자 그리기
 	DrawGizmo2D();
@@ -118,13 +124,215 @@ void SoftRenderer::Render2D()
 	// 모든 아핀 변환을 곱한 합성 행렬. 크기-회전-이동 순으로 적용
 	Matrix3x3 finalMatrix = tMatrix * rMatrix * sMatrix;
 
-	// 행렬을 적용한 메시 정보를 사용해 물체를 렌더링
-
-
 	// 현재 위치, 크기, 각도를 화면에 출력
 	r.PushStatisticText(std::string("Position : ") + currentPosition.ToString());
 	r.PushStatisticText(std::string("Scale : ") + std::to_string(currentScale));
 	r.PushStatisticText(std::string("Degree : ") + std::to_string(currentDegree));
+	
+	/// 예제 8_1 5개의 정점과 4개의 삼각형 2차원 와이어 프레임 도형렌더링
+	static constexpr float squareHalfSize = 0.5f;
+	static constexpr size_t vertexCount = 5;
+	static constexpr size_t triangleCount = 4;
+
+	// 메시를 구성하는 정점 배열
+	static constexpr std::array<Vertex2D, vertexCount> rawVertices =
+	{
+		//	-0.5, -0.5,	/	Red
+		//	-0.5, 0.5	/	Green
+		//	0.5, 0.5	/	Blue
+		//	0.5, -0.5	/	White
+		//	0, 0		/	Black
+		Vertex2D(Vector2(-squareHalfSize, -squareHalfSize), LinearColor(1.f, 0.f, 0.f)),
+		Vertex2D(Vector2(-squareHalfSize, squareHalfSize), LinearColor(0.f, 1.f, 0.f)),
+		Vertex2D(Vector2(squareHalfSize, squareHalfSize), LinearColor(0.f, 0.f, 1.f)),
+		Vertex2D(Vector2(squareHalfSize, -squareHalfSize), LinearColor(1.f, 1.f, 1.f)),
+		Vertex2D(Vector2(0, 0), LinearColor(0.f, 0.f, 0.f)),
+	};
+	// 메시를 구성하는 인덱스 배열
+	static constexpr std::array<size_t, triangleCount * 3> indices =
+	{
+		0, 1, 4,
+		1, 2, 4,
+		2, 3, 4,
+		0, 3, 4
+	};
+
+	// 행렬을 적용한 메시 정보를 사용해 물체를 렌더링
+	static std::vector<Vertex2D> vertices(vertexCount);
+	for (size_t vi = 0; vi < vertexCount; ++vi)
+	{
+		vertices[vi].Position = finalMatrix * rawVertices[vi].Position;
+		vertices[vi].Color = rawVertices[vi].Color;
+	}
+
+	// 변환된 정점을 잇는 선 그리기
+	for (size_t ti = 0; ti < triangleCount; ++ti)
+	{
+		size_t bi = ti * 3;
+		
+		/// 예제 8_2-8_1영역 색칠하기 
+		std::array<Vertex2D, 3> tv = {
+			vertices[indices[bi]], vertices[indices[bi + 1]], vertices[indices[bi + 2]]};
+
+		Vector2 minPos(Math::Min3(tv[0].Position.X, tv[1].Position.X, tv[2].Position.X),
+			Math::Min3(tv[0].Position.Y, tv[1].Position.Y, tv[2].Position.Y));
+		Vector2 maxPos(Math::Max3(tv[0].Position.X, tv[1].Position.X, tv[2].Position.X),
+			Math::Max3(tv[0].Position.Y, tv[1].Position.Y, tv[2].Position.Y));
+
+		// 무게 중심좌표를 위한 준비작업
+		Vector2 u = tv[1].Position - tv[0].Position;
+		Vector2 v = tv[2].Position - tv[0].Position;
+
+		// 공통 분모 ( uu * vv - uv * uv )
+		float udotv = u.Dot(v);
+		float vdotv = v.Dot(v);
+		float udotu = u.Dot(u);
+		float denominator = udotv * udotv - vdotv * udotu;
+
+		// 퇴화삼각형은 그리지 않음
+		if (denominator == 0.0f)
+		{
+			continue;
+		}
+
+		float invDenominator = 1.f / denominator;
+		// 화면상의 점 구하기
+		ScreenPoint lowerLeftPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, minPos);
+		ScreenPoint upperRightPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, maxPos);
+
+		// 두 점이 화면 밖을 벗어나는 경우 클리핑 처리
+		lowerLeftPoint.X = Math::Max(0, lowerLeftPoint.X);
+		lowerLeftPoint.Y = Math::Min(_ScreenSize.Y, lowerLeftPoint.Y);
+		upperRightPoint.X = Math::Min(_ScreenSize.X, upperRightPoint.X);
+		upperRightPoint.Y = Math::Max(0, upperRightPoint.Y);
+
+		// 삼각형을 둘러싼 사각형 영역의 픽셀을 모두 순회
+		for (int x = lowerLeftPoint.X; x <= upperRightPoint.X; ++x)
+		{
+			for (int y = upperRightPoint.Y; y <= lowerLeftPoint.Y; ++y)
+			{
+				ScreenPoint fragment = ScreenPoint(x, y);
+				Vector2 pointToTest = fragment.ToCartesianCoordinate(_ScreenSize);
+				Vector2 w = pointToTest - tv[0].Position;
+				float wdotu = w.Dot(u);
+				float wdotv = w.Dot(v);
+
+				// 분자 값을 구하고 최종 무게중심좌표 산출
+				float s = (wdotv * udotv - wdotu * vdotv) * invDenominator;
+				float t = (wdotu * udotv - wdotv * udotu) * invDenominator;
+				float oneMinusST = 1.f - s - t;
+
+				// 컨벡스 조건을 만족할 때만 점 찍기
+				if (((s >= 0.f) && (s <= 1.f)) && ((t >= 0.f) && (t <= 1.f)) && ((oneMinusST >= 0.f) && (oneMinusST <= 1.f)))
+				{
+					LinearColor outColor = tv[0].Color * oneMinusST + tv[1].Color * s + tv[2].Color * t;
+					r.DrawPoint(fragment, outColor);
+				}
+			}
+		}
+
+		r.DrawLine(vertices[indices[bi]].Position, vertices[indices[bi + 1]].Position, LinearColor::Black);
+		r.DrawLine(vertices[indices[bi]].Position, vertices[indices[bi + 2]].Position, LinearColor::Black);
+		r.DrawLine(vertices[indices[bi + 1]].Position, vertices[indices[bi + 2]].Position, LinearColor::Black);
+	}
+	if (currentTime > 1.f)
+	{
+		if (currentTime > 2.f)
+		{
+			currentTime = 0.f;
+		}
+		// 텍스처 매핑용 변수
+		static constexpr size_t vertexCount_2 = 4;
+		static constexpr size_t triangleCount_2 = 2;
+
+		// 텍스처 매핑용 정점 배열
+		static constexpr std::array<Vertex2D, vertexCount_2> rawVertices_2 =
+		{
+			Vertex2D(Vector2(-squareHalfSize, -squareHalfSize), LinearColor(), Vector2(0.125f, 0.75f)),
+			Vertex2D(Vector2(-squareHalfSize, squareHalfSize), LinearColor(), Vector2(0.125f, 0.875f)),
+			Vertex2D(Vector2(squareHalfSize, squareHalfSize), LinearColor(), Vector2(0.25f, 0.875f)),
+			Vertex2D(Vector2(squareHalfSize, -squareHalfSize), LinearColor(), Vector2(0.25f, 0.75f)),
+		};
+		// 텍스처 매핑용 인덱스 배열
+		static constexpr std::array<size_t, triangleCount_2 * 3> indices_2 =
+		{
+			0, 1, 2,
+			0, 2, 3,
+		};
+		// 텍스처 매핑용 렌더링
+		static std::vector<Vertex2D> vertices_2(vertexCount_2);
+		for (size_t vi = 0; vi < vertexCount_2; ++vi)
+		{
+			vertices_2[vi].Position = finalMatrix * rawVertices_2[vi].Position;
+			vertices_2[vi].UV = rawVertices_2[vi].UV;
+		}
+		// 변환된 정점을 잇는 선 그리기
+		for (size_t ti = 0; ti < triangleCount_2; ++ti)
+		{
+			size_t bi = ti * 3;
+
+			/// 예제 8_2-8_1영역 색칠하기 
+			std::array<Vertex2D, 3> tv = {
+				vertices_2[indices_2[bi]], vertices_2[indices_2[bi + 1]], vertices_2[indices_2[bi + 2]] };
+
+			Vector2 minPos(Math::Min3(tv[0].Position.X, tv[1].Position.X, tv[2].Position.X),
+				Math::Min3(tv[0].Position.Y, tv[1].Position.Y, tv[2].Position.Y));
+			Vector2 maxPos(Math::Max3(tv[0].Position.X, tv[1].Position.X, tv[2].Position.X),
+				Math::Max3(tv[0].Position.Y, tv[1].Position.Y, tv[2].Position.Y));
+
+			// 무게 중심좌표를 위한 준비작업
+			Vector2 u = tv[1].Position - tv[0].Position;
+			Vector2 v = tv[2].Position - tv[0].Position;
+
+			// 공통 분모 ( uu * vv - uv * uv )
+			float udotv = u.Dot(v);
+			float vdotv = v.Dot(v);
+			float udotu = u.Dot(u);
+			float denominator = udotv * udotv - vdotv * udotu;
+
+			// 퇴화삼각형은 그리지 않음
+			if (denominator == 0.0f)
+			{
+				continue;
+			}
+
+			float invDenominator = 1.f / denominator;
+			// 화면상의 점 구하기
+			ScreenPoint lowerLeftPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, minPos);
+			ScreenPoint upperRightPoint = ScreenPoint::ToScreenCoordinate(_ScreenSize, maxPos);
+
+			// 두 점이 화면 밖을 벗어나는 경우 클리핑 처리
+			lowerLeftPoint.X = Math::Max(0, lowerLeftPoint.X);
+			lowerLeftPoint.Y = Math::Min(_ScreenSize.Y, lowerLeftPoint.Y);
+			upperRightPoint.X = Math::Min(_ScreenSize.X, upperRightPoint.X);
+			upperRightPoint.Y = Math::Max(0, upperRightPoint.Y);
+
+			// 삼각형을 둘러싼 사각형 영역의 픽셀을 모두 순회
+			for (int x = lowerLeftPoint.X; x <= upperRightPoint.X; ++x)
+			{
+				for (int y = upperRightPoint.Y; y <= lowerLeftPoint.Y; ++y)
+				{
+					ScreenPoint fragment = ScreenPoint(x, y);
+					Vector2 pointToTest = fragment.ToCartesianCoordinate(_ScreenSize);
+					Vector2 w = pointToTest - tv[0].Position;
+					float wdotu = w.Dot(u);
+					float wdotv = w.Dot(v);
+
+					// 분자 값을 구하고 최종 무게중심좌표 산출
+					float s = (wdotv * udotv - wdotu * vdotv) * invDenominator;
+					float t = (wdotu * udotv - wdotv * udotu) * invDenominator;
+					float oneMinusST = 1.f - s - t;
+
+					// 컨벡스 조건을 만족할 때만 점 찍기
+					if (((s >= 0.f) && (s <= 1.f)) && ((t >= 0.f) && (t <= 1.f)) && ((oneMinusST >= 0.f) && (oneMinusST <= 1.f)))
+					{
+						Vector2 targetUV = tv[0].UV * oneMinusST + tv[1].UV * s + tv[2].UV * t;
+						r.DrawPoint(fragment, texture.GetSample(targetUV));
+					}
+				}
+			}
+		}
+	}
 }
 
 // 메시를 그리는 함수
