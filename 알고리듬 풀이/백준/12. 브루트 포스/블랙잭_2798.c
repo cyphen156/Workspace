@@ -42,4 +42,3 @@ int main() {
     free(card);
     return 0;
 }
-
