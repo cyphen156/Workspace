@@ -52,7 +52,7 @@ void SoftRenderer::OnTick()
 			{
 				_InputBindingFunc(input);
 			}
-			
+
 			_GameEngineInitialized = GetGameEngine().Init();
 			if (!_GameEngineInitialized)
 			{
@@ -121,7 +121,7 @@ void SoftRenderer::OnResize(const ScreenPoint& InNewScreenSize)
 	if (_GameEngineInitialized)
 	{
 		GetGameEngine().OnScreenResize(_ScreenSize);
-	}	
+	}
 }
 
 void SoftRenderer::OnShutdown()
@@ -153,7 +153,7 @@ void SoftRenderer::PreUpdate()
 	if (sinput.IsReleased(SystemInputButton::F2)) { _CurrentDrawMode = DrawMode::Wireframe; }
 	if (sinput.IsReleased(SystemInputButton::F3)) { _CurrentDrawMode = DrawMode::DepthBuffer; }
 	if (sinput.IsReleased(SystemInputButton::F10))
-	{ 
+	{
 		SetDefaultGameEngine((_GameEngineType == GameEngineType::DD) ? GameEngineType::DDD : GameEngineType::DD);
 		_AllInitialized = false;
 	}
@@ -178,5 +178,3 @@ void SoftRenderer::PostUpdate()
 	_FrameFPS = _FrameTime == 0.f ? 0.f : 1000.f / _FrameTime;
 	_AverageFPS = _ElapsedTime == 0.f ? 0.f : 1000.f / _ElapsedTime * _FrameCount;
 }
-
-

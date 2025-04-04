@@ -1,10 +1,9 @@
 
 #include "Precompiled.h"
-#include <random>
-using namespace CK::DD;
+using namespace CK::DDD;
 
 // 메시
-const std::size_t GameEngine::QuadMesh = std::hash<std::string>()("SM_Quad");
+const std::size_t GameEngine::CubeMesh = std::hash<std::string>()("SM_Cube");;
 
 // 텍스처
 const std::size_t GameEngine::BaseTexture = std::hash<std::string>()("Base");
@@ -50,49 +49,39 @@ bool GameEngine::Init()
 	}
 
 	_IsInitialized = true;
-	return true;
+	return _IsInitialized;
 }
 
 bool GameEngine::LoadResources()
 {
-	// 메시 데이터 로딩
-	Mesh& quadMesh = CreateMesh(GameEngine::QuadMesh);
+	// 큐브 메시
+	Mesh& cubeMesh = CreateMesh(GameEngine::CubeMesh);
+	auto& v = cubeMesh.GetVertices();
+	auto& i = cubeMesh.GetIndices();
+	auto& uv = cubeMesh.GetUVs();
 
-	constexpr float squareHalfSize = 0.5f;
-	constexpr int vertexCount = 4;
-	constexpr int triangleCount = 2;
-	constexpr int indexCount = triangleCount * 3;
-
-	auto& v = quadMesh.GetVertices();
-	auto& i = quadMesh.GetIndices();
-	auto& uv = quadMesh.GetUVs();
-
-	v = {
-		Vector2(-squareHalfSize, -squareHalfSize),
-		Vector2(-squareHalfSize, squareHalfSize),
-		Vector2(squareHalfSize, squareHalfSize),
-		Vector2(squareHalfSize, -squareHalfSize)
-	};
+	static const float halfSize = 0.5f;
+	std::transform(cubeMeshPositions.begin(), cubeMeshPositions.end(), std::back_inserter(v), [&](auto& p) { return p * halfSize; });
+	std::transform(cubeMeshIndice.begin(), cubeMeshIndice.end(), std::back_inserter(i), [&](auto& p) { return p; });
 
 	uv = {
-		Vector2(0.125f, 0.75f),
-		Vector2(0.125f, 0.875f),
-		Vector2(0.25f, 0.875f),
-		Vector2(0.25f, 0.75f)
+		// Right
+		Vector2(0.f, 48.f) / 64.f, Vector2(8.f, 48.f) / 64.f, Vector2(8.f, 56.f) / 64.f, Vector2(0.f, 56.f) / 64.f,
+		// Front
+		Vector2(8.f, 48.f) / 64.f, Vector2(8.f, 56.f) / 64.f, Vector2(16.f, 56.f) / 64.f, Vector2(16.f, 48.f) / 64.f,
+		// Back
+		Vector2(32.f, 48.f) / 64.f, Vector2(32.f, 56.f) / 64.f, Vector2(24.f, 56.f) / 64.f, Vector2(24.f, 48.f) / 64.f,
+		// Left
+		Vector2(24.f, 48.f) / 64.f, Vector2(16.f, 48.f) / 64.f, Vector2(16.f, 56.f) / 64.f, Vector2(24.f, 56.f) / 64.f,
+		// Top
+		Vector2(8.f, 64.f) / 64.f, Vector2(16.f, 64.f) / 64.f, Vector2(16.f, 56.f) / 64.f, Vector2(8.f, 56.f) / 64.f,
+		// Bottom
+		Vector2(16.f, 64.f) / 64.f, Vector2(24.f, 64.f) / 64.f, Vector2(24.f, 56.f) / 64.f, Vector2(16.f, 56.f) / 64.f
 	};
 
-	i = {
-		0, 2, 1, 0, 3, 2
-	};
-
-	quadMesh.CalculateBounds();
-
-	// 텍스처 로딩
-	Texture& baseTexture = CreateTexture(GameEngine::BaseTexture, GameEngine::CharacterTexturePath);
-	if (!baseTexture.IsIntialized())
-	{
-		return false;
-	}
+	// 텍스쳐 로딩
+	Texture& diffuseTexture = CreateTexture(GameEngine::BaseTexture, GameEngine::CharacterTexturePath);
+	assert(diffuseTexture.IsIntialized());
 
 	return true;
 }

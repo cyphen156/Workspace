@@ -1,9 +1,10 @@
 
 #include "Precompiled.h"
-using namespace CK::DDD;
+#include <random>
+using namespace CK::DD;
 
 // 메시
-const std::size_t GameEngine::CubeMesh = std::hash<std::string>()("SM_Cube");;
+const std::size_t GameEngine::QuadMesh = std::hash<std::string>()("SM_Quad");
 
 // 텍스처
 const std::size_t GameEngine::BaseTexture = std::hash<std::string>()("Base");
@@ -49,24 +50,52 @@ bool GameEngine::Init()
 	}
 
 	_IsInitialized = true;
-	return _IsInitialized;
+	return true;
 }
 
 bool GameEngine::LoadResources()
 {
-	// 큐브 메시
-	Mesh& cubeMesh = CreateMesh(GameEngine::CubeMesh);
-	auto& v = cubeMesh.GetVertices();
-	auto& i = cubeMesh.GetIndices();
+	// 메시 데이터 로딩
+	Mesh& quadMesh = CreateMesh(GameEngine::QuadMesh);
 
-	static const float halfSize = 0.5f;
-	std::transform(cubeMeshPositions.begin(), cubeMeshPositions.end(), std::back_inserter(v), [&](auto& p) { return p * halfSize; });
-	std::transform(cubeMeshIndice.begin(), cubeMeshIndice.end(), std::back_inserter(i), [&](auto& p) { return p; });
+	constexpr float squareHalfSize = 0.5f;
+	constexpr int vertexCount = 4;
+	constexpr int triangleCount = 2;
+	constexpr int indexCount = triangleCount * 3;
 
-	// 텍스쳐 로딩
-	Texture& diffuseTexture = CreateTexture(GameEngine::BaseTexture, GameEngine::CharacterTexturePath);
-	assert(diffuseTexture.IsIntialized());
+	auto& v = quadMesh.GetVertices();
+	auto& i = quadMesh.GetIndices();
+	auto& uv = quadMesh.GetUVs();
 
+	v = {
+		Vector2(-squareHalfSize, -squareHalfSize),
+		Vector2(-squareHalfSize, squareHalfSize),
+		Vector2(squareHalfSize, squareHalfSize),
+		Vector2(squareHalfSize, -squareHalfSize)
+	};
+
+	uv = {
+		Vector2(0.125f, 0.75f),
+		Vector2(0.125f, 0.875f),
+		Vector2(0.25f, 0.875f),
+		Vector2(0.25f, 0.75f)
+	};
+
+	i = {
+		0, 2, 1, 0, 3, 2
+	};
+
+	quadMesh.CalculateBounds();
+
+	// 텍스처 로딩
+	Texture& baseTexture = CreateTexture(GameEngine::BaseTexture, GameEngine::CharacterTexturePath);
+	if (!baseTexture.IsIntialized())
+	{
+		int a = 3;
+		return false;
+	}
+	int b = 4;
+	int t = 5;
 	return true;
 }
 
