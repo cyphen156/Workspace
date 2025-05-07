@@ -18,32 +18,34 @@
  * 풀이시간 5분
  */
 
-#include <iostream>
-#define MAX_VALUE 1000000
-
-using namespace std;
-
-bool check[2 * MAX_VALUE + 1] = { 0 };  // 자동초기화  false
-
-int main(void)
-{
-    int N;
-    cin >> N;
-
-    for (int i = 0; i < N; ++i)
-    {
-        int input;
-        cin >> input;
-        // 음수 특수처리
-        check[input + MAX_VALUE] = true;
-    }
-
-    for (int i = 0; i < N + 1; ++i)
-    {
-        if (check[i] != 0)
-        {
-            cout << i - MAX_VALUE << '\n';
-        }
-    }
-    return 0;
-}
+ #include <iostream>
+ #define MAX_VALUE 1000000
+ 
+ using namespace std;
+ 
+ bool check[2 * MAX_VALUE + 1] = { 0 };  // 자동초기화  false
+ 
+ int main(void)
+ {
+     ios_base::sync_with_stdio(false);
+     cin.tie(NULL);
+     int N;
+     cin >> N;
+ 
+     for (int i = 0; i < N; ++i)
+     {
+         int input;
+         cin >> input;
+         // 음수 특수처리
+         check[input + MAX_VALUE] = true;
+     }
+ 
+     for (int i = 0; i < size(check); ++i)
+     {
+         if (check[i] != 0)
+         {
+             cout << i - MAX_VALUE << '\n';
+         }
+     }
+     return 0;
+ }
