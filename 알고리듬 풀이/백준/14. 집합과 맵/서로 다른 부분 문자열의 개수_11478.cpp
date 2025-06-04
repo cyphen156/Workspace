@@ -14,7 +14,7 @@
  * 주의
  * 없다.
  * 
- * 풀이시간 0분
+ * 풀이시간 15분
  */
 
 
@@ -28,46 +28,59 @@ struct Node
     bool isEnd = false; // if length is 20 ==> true;
 }node;
 
-void InsertData(Node* root, const string& str);
+bool InsertData(Node* root, const string& str);
 
 int main(void)
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
+    Node* root = new Node();
+
+    string str;
+    cin >> str;
+
+    int count = 0;
+
+    for (int i = 0; i < str.length(); ++i)
+    {
+        for (int j = i; j < str.length(); ++j)
+        {
+            string partition = string(str).substr(i, j - i + 1);;
+   
+            if (InsertData(root, partition))
+            {
+                count++;
+            }
+        }    
+    }
+
+    cout << count << '\n';
     return 0;
 }
 
-void InsertData(Node* root, const string& str)
+// 이미 존재하면 return false, 새로 삽입에 성공하면 true
+bool InsertData(Node* root, const string& str)
 {
     Node* current = root;
 
     for (char ch : str)
     {
         int index = ch - 'a';
+
         if (current->next[index] == nullptr)
         {
             current->next[index] = new Node();
         }
+
         current = current->next[index];
     }
 
-    current->isEnd = true;
-}
-
-bool SearchData(Node* root, const string& str)
-{
-    Node* current = root;
-
-    for (char ch : str)
+    if(current->isEnd != true)
     {
-        int index = ch - 'a';
-        if (current->next[index] == nullptr)
-        {
-            return false;
-        }
-        current = current->next[index];
+        current->isEnd = true;
+        return true;
     }
 
-    return current->isEnd;
+    return false;
 }
