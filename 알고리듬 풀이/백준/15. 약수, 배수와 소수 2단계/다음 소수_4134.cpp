@@ -16,20 +16,21 @@
  *
  *
  * 주의
- * 없다.
+ * 꼭 다시 한번 더 보고 이해해보기
  * 
- * 풀이시간 0분
+ * 풀이시간 120분
  */
 
 
 #include <iostream>
 
+typedef unsigned long long ull;
 using namespace std;
 
-// 밀러-라빈 연산기
-long long int ModulorPower(long long int base, long long int exponent, long long int modulos);
+// 거듭제곱 연산을 통해 합성수인지 판단
+ull ModuloPower(ull base, ull exponent, ull modulos);
 
-// 소수 판정기
+// 밀러-라빈 소수 판정기
 bool IsPrime(unsigned int n);
 
 // 나보다 큰 최인접소수 찾기
@@ -54,10 +55,10 @@ int main(void)
     return 0;
 }
 
-// d*2**r
-long long int ModuloPower(long long int base, long long int exponent, long long int modulos)
+// 지수 연산
+ull ModuloPower(ull base, ull exponent, ull modulos)
 {
-    long long int result = 1;
+    ull result = 1;
     base %= modulos;
 
     while(exponent > 0)
@@ -73,42 +74,70 @@ long long int ModuloPower(long long int base, long long int exponent, long long 
     return result;
 }
 
-
+// 실제 소수 판정
 bool IsPrime(unsigned int n)
 {
-    if (n < 2) return false;
-    if (n == 2 || n == 3) return true;
-    if (n % 2 == 0) return false;
+    // 예외 처리부
+    if (n < 2) 
+    {
+        return false;
+    }
 
+    if (n == 2 || n == 3) 
+    {
+        return true;
+    }
+
+    if (n % 2 == 0) 
+    {
+        return false;
+    }
+
+    // n-1 = d * 2^r 꼴로 분해
     unsigned int d = n - 1;
+
     int r = 0;
+
     while ((d & 1) == 0)
     {
         d >>= 1;
         r++;
     }
 
-    int bases[] = {2, 3};
+    // 밑
+    unsigned int bases[3] = {2, 7, 61};
 
     for (int a : bases)
     {
-        if (a >= n) continue;
+        // 예외처리
+        if (a >= n) 
+        {
+            continue;
+        }
 
         long long x = ModuloPower(a, d, n);
-        if (x == 1 || x == n - 1) continue;
+        
+        if (x == 1 || x == n - 1) 
+        {
+            continue;
+        }
 
-        bool witness = false;
+        bool isPassed  = false;
+        
         for (int i = 1; i < r; i++)
         {
             x = ModuloPower(x, 2, n);
             if (x == n - 1)
             {
-                witness = true;
+                isPassed  = true;
                 break;
             }
         }
 
-        if (!witness) return false;
+        if (!isPassed) 
+        {
+            return false;
+        }
     }
 
     return true;
@@ -128,6 +157,7 @@ unsigned int FindNextPrime(unsigned int input)
         ++input;
     }
 
+    // 단순하게 2씩 늘려가면서 순회
     while (!IsPrime(input))
     {
         input += 2;
