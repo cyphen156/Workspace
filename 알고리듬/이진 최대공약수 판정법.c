@@ -1,37 +1,51 @@
 // 이진 최대공약수 판정법
 // 시간복잡도 O(logN)
-int binary_GCD(int A, int B) {
-    int C;
-    int T = 0; // 두 수 모두 짝수인 경우 카운트
-    if((A & 1) == 0 || (B & 1) == 0) //비트연산 짝수체크
+int binary_gcd(int a, int b)
+{
+    if (a == 0) 
     {
-    	// 조건 A에 걸려서 진입했을 경우 B체크 필요
-    	// 조건 B에 걸려서 진입했을 경우 A는 홀수
-        if ((B & 1) == 0)
-    	{
-            if(A > B)	// A가 B보다 클 경우 아래의 반복문 연산중 T의 값이 이상해지는 것을 방지
-            {		// ex) A = 16, B = 8 : T = 3이 정답인데 T = 4가 발생
-        	int temp = A;
-                A = B;
-                B = temp;
-            }
-            // 두 수 모두 짝수인 경우 반드시 A <= B 만큼 반복횟수 시행
-            while((A & 1) == 0)
-            {
-            	T++;
-        	A >>= 1;
-            }
-        }
-        while((B & 1) == 0)
+        return b;
+    }
+    if (b == 0) 
+    {
+        return a;
+    }
+
+    // 공통으로 나눌 수 있는 2의 최대 지수
+    int shift = 0;
+
+    // a와 b가 둘 다 짝수일 때만 2로 나눌 수 있음
+    while (((a | b) & 1) == 0)
+    {
+        a >>= 1;
+        b >>= 1;
+        shift++;
+    }
+
+    // a는 홀수로 만든다
+    while ((a & 1) == 0)
+    {
+        a >>= 1;
+    }
+
+    while (b != 0) 
+    {
+        // b를 홀수로 만든다
+        while ((b & 1) == 0)
         {
-            B >>= 1;
+            b >>= 1;
         }
+
+        // a > b면 swap
+        if (a > b) 
+        {
+            int temp = a;
+            a = b;
+            b = temp;
+        }
+
+        b = b - a;
     }
-    while(B != 0) 
-    {
-        C = A % B;
-        A = B;
-        B = C;
-    }
-    return A << T;
+
+    return a << shift;
 }
