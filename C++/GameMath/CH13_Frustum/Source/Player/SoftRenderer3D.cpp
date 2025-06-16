@@ -1,4 +1,3 @@
-
 #include "Precompiled.h"
 #include "SoftRenderer.h"
 #include <random>
@@ -47,14 +46,15 @@ void SoftRenderer::LoadScene3D()
 	goPlayer.SetMesh(GameEngine::CubeMesh);
 	goPlayer.GetTransform().SetPosition(Vector3::Zero);
 	goPlayer.GetTransform().SetScale(Vector3::One * cubeScale);
+	goPlayer.SetColor(LinearColor::White);
 
 	// 고정 시드로 랜덤하게 생성
 	std::mt19937 generator(0);
-	std::uniform_real_distribution<float> distZ(-1500.f, 0.f);
-	std::uniform_real_distribution<float> distXY(-1000.f, 1000.f);
+	std::uniform_real_distribution<float> distZ(-3000.f, -1000.f);
+	std::uniform_real_distribution<float> distXY(-3000.f, 3000.f);
 
 	// 100개의 큐브 게임 오브젝트 생성
-	for (int i = 0; i < 100; ++i)
+	for (int i = 0; i < 500; ++i)
 	{
 		char name[64];
 		std::snprintf(name, sizeof(name), "GameObject%d", i);
@@ -62,6 +62,7 @@ void SoftRenderer::LoadScene3D()
 		newGo.GetTransform().SetPosition(Vector3(distXY(generator), distXY(generator), distZ(generator)));
 		newGo.GetTransform().SetScale(Vector3::One * cubeScale);
 		newGo.SetMesh(GameEngine::CubeMesh);
+		newGo.SetColor(LinearColor::White);
 	}
 
 	// 카메라 설정
@@ -131,6 +132,55 @@ void SoftRenderer::Render3D()
 	// 렌더링 로직의 로컬 변수
 	const Matrix4x4 pvMatrix = mainCamera.GetPerspectiveViewMatrix();
 
+	/// 예제 13_1 눈에 보이는 물체만 그리기
+	const Matrix4x4 vMatrix = mainCamera.GetViewMatrix();
+
+	// 절두체 구축을 위한 카메라의 설정 값
+	//float nearZ = mainCamera.GetNearZ();
+	//float farZ = mainCamera.GetFarZ();
+	//float halfFov = mainCamera.GetFOV() * 0.5f;
+	//float pSin = 0.f, pCos = 0.f;
+	//Math::GetSinCos(pSin, pCos, halfFov);
+
+	//// 절두체의 종횡비
+	//static std::array<Plane, 6> frustumPlanes = {
+	//	Plane(Vector3(pCos, 0.f, pSin), 0.f),	// +X
+	//	Plane(Vector3(-pCos, 0.f, pSin), 0.f),	// -X
+	//	Plane(Vector3(0.f, pCos, pSin), 0.f),	// +Y
+	//	Plane(Vector3(0.f, -pCos, pSin), 0.f),	// -Y
+	//	Plane(Vector3::UnitZ, nearZ),			// +Z 
+	//	Plane(Vector3::UnitZ, -farZ)			// -Z 
+	//};
+
+	/// 예제 13_2 더 정확하고 빠르게 눈에 보이는 물체만 그리기
+	const Matrix4x4 pMatrix = mainCamera.GetPerspectiveMatrix();
+
+	// 절두체 구축을 위한 투영 행렬의 설정
+	Matrix4x4 ptMatrix = pMatrix.Transpose();
+
+	// 절두체를 구성하는 평면의 방정식
+	std::array<Plane, 6> frustumPlanes =
+	{
+		Plane(-(ptMatrix[3] - ptMatrix[1])), // +Y
+		Plane(-(ptMatrix[3] + ptMatrix[1])), // -Y
+		Plane(-(ptMatrix[3] - ptMatrix[0])), // +x
+		Plane(-(ptMatrix[3] + ptMatrix[0])), // -x
+		Plane(-(ptMatrix[3] - ptMatrix[2])), // +z
+		Plane(-(ptMatrix[3] + ptMatrix[2])), // -z
+	};
+
+	// 절두체 선언
+	Frustum frustumInView(frustumPlanes);
+	Frustum frustumFromMatrix(frustumPlanes);
+
+	// 절두체 컬링 테스트를 위한 통계 변수
+	size_t totalObjects = g.GetScene().size();
+	size_t culledObjects = 0;
+	size_t renderedObjects = 0;
+
+	/// 13_3 구 영역과 절두체 영역의 판정
+	size_t intersectedObjects = 0;
+
 	for (auto it = g.SceneBegin(); it != g.SceneEnd(); ++it)
 	{
 		const GameObject& gameObject = *(*it);
@@ -143,12 +193,53 @@ void SoftRenderer::Render3D()
 		const Mesh& mesh = g.GetMesh(gameObject.GetMeshKey());
 		const TransformComponent& transform = gameObject.GetTransform();
 
-		// 최종 행렬 계산
-		Matrix4x4 finalMatrix = pvMatrix * transform.GetModelingMatrix();
+		//// 절두체 컬링 구현
+		//Vector4 viewPos = vMatrix * Vector4(transform.GetPosition());
 
+		//if (frustumInView.CheckBound(viewPos.ToVector3()) == BoundCheckResult::Outside)
+		//{
+		//	// 그리지 않고 건너 뛰거라
+		//	culledObjects++;
+		//	continue;
+		//}
+
+		Matrix4x4 mMatrix = transform.GetModelingMatrix();
+
+		LinearColor finalColor = gameObject.GetColor();
+
+		// 바운딩 영역의 크기를 트랜스폼에 맞게 조정
+		Sphere sphereBound = mesh.GetSphereBound();
+		sphereBound.Radius *= transform.GetScale().Max();
+		sphereBound.Center = (vMatrix * mMatrix * Vector4(sphereBound.Center)).ToVector3();
+
+		// 영역을 사용해 절두체 컬링을 진행
+		auto checkResult = frustumFromMatrix.CheckBound(sphereBound);
+		if (checkResult == BoundCheckResult::Outside)
+		{
+			culledObjects++;
+			continue;
+		}
+		
+		else if (checkResult == BoundCheckResult::Intersect)
+		{
+			// 겹친 게임 오브젝트를 통계에 포함
+			intersectedObjects++;
+			finalColor = LinearColor::Red;
+		}
+		// 최종 행렬 계산
+		Matrix4x4 finalMatrix = pvMatrix * mMatrix;
+		
 		// 메시 그리기
-		DrawMesh3D(mesh, finalMatrix, gameObject.GetColor());
+		DrawMesh3D(mesh, finalMatrix, finalColor);
+
+		// 그린 물체를 통계에 포함하거라
+		renderedObjects++;
 	}
+
+	r.PushStatisticText("Total GameObjects : " + std::to_string(totalObjects));
+	r.PushStatisticText("Culled Objects : " + std::to_string(culledObjects));
+	r.PushStatisticText("Intersected Objects : " + std::to_string(intersectedObjects));
+	r.PushStatisticText("Rendered Objects : " + std::to_string(renderedObjects));
 }
 
 // 메시를 그리는 함수
@@ -223,6 +314,7 @@ void SoftRenderer::DrawTriangle3D(std::vector<Vertex3D>& InVertices, const Linea
 	Vector3 edge2 = (InVertices[2].Position - InVertices[0].Position).ToVector3();
 	Vector3 faceNormal = -edge1.Cross(edge2);
 	Vector3 viewDirection = Vector3::UnitZ;
+
 	if (faceNormal.Dot(viewDirection) >= 0.f)
 	{
 		return;

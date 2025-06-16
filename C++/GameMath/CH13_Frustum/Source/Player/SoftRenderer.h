@@ -25,7 +25,7 @@ FORCEINLINE FillMode operator|(FillMode InLhs, FillMode InRhs)
 	return static_cast<FillMode> (
 		static_cast<std::underlying_type<FillMode>::type>(InLhs) |
 		static_cast<std::underlying_type<FillMode>::type>(InRhs)
-	);
+		);
 }
 
 FORCEINLINE FillMode& operator|=(FillMode& InLhs, FillMode InRhs)
