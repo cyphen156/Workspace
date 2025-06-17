@@ -3,7 +3,7 @@
 using namespace CK::DDD;
 
 // 메시
-const std::size_t GameEngine::CubeMesh = std::hash<std::string>()("SM_Cube");
+const std::size_t GameEngine::CubeMesh = std::hash<std::string>()("SM_Cube");;
 const std::size_t GameEngine::PlaneMesh = std::hash<std::string>()("SM_Plane");
 
 // 텍스처
@@ -87,16 +87,14 @@ bool GameEngine::LoadResources()
 	Mesh& planeMesh = CreateMesh(GameEngine::PlaneMesh);
 	auto& pv = planeMesh.GetVertices();
 	auto& pi = planeMesh.GetIndices();
-
 	pv = {
 		Vector3(-1.f, 0.f, 1.f),
 		Vector3(-1.f, 0.f, -1.f),
 		Vector3(1.f, 0.f, -1.f),
-		Vector3(1.f, 0.f, 1.f)
+		Vector3(1.f, 0.f, 1.f),
 	};
 
-	pi =
-	{
+	pi = {
 		0, 2, 1,
 		0, 3, 2
 	};

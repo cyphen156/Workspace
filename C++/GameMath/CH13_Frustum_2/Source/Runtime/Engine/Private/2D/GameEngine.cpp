@@ -1,10 +1,10 @@
 
 #include "Precompiled.h"
-using namespace CK::DDD;
+#include <random>
+using namespace CK::DD;
 
 // 메시
-const std::size_t GameEngine::CubeMesh = std::hash<std::string>()("SM_Cube");
-const std::size_t GameEngine::PlaneMesh = std::hash<std::string>()("SM_Plane");
+const std::size_t GameEngine::QuadMesh = std::hash<std::string>()("SM_Quad");
 
 // 텍스처
 const std::size_t GameEngine::BaseTexture = std::hash<std::string>()("Base");
@@ -50,62 +50,49 @@ bool GameEngine::Init()
 	}
 
 	_IsInitialized = true;
-	return _IsInitialized;
+	return true;
 }
 
 bool GameEngine::LoadResources()
 {
-	// 큐브 메시
-	Mesh& cubeMesh = CreateMesh(GameEngine::CubeMesh);
-	auto& v = cubeMesh.GetVertices();
-	auto& i = cubeMesh.GetIndices();
-	auto& uv = cubeMesh.GetUVs();
+	// 메시 데이터 로딩
+	Mesh& quadMesh = CreateMesh(GameEngine::QuadMesh);
 
-	static const float halfSize = 0.5f;
-	std::transform(cubeMeshPositions.begin(), cubeMeshPositions.end(), std::back_inserter(v), [&](auto& p) { return p * halfSize; });
-	std::transform(cubeMeshIndice.begin(), cubeMeshIndice.end(), std::back_inserter(i), [&](auto& p) { return p; });
+	constexpr float squareHalfSize = 0.5f;
+	constexpr int vertexCount = 4;
+	constexpr int triangleCount = 2;
+	constexpr int indexCount = triangleCount * 3;
+
+	auto& v = quadMesh.GetVertices();
+	auto& i = quadMesh.GetIndices();
+	auto& uv = quadMesh.GetUVs();
+
+	v = {
+		Vector2(-squareHalfSize, -squareHalfSize),
+		Vector2(-squareHalfSize, squareHalfSize),
+		Vector2(squareHalfSize, squareHalfSize),
+		Vector2(squareHalfSize, -squareHalfSize)
+	};
 
 	uv = {
-		// Right
-		Vector2(0.f, 48.f) / 64.f, Vector2(8.f, 48.f) / 64.f, Vector2(8.f, 56.f) / 64.f, Vector2(0.f, 56.f) / 64.f,
-		// Front
-		Vector2(8.f, 48.f) / 64.f, Vector2(8.f, 56.f) / 64.f, Vector2(16.f, 56.f) / 64.f, Vector2(16.f, 48.f) / 64.f,
-		// Back
-		Vector2(32.f, 48.f) / 64.f, Vector2(32.f, 56.f) / 64.f, Vector2(24.f, 56.f) / 64.f, Vector2(24.f, 48.f) / 64.f,
-		// Left
-		Vector2(24.f, 48.f) / 64.f, Vector2(16.f, 48.f) / 64.f, Vector2(16.f, 56.f) / 64.f, Vector2(24.f, 56.f) / 64.f,
-		// Top
-		Vector2(8.f, 64.f) / 64.f, Vector2(16.f, 64.f) / 64.f, Vector2(16.f, 56.f) / 64.f, Vector2(8.f, 56.f) / 64.f,
-		// Bottom
-		Vector2(16.f, 64.f) / 64.f, Vector2(24.f, 64.f) / 64.f, Vector2(24.f, 56.f) / 64.f, Vector2(16.f, 56.f) / 64.f
+		Vector2(0.125f, 0.75f),
+		Vector2(0.125f, 0.875f),
+		Vector2(0.25f, 0.875f),
+		Vector2(0.25f, 0.75f)
 	};
 
-	// 메시의 바운딩 볼륨 생성
-	cubeMesh.CalculateBounds();
-
-	// 평면 메시
-	Mesh& planeMesh = CreateMesh(GameEngine::PlaneMesh);
-	auto& pv = planeMesh.GetVertices();
-	auto& pi = planeMesh.GetIndices();
-
-	pv = {
-		Vector3(-1.f, 0.f, 1.f),
-		Vector3(-1.f, 0.f, -1.f),
-		Vector3(1.f, 0.f, -1.f),
-		Vector3(1.f, 0.f, 1.f)
+	i = {
+		0, 2, 1, 0, 3, 2
 	};
 
-	pi =
+	quadMesh.CalculateBounds();
+
+	// 텍스처 로딩
+	Texture& baseTexture = CreateTexture(GameEngine::BaseTexture, GameEngine::CharacterTexturePath);
+	if (!baseTexture.IsIntialized())
 	{
-		0, 2, 1,
-		0, 3, 2
-	};
-
-	planeMesh.CalculateBounds();
-
-	// 텍스쳐 로딩
-	Texture& diffuseTexture = CreateTexture(GameEngine::BaseTexture, GameEngine::CharacterTexturePath);
-	assert(diffuseTexture.IsIntialized());
+		return false;
+	}
 
 	return true;
 }
