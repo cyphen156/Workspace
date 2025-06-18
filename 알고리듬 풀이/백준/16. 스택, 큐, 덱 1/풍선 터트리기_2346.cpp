@@ -16,7 +16,7 @@
  * 주의
  * 없다.
  * 
- * 풀이시간 0분
+ * 풀이시간 30분
  */
 
 
@@ -30,11 +30,10 @@ struct Node
     int _data;
     Node* prev;
     Node* next;
-}node;
+};
 
-Node front;
-Node back;
-Node current;
+Node* head = nullptr;
+Node* current = nullptr;
 
 void Push(int index, int data);
 int Pop();
@@ -52,7 +51,14 @@ int main(void)
     {
         int input;
         cin >> input;
-        Push(input);
+        Push(i, input);
+    }
+
+    current = head;
+
+    for (int i = 0; i < N; ++i)
+    {
+        cout << Pop() << " ";
     }
 
     return 0;
@@ -63,18 +69,57 @@ void Push(int index, int data)
     Node* newNode = new Node();
     newNode->_index = index;
     newNode->_data = data;
-    // 리스트 연결
-    // 첫 요소 삽입
-    current = newNode;
 
-    if (front)
+    if (!head) 
     {
-        front->Prev = back;
-        back->Next = front;
+        head = newNode;
+        head->next = head;
+        head->prev = head;
+    } 
+    else 
+    {
+        Node* tail = head->prev;
+        tail->next = newNode;
+        newNode->prev = tail;
+        newNode->next = head;
+        head->prev = newNode;
     }
 }
 
 int Pop()
 {
+    int move = current->_data;
+    int result = current->_index + 1;
 
+    if (current->next == current)
+    {
+        delete current;
+        current = nullptr;
+    }
+    else
+    {
+        // 현재 선택된놈 빼버리기
+        Node* temp = current;
+        current->prev->next = current->next;
+        current->next->prev = current->prev;
+
+        if (move < 0)
+        {
+            move = -move;
+            for (int i = 0; i < move; ++i)
+            {
+                current = current->prev;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < move; ++i)
+            {
+                current = current->next;
+            }
+        }
+        delete temp;
+    }
+
+    return result;
 }
