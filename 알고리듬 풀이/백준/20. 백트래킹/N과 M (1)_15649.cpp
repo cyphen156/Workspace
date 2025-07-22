@@ -1,10 +1,11 @@
 /**
  * 백준 N과 M (1)_15649
- * 
+ * 자연수 N과 M이 주어졌을 때 길이가 M인 수열을 모두 구하라
+ * 1부터 N까지 중복 없이 M개를 고른 수열
  * 
  * 제한사항
  *****************************************
- * 
+ * 0 < M <= N <= 8                       *
  *****************************************
  *
  *
@@ -12,7 +13,7 @@
  * 주의
  * 없다.
  * 
- * 풀이시간 0분
+ * 풀이시간 60분
  */
 
 
@@ -20,11 +21,48 @@
 
 using namespace std;
 
+static int N, M;
+
+static int arr[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+static bool isUsed[8] = { 0 };
+static int currentPath[8];
+
+void BackTrcak(int currentDepth);
+
 int main(void)
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
     
+    cin >> N >> M;
+
+    BackTrcak(0);
+
     return 0;
+}
+
+void BackTrcak(int currentDepth) 
+{
+    if (currentDepth == M) 
+    {
+        for (int i = 0; i < M; ++i)
+        {
+            cout << currentPath[i] << ' ';
+        }
+
+        cout << '\n';
+        return;
+    }
+
+    for (int i = 0; i < N; ++i)
+    {
+        if (!isUsed[i])
+        {
+            isUsed[i] = true;
+            currentPath[currentDepth] = arr[i];
+            BackTrcak(currentDepth + 1);
+            isUsed[i] = false;
+        }
+    }
 }

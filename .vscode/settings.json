@@ -60,6 +60,7 @@
         "xhash": "cpp",
         "xtree": "cpp",
         "stack": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "random": "cpp"
     },
 }
