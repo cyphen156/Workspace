@@ -25,18 +25,18 @@
  * 주의
  * 없다.
  * 
- * 풀이시간 0분
+ * 풀이시간 20분
  */
 
 
 #include <iostream>
-#include <cmath>
+#include <queue>
 
-static int N, minValue = 0x7FFFFFFF, maxValue = 0x80000000, cnt = 0;
+static int N, minValue = 0x7FFFFFFF, maxValue = 0x80000000;
 static int numbers[11] = { 0 } ;
 static int operationCounts[4] = { 0 };
 
-void BackTrack(int depth);
+void BackTrack(int depth, int currentResult);
 
 using namespace std;
 
@@ -47,8 +47,17 @@ int main(void)
     cout.tie(NULL);
     
     cin >> N;
+    for (int i = 0; i < N; ++i)
+    {
+        cin >> numbers[i];
+    }
 
-    BackTrack(0);
+    for (int i = 0; i < 4; ++i)
+    {
+        cin >> operationCounts[i];
+    }
+
+    BackTrack(0, numbers[0]);
 
     cout << maxValue << '\n';
     cout << minValue << '\n';
@@ -56,7 +65,67 @@ int main(void)
     return 0;
 }
 
-void BackTrack(int depth)
+void BackTrack(int depth, int currentResult)
 {
-    
+    // 마지막 연산자임
+    // ==> 연산 종료
+    if (depth == N-1)
+    {
+        // 최솟값 갱신
+        if (currentResult < minValue)
+        {
+            minValue = currentResult;
+        }
+
+        // 최댓값 갱신
+        if (currentResult > maxValue)
+        {
+            maxValue = currentResult;
+        }
+
+        return;
+    }
+
+    for (int i = 0; i < 4; ++i)
+    {
+        // 연산자 남아있음
+        if (operationCounts[i] > 0)
+        {
+            operationCounts[i]--;
+
+             int nextResult = currentResult;
+            int nextNumber = numbers[depth + 1];
+
+            switch (i)
+            {
+            case 0: // +
+                nextResult += nextNumber;
+                break;
+            case 1: // -
+                nextResult -= nextNumber;
+                break;
+            case 2: // *
+                nextResult *= nextNumber;
+                break;
+            case 3: // /
+                if (nextNumber != 0)
+                {
+                    if (nextResult < 0)
+                    {
+                        nextResult = -(-nextResult / nextNumber);
+                    }
+                    else
+                    {
+                        nextResult /= nextNumber;
+                    }
+                }
+                break;
+            }
+
+            // 다음 연산자 사용 백트래킹
+            BackTrack(depth + 1, nextResult);
+            // 브루트 포싱을 위해 복원
+            operationCounts[i]++;
+        }
+    }
 }
