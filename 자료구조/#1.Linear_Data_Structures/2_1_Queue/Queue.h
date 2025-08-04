@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdexcept>
+
 namespace Linear_Data_Structures
 {
 	// Queue class definition
@@ -7,12 +9,60 @@ namespace Linear_Data_Structures
 	class Queue
 	{
 	public:
-		Queue() : front(0), rear(-1), size(0) {}
-		void enqueue(const T& value);
-		void dequeue();
-		T peek() const;
-		bool isEmpty() const;
-		int getSize() const;
+		Queue(int initialCapacity = 16) 
+			: front(0), rear(-1), size(0), capacity(initialCapacity)
+		{
+			data = new T[capacity];
+		}
+
+		// DeepCopy constructor, ensuring a new array is allocated
+		Queue(const Queue& other)
+			: front(other.front), rear(other.rear), size(other.size), capacity(other.capacity)
+		{
+			data = new T[capacity];
+			for (int i = 0; i < size; ++i)
+				data[i] = other.data[(front + i) % capacity];
+		}
+		
+		~Queue()
+		{
+			delete[] data;
+		}
+
+		Queue& operator=(const Queue& other)
+		{
+			if (this != &other)
+			{
+				delete[] data;
+				front = other.front;
+				rear = other.rear;
+				size = other.size;
+				capacity = other.capacity;
+				data = new T[capacity];
+				for (int i = 0; i < size; ++i)
+				{
+					data[i] = other.data[(front + i) % capacity];
+				}
+			}
+			return *this;
+		}
+
+		// modified methods
+		void Push(const T& value);	// Enqueue
+		void Pop();					// Dequeue
+
+		// accessor methods
+		T& Front();
+		const T& Front() const;
+		T& Back();
+		const T& Back() const;
+
+		// capacity methods
+		bool Empty() const;
+		int Size() const;
+
+		// custom methods
+		void Clear();
 
 	private:
 		T* data;
@@ -21,4 +71,102 @@ namespace Linear_Data_Structures
 		int size;
 		int capacity;
 	};
+
+	template<typename T>
+	inline void Queue<T>::Push(const T& value)
+	{
+		if (size + 1 >= capacity)
+		{
+			// reallocate memory
+			int oldCapacity = capacity;
+			capacity *= 2;
+			T* newData = new T[capacity];
+			for (int i = 0; i < size; ++i)
+			{
+				newData[i] = data[(front + i) % oldCapacity];	// front 앞으로 당기기
+			}
+			front = 0;
+			rear = size - 1;
+
+			delete[] data;
+			data = newData;
+		}
+		rear = (rear + 1) % capacity;
+		data[rear] = value;
+		size++;
+	}
+
+	template<typename T>
+	inline void Queue<T>::Pop()
+	{
+		if (size > 0)
+		{
+			front = (front + 1) % capacity;
+			size--;
+		}
+		else
+		{
+			throw std::out_of_range("Stack is empty");
+		}
+	}
+
+	template<typename T>
+	inline T& Queue<T>::Front()
+	{
+		if (!Empty())
+		{
+			return data[front];
+		}
+		throw std::out_of_range("Stack is empty");
+	}
+
+	template<typename T>
+	inline const T& Queue<T>::Front() const
+	{
+		if (!Empty())
+		{
+			return data[front];
+		}
+		throw std::out_of_range("Stack is empty");
+	}
+
+	template<typename T>
+	inline T& Queue<T>::Back()
+	{
+		if (!Empty())
+		{
+			return data[rear];
+		}
+		throw std::out_of_range("Stack is empty");
+	}
+
+	template<typename T>
+	inline const T& Queue<T>::Back() const
+	{
+		if (!Empty())
+		{
+			return data[rear];
+		}
+		throw std::out_of_range("Stack is empty");
+	}
+
+	template<typename T>
+	inline bool Queue<T>::Empty() const
+	{
+		return size == 0;
+	}
+
+	template<typename T>
+	inline int Queue<T>::Size() const
+	{
+		return size;
+	}
+
+	template<typename T>
+	inline void Queue<T>::Clear()
+	{
+		front = 0;
+		rear = -1;
+		size = 0;
+	}
 }

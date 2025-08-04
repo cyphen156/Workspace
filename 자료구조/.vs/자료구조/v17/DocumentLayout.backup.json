@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\Linear_Data_Structures.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\Linear_Data_Structures.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\1_Stack\\Stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\1_Stack\\Stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\1_Stack\\Stack.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\1_Stack\\Stack.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\2_1_Queue\\Queue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\2_1_Queue\\Queue.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\1_Stack\\Stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\1_Stack\\Stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\Linear_Data_Structures.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\Linear_Data_Structures.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_2_Deque\\Deque.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -48,23 +40,9 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-08-04T07:27:29.889Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Stack.cpp",
-              "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\1_Stack\\Stack.cpp",
-              "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\1_Stack\\Stack.cpp",
-              "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\1_Stack\\Stack.cpp",
-              "RelativeToolTip": "#1.Linear_Data_Structures\\1_Stack\\Stack.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-08-04T07:35:49.191Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -76,7 +54,7 @@
               "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\1_Stack\\Stack.h",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\1_Stack\\Stack.h",
               "RelativeToolTip": "#1.Linear_Data_Structures\\1_Stack\\Stack.h",
-              "ViewState": "AgIAABYAAAAAAAAAAAAswHUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAuwFIAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-08-04T07:27:05.786Z",
               "IsPinned": true,
@@ -84,7 +62,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Linear_Data_Structures.h",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\Linear_Data_Structures.h",
               "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\Linear_Data_Structures.h",
@@ -97,20 +75,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Queue.cpp",
-              "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.cpp",
-              "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\2_1_Queue\\Queue.cpp",
-              "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.cpp",
-              "RelativeToolTip": "#1.Linear_Data_Structures\\2_1_Queue\\Queue.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-08-04T07:56:27.952Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "Deque.h",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_2_Deque\\Deque.h",
               "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\2_2_Deque\\Deque.h",
@@ -118,18 +83,17 @@
               "RelativeToolTip": "#1.Linear_Data_Structures\\2_2_Deque\\Deque.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-04T07:54:05.872Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-04T07:54:05.872Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Queue.h",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
               "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
               "RelativeToolTip": "#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAswHcAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-08-04T07:39:34.388Z",
               "EditorCaption": ""

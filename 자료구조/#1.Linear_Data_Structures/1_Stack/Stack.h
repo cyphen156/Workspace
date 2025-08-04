@@ -33,7 +33,9 @@ namespace Linear_Data_Structures
 				capacity = other.capacity;
 				data = new T[capacity];
 				for (int i = 0; i <= top; ++i)
+				{
 					data[i] = other.data[i];
+				}
 			}
 			return *this;
 		}
@@ -43,11 +45,19 @@ namespace Linear_Data_Structures
 			delete[] data;
 		}
 
+		// modified methods
 		void Push(const T& value);
 		void Pop();
-		T Peek() const;
-		bool IsEmpty() const;
+
+		// accessor methods
+		T& Top();
+		const T& Top() const;
+
+		// capacity methods
+		bool Empty() const;
 		int Size() const;
+
+		// custom methods
 		void Clear();
 			
 	private:
@@ -56,7 +66,6 @@ namespace Linear_Data_Structures
 		int capacity;
 	};
 
-	
 	template<typename T>
 	inline void Stack<T>::Push(const T& value)
 	{
@@ -89,9 +98,9 @@ namespace Linear_Data_Structures
 	}
 
 	template<typename T>
-	inline T Stack<T>::Peek() const
+	inline T& Stack<T>::Top()
 	{
-		if (!IsEmpty())
+		if (!Empty())
 		{
 			return data[top];
 		}
@@ -99,7 +108,17 @@ namespace Linear_Data_Structures
 	}
 
 	template<typename T>
-	inline bool Stack<T>::IsEmpty() const
+	inline const T& Stack<T>::Top() const
+	{
+		if (!Empty())
+		{
+			return data[top];
+		}
+		throw std::out_of_range("Stack is empty");
+	}
+
+	template<typename T>
+	inline bool Stack<T>::Empty() const
 	{
 		return top < 0;
 	}
