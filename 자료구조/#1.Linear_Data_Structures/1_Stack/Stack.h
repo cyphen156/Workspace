@@ -8,47 +8,47 @@ namespace Linear_Data_Structures
 	class Stack
 	{
 	public:
-			Stack(int initialCapacity = 16) 
-				: capacity(initialCapacity),
-				top(-1)
-			{
-				data = new T[capacity];
-			}
+		Stack(int initialCapacity = 16) 
+			: capacity(initialCapacity),
+			top(-1)
+		{
+			data = new T[capacity];
+		}
 
-			// DeepCopy constructor, ensuring a new array is allocated
-			Stack(const Stack& other)
-				: top(other.top), capacity(other.capacity)
+		// DeepCopy constructor, ensuring a new array is allocated
+		Stack(const Stack& other)
+			: top(other.top), capacity(other.capacity)
+		{
+			data = new T[capacity];
+			for (int i = 0; i <= top; ++i)
+				data[i] = other.data[i];
+		}
+
+		Stack& operator=(const Stack& other)
+		{
+			if (this != &other)
 			{
+				delete[] data;
+				top = other.top;
+				capacity = other.capacity;
 				data = new T[capacity];
 				for (int i = 0; i <= top; ++i)
 					data[i] = other.data[i];
 			}
+			return *this;
+		}
 
-			Stack& operator=(const Stack& other)
-			{
-				if (this != &other)
-				{
-					delete[] data;
-					top = other.top;
-					capacity = other.capacity;
-					data = new T[capacity];
-					for (int i = 0; i <= top; ++i)
-						data[i] = other.data[i];
-				}
-				return *this;
-			}
+		~Stack()
+		{
+			delete[] data;
+		}
 
-			~Stack()
-			{
-				delete[] data;
-			}
-
-			void Push(const T& value);
-			void Pop();
-			T Peek() const;
-			bool IsEmpty() const;
-			int Size() const;
-			void Clear();
+		void Push(const T& value);
+		void Pop();
+		T Peek() const;
+		bool IsEmpty() const;
+		int Size() const;
+		void Clear();
 			
 	private:
 		T* data;
