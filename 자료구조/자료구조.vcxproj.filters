@@ -18,7 +18,10 @@
     <ClInclude Include="#1.Linear_Data_Structures\1_Stack\Stack.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="#1.Linear_Data_Structures\2_Queue\Queue.h">
+    <ClInclude Include="#1.Linear_Data_Structures\2_1_Queue\Queue.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="#1.Linear_Data_Structures\2_2_Deque\Deque.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -29,10 +32,16 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="#1.Linear_Data_Structures\2_Queue\Queue.cpp">
+    <ClCompile Include="#1.Linear_Data_Structures\2_1_Queue\Queue.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="#1.Linear_Data_Structures\Linear_Data_Structures.h">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="#2.Non-linear_Data_Structures\Non-linear_Data_Structures.h">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="#1.Linear_Data_Structures\2_2_Deque\Deque.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

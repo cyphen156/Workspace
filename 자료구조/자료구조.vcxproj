@@ -124,13 +124,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="#1.Linear_Data_Structures\1_Stack\Stack.h" />
-    <ClInclude Include="#1.Linear_Data_Structures\2_Queue\Queue.h" />
+    <ClInclude Include="#1.Linear_Data_Structures\2_1_Queue\Queue.h" />
+    <ClInclude Include="#1.Linear_Data_Structures\2_2_Deque\Deque.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="#1.Linear_Data_Structures\1_Stack\Stack.cpp" />
     <ClCompile Include="#1.Linear_Data_Structures\Linear_Data_Structures.h" />
+    <ClCompile Include="#2.Non-linear_Data_Structures\Non-linear_Data_Structures.h" />
+    <ClCompile Include="#1.Linear_Data_Structures\2_2_Deque\Deque.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="#1.Linear_Data_Structures\2_Queue\Queue.cpp" />
+    <ClCompile Include="#1.Linear_Data_Structures\2_1_Queue\Queue.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
