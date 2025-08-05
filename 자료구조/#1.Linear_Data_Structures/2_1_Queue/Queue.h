@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stdexcept>
-
 namespace Linear_Data_Structures
 {
 	// Queue class definition
@@ -10,14 +8,14 @@ namespace Linear_Data_Structures
 	{
 	public:
 		Queue(int initialCapacity = 16) 
-			: front(0), rear(-1), size(0), capacity(initialCapacity)
+			: front(0), back(-1), size(0), capacity(initialCapacity)
 		{
 			data = new T[capacity];
 		}
 
 		// DeepCopy constructor, ensuring a new array is allocated
 		Queue(const Queue& other)
-			: front(other.front), rear(other.rear), size(other.size), capacity(other.capacity)
+			: front(other.front), back(other.back), size(other.size), capacity(other.capacity)
 		{
 			data = new T[capacity];
 			for (int i = 0; i < size; ++i)
@@ -35,7 +33,7 @@ namespace Linear_Data_Structures
 			{
 				delete[] data;
 				front = other.front;
-				rear = other.rear;
+				back = other.back;
 				size = other.size;
 				capacity = other.capacity;
 				data = new T[capacity];
@@ -67,7 +65,7 @@ namespace Linear_Data_Structures
 	private:
 		T* data;
 		int front;
-		int rear;
+		int back;
 		int size;
 		int capacity;
 	};
@@ -86,13 +84,13 @@ namespace Linear_Data_Structures
 				newData[i] = data[(front + i) % oldCapacity];	// front 앞으로 당기기
 			}
 			front = 0;
-			rear = size - 1;
+			back = size - 1;
 
 			delete[] data;
 			data = newData;
 		}
-		rear = (rear + 1) % capacity;
-		data[rear] = value;
+		back = (back + 1) % capacity;
+		data[back] = value;
 		size++;
 	}
 
@@ -104,50 +102,30 @@ namespace Linear_Data_Structures
 			front = (front + 1) % capacity;
 			size--;
 		}
-		else
-		{
-			throw std::out_of_range("Stack is empty");
-		}
 	}
 
 	template<typename T>
 	inline T& Queue<T>::Front()
 	{
-		if (!Empty())
-		{
-			return data[front];
-		}
-		throw std::out_of_range("Stack is empty");
+		return data[front];
 	}
 
 	template<typename T>
 	inline const T& Queue<T>::Front() const
 	{
-		if (!Empty())
-		{
-			return data[front];
-		}
-		throw std::out_of_range("Stack is empty");
+		return data[front];
 	}
 
 	template<typename T>
 	inline T& Queue<T>::Back()
 	{
-		if (!Empty())
-		{
-			return data[rear];
-		}
-		throw std::out_of_range("Stack is empty");
+		return data[back];
 	}
 
 	template<typename T>
 	inline const T& Queue<T>::Back() const
 	{
-		if (!Empty())
-		{
-			return data[rear];
-		}
-		throw std::out_of_range("Stack is empty");
+		return data[back];
 	}
 
 	template<typename T>
@@ -166,7 +144,7 @@ namespace Linear_Data_Structures
 	inline void Queue<T>::Clear()
 	{
 		front = 0;
-		rear = -1;
+		back = -1;
 		size = 0;
 	}
 }

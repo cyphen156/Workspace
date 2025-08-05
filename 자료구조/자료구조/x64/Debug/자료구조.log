@@ -1,5 +1,6 @@
-﻿  Stack.cpp
-  Queue.cpp
+﻿  Deque.cpp
+  PriorityQueue.cpp
   Linear_Data_Structures.h
+  main.cpp
   코드를 생성하고 있습니다...
   자료구조.vcxproj -> C:\Workspace\자료구조\x64\Debug\자료구조.exe

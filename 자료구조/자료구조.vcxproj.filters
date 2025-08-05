@@ -27,6 +27,15 @@
     <ClInclude Include="#1.Linear_Data_Structures\2_3_PriorityQueue\PriorityQueue.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="#1.Linear_Data_Structures\999_Extra\Base\ChunkBasedDeque.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorStack.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorQueue.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="#1.Linear_Data_Structures\1_Stack\Stack.cpp">
@@ -48,6 +57,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="#1.Linear_Data_Structures\2_3_PriorityQueue\PriorityQueue.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="#1.Linear_Data_Structures\999_Extra\Base\ChunkBasedDeque.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorStack.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorQueue.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

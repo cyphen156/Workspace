@@ -50,10 +50,12 @@ namespace Linear_Data_Structures
 		// capacity methods
 		bool Empty() const;
 		int Size() const;
+
+		void Clear();
+
 	private:
 		T* data;
 		int size;
 		int capacity;
-		void Resize();
 	};
 }

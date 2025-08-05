@@ -52,5 +52,35 @@ int main(int argc, char* argv[])
 	std::cout << "String Queue is Cleared: " << std::endl;
 	*/
 
+	// Deque example usage
+	/*
+	Deque<int> deque;
+	deque.PushFront(50);
+	deque.PushBack(60);
+	std::cout << "Deque Front: " << deque.Front() << '\n'
+		<< "Deque Back: " << deque.Back() << '\n'
+		<< "Deque Size : " << deque.Size() << std::endl;
+	deque.PopFront();
+	std::cout << "After PopFront, Deque Front: " << deque.Front() << '\n'
+		<< "Deque Size : " << deque.Size() << std::endl;
+	deque.PopBack();
+	std::cout << "After PopBack, Deque Back: " << deque.Back() << '\n'
+		<< "Deque Size : " << deque.Size() << std::endl;
+	deque.Clear();
+	std::cout << "Deque is Cleared: " << std::endl;
+
+	Deque<std::string> stringDeque;
+	stringDeque.PushFront("Deque");
+	stringDeque.PushBack("Example");
+	std::cout << "String Deque Front: " << stringDeque.Front() << '\n'
+		<< "String Deque Back: " << stringDeque.Back() << '\n'
+		<< "String Deque Size : " << stringDeque.Size() << std::endl;
+
+	stringDeque.PopFront();
+	std::cout << "After PopFront, String Deque Front: " << stringDeque.Front() << '\n'
+		<< "String Deque Size : " << stringDeque.Size() << std::endl;
+	*/
+
+
 	return 0;
 }

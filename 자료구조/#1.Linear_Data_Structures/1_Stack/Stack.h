@@ -1,5 +1,4 @@
 #pragma once
-#include <stdexcept>
 
 namespace Linear_Data_Structures
 {
@@ -91,30 +90,18 @@ namespace Linear_Data_Structures
 		{
 			--top;
 		}
-		else 
-		{
-			throw std::out_of_range("Stack is empty");
-		}
 	}
 
 	template<typename T>
 	inline T& Stack<T>::Top()
 	{
-		if (!Empty())
-		{
-			return data[top];
-		}
-		throw std::out_of_range("Stack is empty");
+		return data[top];
 	}
 
 	template<typename T>
 	inline const T& Stack<T>::Top() const
 	{
-		if (!Empty())
-		{
-			return data[top];
-		}
-		throw std::out_of_range("Stack is empty");
+		return data[top];
 	}
 
 	template<typename T>
