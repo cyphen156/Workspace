@@ -126,6 +126,7 @@
     <ClInclude Include="#1.Linear_Data_Structures\1_Stack\Stack.h" />
     <ClInclude Include="#1.Linear_Data_Structures\2_1_Queue\Queue.h" />
     <ClInclude Include="#1.Linear_Data_Structures\2_2_Deque\Deque.h" />
+    <ClInclude Include="#1.Linear_Data_Structures\2_3_PriorityQueue\PriorityQueue.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="#1.Linear_Data_Structures\1_Stack\Stack.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="#1.Linear_Data_Structures\2_2_Deque\Deque.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="#1.Linear_Data_Structures\2_1_Queue\Queue.cpp" />
+    <ClCompile Include="#1.Linear_Data_Structures\2_3_PriorityQueue\PriorityQueue.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

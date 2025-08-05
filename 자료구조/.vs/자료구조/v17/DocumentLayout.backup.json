@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-08-04T07:27:29.889Z",
               "IsPinned": true,
@@ -54,7 +54,7 @@
               "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\1_Stack\\Stack.h",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\1_Stack\\Stack.h",
               "RelativeToolTip": "#1.Linear_Data_Structures\\1_Stack\\Stack.h",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAuwFIAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAuwFAAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-08-04T07:27:05.786Z",
               "IsPinned": true,
@@ -83,7 +83,8 @@
               "RelativeToolTip": "#1.Linear_Data_Structures\\2_2_Deque\\Deque.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-04T07:54:05.872Z"
+              "WhenOpened": "2025-08-04T07:54:05.872Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -93,7 +94,7 @@
               "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
               "RelativeToolTip": "#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAswHcAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAUwFAAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-08-04T07:39:34.388Z",
               "EditorCaption": ""
