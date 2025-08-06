@@ -130,6 +130,8 @@
     <ClInclude Include="#1.Linear_Data_Structures\999_Extra\Base\ChunkBasedDeque.h" />
     <ClInclude Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorStack.h" />
     <ClInclude Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorQueue.h" />
+    <ClInclude Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorPriorityQueue.h" />
+    <ClInclude Include="TestFunctions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="#1.Linear_Data_Structures\1_Stack\Stack.cpp" />
@@ -139,9 +141,11 @@
     <ClCompile Include="#1.Linear_Data_Structures\999_Extra\Base\ChunkBasedDeque.cpp" />
     <ClCompile Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorStack.cpp" />
     <ClCompile Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorQueue.cpp" />
+    <ClCompile Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorPriorityQueue.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="#1.Linear_Data_Structures\2_1_Queue\Queue.cpp" />
     <ClCompile Include="#1.Linear_Data_Structures\2_3_PriorityQueue\PriorityQueue.cpp" />
+    <ClCompile Include="TestFunctions.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
