@@ -1,5 +1,10 @@
 #pragma once
-class ChunkBasedDeque
-{
-};
 
+namespace LinearDataStructures
+{
+	template <typename T>
+	class ChunkBasedDequeNode
+	{
+
+	};
+}
