@@ -131,7 +131,12 @@
     <ClInclude Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorStack.h" />
     <ClInclude Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorQueue.h" />
     <ClInclude Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorPriorityQueue.h" />
+    <ClInclude Include="#2.Non-linear_Data_Structures\1_2_BinaryTree\BinaryTree.h" />
+    <ClInclude Include="#2.Non-linear_Data_Structures\1_3_RedBlackTree\RedBlackTree.h" />
+    <ClInclude Include="#2.Non-linear_Data_Structures\1_4_AvlTree\AvlTree.h" />
+    <ClInclude Include="#2.Non-linear_Data_Structures\0_Node\Node.h" />
     <ClInclude Include="TestFunctions.h" />
+    <ClInclude Include="#2.Non-linear_Data_Structures\1_1_Tree\Tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="#1.Linear_Data_Structures\1_Stack\Stack.cpp" />
@@ -142,10 +147,15 @@
     <ClCompile Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorStack.cpp" />
     <ClCompile Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorQueue.cpp" />
     <ClCompile Include="#1.Linear_Data_Structures\999_Extra\Adaptors\AdaptorPriorityQueue.cpp" />
+    <ClCompile Include="#2.Non-linear_Data_Structures\1_2_BinaryTree\BinaryTree.cpp" />
+    <ClCompile Include="#2.Non-linear_Data_Structures\1_4_AvlTree\AvlTree.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="#1.Linear_Data_Structures\2_1_Queue\Queue.cpp" />
     <ClCompile Include="#1.Linear_Data_Structures\2_3_PriorityQueue\PriorityQueue.cpp" />
+    <ClCompile Include="#2.Non-linear_Data_Structures\1_3_RedBlackTree\RedBlackTree.cpp" />
+    <ClCompile Include="#2.Non-linear_Data_Structures\0_Node\Node.cpp" />
     <ClCompile Include="TestFunctions.cpp" />
+    <ClCompile Include="#2.Non-linear_Data_Structures\1_1_Tree\Tree.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

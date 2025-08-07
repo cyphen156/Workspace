@@ -120,3 +120,9 @@ void testAdaptorQueue()
 void testAdaptorPriorityQueue()
 {
 }
+
+// Non-linear Data Structures Test
+void testTree()
+{
+
+}

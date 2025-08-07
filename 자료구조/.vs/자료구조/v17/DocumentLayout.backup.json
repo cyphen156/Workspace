@@ -3,28 +3,8 @@
   "WorkspaceRootPath": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_3_PriorityQueue\\PriorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\2_3_PriorityQueue\\PriorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Base\\ChunkBasedDeque.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\999_Extra\\Base\\ChunkBasedDeque.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorStack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorStack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorPriorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorPriorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\TestFunctions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -33,6 +13,34 @@
     {
       "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\TestFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:TestFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\0_Node\\Node.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#2.Non-linear_Data_Structures\\0_Node\\Node.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\2_1_Queue\\Queue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorPriorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorPriorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Base\\ChunkBasedDeque.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\999_Extra\\Base\\ChunkBasedDeque.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorStack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorStack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,17 +50,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAAMAAAAAAAAAAAA+wA8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-08-04T07:27:29.889Z",
               "IsPinned": true,
@@ -61,45 +69,84 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "Queue.h",
+              "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
+              "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
+              "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
+              "RelativeToolTip": "#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAwAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-08-07T09:06:16.761Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Node.h",
+              "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\0_Node\\Node.h",
+              "RelativeDocumentMoniker": "#2.Non-linear_Data_Structures\\0_Node\\Node.h",
+              "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\0_Node\\Node.h",
+              "RelativeToolTip": "#2.Non-linear_Data_Structures\\0_Node\\Node.h",
+              "ViewState": "AgIAADcAAAAAAAAAAAAkwEcAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-08-07T08:51:36.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "AdaptorPriorityQueue.h",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorPriorityQueue.h",
               "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorPriorityQueue.h",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorPriorityQueue.h",
               "RelativeToolTip": "#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorPriorityQueue.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-08-06T05:48:00.254Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "TestFunctions.h",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\TestFunctions.h",
               "RelativeDocumentMoniker": "TestFunctions.h",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\TestFunctions.h",
               "RelativeToolTip": "TestFunctions.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-08-06T05:41:22.924Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "TestFunctions.cpp",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\TestFunctions.cpp",
               "RelativeDocumentMoniker": "TestFunctions.cpp",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\TestFunctions.cpp",
               "RelativeToolTip": "TestFunctions.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAAAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAYwH4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-08-06T05:27:18.724Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": "Tree.h",
+              "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h",
+              "RelativeDocumentMoniker": "#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h",
+              "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h",
+              "RelativeToolTip": "#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-08-07T08:13:38.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "AdaptorQueue.h",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorQueue.h",
               "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorQueue.h",
@@ -112,7 +159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "AdaptorStack.h",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorStack.h",
               "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorStack.h",
@@ -125,28 +172,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "ChunkBasedDeque.h",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Base\\ChunkBasedDeque.h",
               "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\999_Extra\\Base\\ChunkBasedDeque.h",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Base\\ChunkBasedDeque.h",
               "RelativeToolTip": "#1.Linear_Data_Structures\\999_Extra\\Base\\ChunkBasedDeque.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-08-05T15:46:59.522Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PriorityQueue.h",
-              "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_3_PriorityQueue\\PriorityQueue.h",
-              "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\2_3_PriorityQueue\\PriorityQueue.h",
-              "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_3_PriorityQueue\\PriorityQueue.h",
-              "RelativeToolTip": "#1.Linear_Data_Structures\\2_3_PriorityQueue\\PriorityQueue.h",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAswJYAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-04T15:41:16.398Z",
               "EditorCaption": ""
             }
           ]

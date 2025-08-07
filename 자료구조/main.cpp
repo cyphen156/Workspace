@@ -16,7 +16,5 @@ using namespace Linear_Data_Structures;
 
 int main(int argc, char* argv[])
 {
-	testPriorityQueue();
-	
 	return 0;
 }

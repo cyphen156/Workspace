@@ -42,6 +42,21 @@
     <ClInclude Include="TestFunctions.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="#2.Non-linear_Data_Structures\1_1_Tree\Tree.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="#2.Non-linear_Data_Structures\1_2_BinaryTree\BinaryTree.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="#2.Non-linear_Data_Structures\1_3_RedBlackTree\RedBlackTree.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="#2.Non-linear_Data_Structures\1_4_AvlTree\AvlTree.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="#2.Non-linear_Data_Structures\0_Node\Node.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="#1.Linear_Data_Structures\1_Stack\Stack.cpp">
@@ -78,6 +93,21 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="TestFunctions.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="#2.Non-linear_Data_Structures\1_1_Tree\Tree.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="#2.Non-linear_Data_Structures\1_2_BinaryTree\BinaryTree.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="#2.Non-linear_Data_Structures\1_3_RedBlackTree\RedBlackTree.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="#2.Non-linear_Data_Structures\1_4_AvlTree\AvlTree.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="#2.Non-linear_Data_Structures\0_Node\Node.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
