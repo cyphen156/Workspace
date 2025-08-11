@@ -16,5 +16,6 @@ using namespace Linear_Data_Structures;
 
 int main(int argc, char* argv[])
 {
+
 	return 0;
 }

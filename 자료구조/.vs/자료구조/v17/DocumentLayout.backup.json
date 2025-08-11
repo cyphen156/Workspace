@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\0_Node\\Node.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#2.Non-linear_Data_Structures\\0_Node\\Node.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\Non-linear_Data_Structures.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#2.Non-linear_Data_Structures\\Non-linear_Data_Structures.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\TestFunctions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -13,18 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\TestFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:TestFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\0_Node\\Node.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#2.Non-linear_Data_Structures\\0_Node\\Node.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|solutionrelative:#1.Linear_Data_Structures\\2_1_Queue\\Queue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C47A714E-96A7-481C-9A10-8FC0A2DC5A79}|\uC790\uB8CC\uAD6C\uC870.vcxproj|C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorPriorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -50,17 +50,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-08-04T07:27:29.889Z",
               "IsPinned": true,
@@ -68,28 +68,43 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Queue.h",
-              "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
-              "RelativeDocumentMoniker": "#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
-              "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
-              "RelativeToolTip": "#1.Linear_Data_Structures\\2_1_Queue\\Queue.h",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAAAwAAAAYAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Non-linear_Data_Structures.h",
+              "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\Non-linear_Data_Structures.h",
+              "RelativeDocumentMoniker": "#2.Non-linear_Data_Structures\\Non-linear_Data_Structures.h",
+              "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\Non-linear_Data_Structures.h",
+              "RelativeToolTip": "#2.Non-linear_Data_Structures\\Non-linear_Data_Structures.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-07T09:06:16.761Z",
+              "WhenOpened": "2025-08-07T09:27:11.186Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "Tree.h",
+              "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h",
+              "RelativeDocumentMoniker": "#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h",
+              "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h",
+              "RelativeToolTip": "#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-08-07T08:13:38.313Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Node.h",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\0_Node\\Node.h",
               "RelativeDocumentMoniker": "#2.Non-linear_Data_Structures\\0_Node\\Node.h",
               "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\0_Node\\Node.h",
               "RelativeToolTip": "#2.Non-linear_Data_Structures\\0_Node\\Node.h",
-              "ViewState": "AgIAADcAAAAAAAAAAAAkwEcAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-07T08:51:36.086Z",
+              "WhenOpened": "2025-08-11T07:22:54.754Z",
               "EditorCaption": ""
             },
             {
@@ -102,12 +117,11 @@
               "RelativeToolTip": "#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorPriorityQueue.h",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-06T05:48:00.254Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-06T05:48:00.254Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "TestFunctions.h",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\TestFunctions.h",
               "RelativeDocumentMoniker": "TestFunctions.h",
@@ -115,12 +129,11 @@
               "RelativeToolTip": "TestFunctions.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-06T05:41:22.924Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-06T05:41:22.924Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "TestFunctions.cpp",
               "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\TestFunctions.cpp",
               "RelativeDocumentMoniker": "TestFunctions.cpp",
@@ -128,21 +141,7 @@
               "RelativeToolTip": "TestFunctions.cpp",
               "ViewState": "AgIAAFoAAAAAAAAAAAAYwH4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-08-06T05:27:18.724Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Tree.h",
-              "DocumentMoniker": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h",
-              "RelativeDocumentMoniker": "#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h",
-              "ToolTip": "C:\\Workspace\\\uC790\uB8CC\uAD6C\uC870\\#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h",
-              "RelativeToolTip": "#2.Non-linear_Data_Structures\\1_1_Tree\\Tree.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-07T08:13:38.313Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-06T05:27:18.724Z"
             },
             {
               "$type": "Document",
@@ -154,8 +153,7 @@
               "RelativeToolTip": "#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorQueue.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-05T15:47:58.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T15:47:58.222Z"
             },
             {
               "$type": "Document",
@@ -167,8 +165,7 @@
               "RelativeToolTip": "#1.Linear_Data_Structures\\999_Extra\\Adaptors\\AdaptorStack.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-05T15:47:22.217Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T15:47:22.217Z"
             },
             {
               "$type": "Document",
@@ -180,8 +177,7 @@
               "RelativeToolTip": "#1.Linear_Data_Structures\\999_Extra\\Base\\ChunkBasedDeque.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-05T15:46:59.522Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T15:46:59.522Z"
             }
           ]
         }
