@@ -1,7 +1,16 @@
-Debug/
-Release/
+# VS 캐시/설정
+.vs/
+*.VC.db
+*.opendb
+*.suo
+*.user
+ipch/
+
+# 빌드 산출물
 x64/
 x86/
+Debug/
+Release/
 *.obj
 *.pdb
 *.ilk
