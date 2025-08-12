@@ -34,10 +34,6 @@ namespace Non_Linear_Data_Structures
 			height = 0;		// Start with height 0 for the root node
 			// Use a stack to perform a depth-first traversal to count nodes and calculate height
 			
-			if (PreOrderTraversal() != nullptr)
-			{
-				nodeCount++;
-			}
 		}
 		
 		// Constructor with value
@@ -88,10 +84,7 @@ namespace Non_Linear_Data_Structures
 			height = 0;
 			
 			// Use a stack to perform a depth-first traversal and copy nodes
-			if (PreOrderTraversal(other))
-			{
-				nodeCount++;
-			}
+			
 		}
 		
 		// Destructor
@@ -110,46 +103,50 @@ namespace Non_Linear_Data_Structures
 		}
 
 		// modified methods
-		void Insert(const Node<T>* node);											// Insert a node into the tree
-		Node<T>* Insert(const T& value													// Insert a value into the tree
+		Node<T>* Insert(Node<T>* node, bool order = false);							// Insert a node into the tree
+		Node<T>* Insert(const T& value												// Insert a value into the tree
 					, unsigned int initialCapacity = 2
 					, bool order = false);													
-		Node<T>* Insert(const T& value													// Insert a value into the tree
+		Node<T>* Insert(const T& value												// Insert a value into the tree
 					, int initialCapacity
 					, bool order = false);		
 
-		void InsertAt(const Node<T>* node, Node<T>* target);						// Insert a node at a specific position
-		Node<T>* InsertAt(const T& value												// Insert a value at a specific position with order
+		Node<T>* InsertAt(Node<T>* target, Node<T>* node, bool order = false);		// Insert a node at a specific position
+		Node<T>* InsertAt(Node<T>* target											// Insert a value at a specific position with order
+					, const T& value
 					, unsigned int initialCapacity = 2
-					, bool order = false
-					, Node<T>* taeget);
-		Node<T>* InsertAt(const T& value												// Insert a value at a specific position
+					, bool order = false);
+		Node<T>* InsertAt(Node<T>* target											// Insert a value at a specific position
+					, const T& value
 					, int initialCapacity
-					, bool order = false
-					, Node<T>* taeget);
+					, bool order = false);
 		
-		Node<T>* Remove(const Node<T>* node);										// Remove a node from the tree
+		Node<T>* Remove(Node<T>* node);												// Remove a node from the tree
 		Node<T>* Remove(const T& value);											// Remove a value from the tree
-		Node<T>* Remove(const int index);											// Remove a node using index from the tree
+		Node<T>* RemoveIndex(const int index);										// Remove a node using index from the tree
+		Node<T>* RemoveIndex(const unsigned int index);								// Remove a node using index from the tree
 		
-		Node<T>* RemoveAt(const Node<T>* node, Node<T>* parent);					// Remove a node at a specific position
-		Node<T>* RemoveAt(const T& value, Node<T>* parent);							// Remove a value at a specific position
-		Node<T>* RemoveAt(const int index, Node<T>* parent);						// Remove a node at a specific position using index
-		
-		void Delete();																// Delete the entire tree
-		void Delete(const Node<T>* node);											// Delete a node from the tree
-		void Delete(const T& value);												// Delete a value from the tree
-		void Delete(const int index);												// Delete a node using index from the tree
+		Node<T>* RemoveAt(Node<T>* parent, Node<T>* node);							// Remove a node at a specific position
+		Node<T>* RemoveAt(Node<T>* parent, const T& value);							// Remove a value at a specific position
+		Node<T>* RemoveAtIndex(Node<T>* parent, const int index);					// Remove a node at a specific position using index
+		Node<T>* RemoveAtIndex(Node<T>* parent, const unsigned int index);			// Remove a node at a specific position using index
 
-		void DeleteAt(const Node<T>* node, Node<T>* parent);						// Delete a node at a specific position
-		void DeleteAt(const T& value, Node<T>* parent);								// Delete a value at a specific position
-		void DeleteAt(const int index, Node<T>* parent);							// Delete a node at a specific position using index
+		void Delete();																// Delete the entire tree
+		void Delete(Node<T>* node);													// Delete a node from the tree
+		void Delete(const T& value);												// Delete a value from the tree
+		void DeleteIndex(const int index);											// Delete a node using index from the tree
+		void DeleteIndex(const unsigned int index);									// Delete a node using index from the tree
+
+		void DeleteAt(Node<T>* parent, Node<T>* node);								// Delete a node at a specific position
+		void DeleteAt(Node<T>* parent, const T& value);								// Delete a value at a specific position
+		void DeleteAtIndex(Node<T>* parent, const int index);						// Delete a node at a specific position using index
+		void DeleteAtIndex(Node<T>* parent, const unsigned int index);				// Delete a node at a specific position using index
 		
 		void Clear();								// Clear the tree
 	
 		// accessor methods
-		Node<T>* GetRoot() const;					// Get the root node of the tree
-		const Node<T>* GetRoot() const;				// Get the root node of the tree
+		Node<T>* GetRoot();							// Get the root node of the tree
+		const Node<T>* GetRoot() const;				// Get the root node of the tree (const version)
 		int GetHeight() const;						// Get the height of the tree
 		int GetHeight(const Node<T>* node) const;	// Get the height of a specific node
 		int GetDegree() const;						// Get the degree of the root node
@@ -173,10 +170,289 @@ namespace Non_Linear_Data_Structures
 		int nodeCount;		// Count of nodes in the tree
 		int height;			// Height of the tree
 	};
-	
 
-	template <typename T>	
-	inline Node<T>* Tree<T>::GetRoot() const
+	/// <summary>
+	/// 트리에 새 노드를 삽입합니다.
+	/// 자식의 빈 자리를 찾아서 삽입합니다.
+	/// 
+	/// </summary>
+	/// <typeparam name="T">트리와 노드에 저장되는 데이터의 타입입니다.</typeparam>
+	/// <param name="node">트리에 삽입할 노드입니다. nullptr이면 삽입이 수행되지 않습니다.</param>
+	/// <param name="order">삽입 시 사용할 정렬 기준입니다.</param>
+	/// <returns>삽입된 노드의 포인터를 반환합니다. 삽입에 실패하면 nullptr를 반환합니다.</returns>
+	template <typename T>
+	inline Node<T>* Tree<T>::Insert(Node<T>* node, bool order)
+	{
+		if (node == nullptr)
+		{
+			return nullptr;
+		}
+
+		// 트리가 비어있는 경우, 새 노드를 루트로 설정합니다.
+		if (root == nullptr)
+		{
+			root = node;
+			root->parent = nullptr;
+			nodeCount = 1;
+			height = 0;
+			return root;
+		}
+
+
+		// 트리에 노드를 삽입합니다.
+		return InsertAt(root, node, order);	// if returns nullptr, insertion failed
+	}
+
+	template <typename T>
+	inline Node<T>* Tree<T>::Insert(const T& value
+		, unsigned int initialCapacity
+		, bool order)
+	{
+		if (initialCapacity == 0)
+		{
+			initialCapacity = 2;
+		}
+
+		// 트리가 비어있는 경우, 새 노드를 루트로 설정합니다.
+		if (root == nullptr)
+		{
+			root = CreateNode<T>(value, initialCapacity);
+			if (root != nullptr)
+			{
+				root->parent = nullptr;
+				nodeCount = 1;
+				height = 0;
+			}
+			return root;
+		}
+
+		return InsertAt(root, value, initialCapacity, order);
+	}
+	
+	template <typename T>
+	inline Node<T>* Tree<T>::Insert(const T& value
+		, int initialCapacity
+		, bool order)
+	{
+		if (initialCapacity <= 0)
+		{
+			initialCapacity = 2; // Ensure a minimum initial capacity
+		}
+
+		if (root == nullptr)
+		{
+			root = CreateNode<T>(value, initialCapacity);
+			if (root != nullptr)
+			{
+				root->parent = nullptr;
+				nodeCount = 1;
+				height = 0;
+			}
+			return root; 
+		}
+		return InsertAt(root, value, initialCapacity, order);
+	}
+
+	/// <summary>
+	/// 트리에서 지정된 노드에 새 자식 노드를 삽입합니다.
+	/// 자식 노드의 수용력이 부족한 경우, 자동으로 확장합니다.
+	/// </summary>
+	/// <typeparam name="T">노드에 저장되는 데이터의 타입입니다.</typeparam>
+	/// <param name="target">노드를 삽입할 기준이 되는 대상 노드입니다.</param>
+	/// <param name="node">삽입할 노드입니다.</param>
+	/// <param name="order">자식 노드를 삽입할 위치(순서)를 지정하는 불리언 값입니다.</param>
+	/// <returns>삽입에 성공하면 새로 삽입된 노드의 포인터를 반환하고, 실패하면 nullptr를 반환합니다.</returns>
+	template <typename T>
+	inline Node<T>* Tree<T>::InsertAt(Node<T>* target, Node<T>* node, bool order)
+	{
+		if (target == nullptr || node == nullptr)
+		{
+			return nullptr;
+		}
+
+		if (AttachChild<T>(target, node, order))
+		{
+			nodeCount++;
+			height = GetHeight(root); // Update height after insertion
+			return node; // Return the newly inserted node
+		}
+		
+		// If insertion failed, return nullptr
+		return nullptr;
+	}
+
+	template <typename T>
+	inline Node<T>* Tree<T>::InsertAt(Node<T>* target
+		, const T& value
+		, unsigned int initialCapacity
+		, bool order)
+	{
+		if (target == nullptr)
+		{
+			return nullptr;
+		}
+		
+		Node<T>* newNode = AttachChild<T>(target, value, initialCapacity, order);
+
+		if (newNode != nullptr)
+		{
+			nodeCount++;
+			height = GetHeight(root);
+		}
+
+		return newNode; 
+	}
+
+	template <typename T>
+	inline Node<T>* Tree<T>::InsertAt(Node<T>* target
+		, const T& value
+		, int initialCapacity
+		, bool order)
+	{
+		if (target == nullptr)
+		{
+			return nullptr;
+		}
+
+		Node<T>* newNode = AttachChild<T>(target, value, initialCapacity, order);
+		if (newNode != nullptr)
+		{
+			nodeCount++;
+			height = GetHeight(root);
+		}
+		return newNode;
+	}
+
+	template <typename T>
+	inline Node<T>* Tree<T>::Remove(Node<T>* node)
+	{
+		if (node == nullptr || node->parent == nullptr)
+		{
+			return nullptr;
+		}
+		
+		return RemoveAt(root, node); // 반환된 노드는 메모리에서 제거되지 않습니다.
+	}
+
+	template <typename T>
+	inline Node<T>* Tree<T>::Remove(const T& value)
+	{
+		if (root == nullptr)
+		{
+			return nullptr;
+		}
+		Node<T>* nodeToRemove = nullptr;
+		
+		return RemoveAt(root, value); 
+	}
+
+	template <typename T>
+	inline Node<T>* Tree<T>::RemoveIndex(const int index)
+	{
+		if (root == nullptr || index < 0 || index >= nodeCount)
+		{
+			return nullptr; 
+		}
+		Node<T>* nodeToRemove = nullptr;
+		
+		return RemoveAtIndex(root, index);
+	}
+
+	template <typename T>
+	inline Node<T>* Tree<T>::RemoveIndex(const unsigned int index)
+	{
+		if (root == nullptr || index < 0 || index >= nodeCount)
+		{
+			return nullptr;
+		}
+		Node<T>* nodeToRemove = nullptr;
+
+		return RemoveAtIndex(root, index); // 부모 노드에서 제거
+	}
+
+
+	template <typename T>
+	inline Node<T>* Tree<T>::RemoveAt(Node<T>* parent, Node<T>* node)
+	{
+	}
+
+	template <typename T>
+	inline Node<T>* Tree<T>::RemoveAt(Node<T>* parent, const T& value)
+	{
+	}
+		
+	template <typename T>
+	inline Node<T>* Tree<T>::RemoveAtIndex(Node<T>* parent, const int index)
+	{
+	}
+
+	template <typename T>
+	inline Node<T>* Tree<T>::RemoveAtIndex(Node<T>* parent, const unsigned int index)
+	{
+	}
+
+	/// <summary>
+	/// 트리를 삭제합니다.
+	/// </summary>
+	template <typename T>
+	inline void Tree<T>::Delete()
+	{
+	}
+
+	/// <summary>
+	/// 트리에서 지정된 노드를 삭제합니다.
+	/// Remove와 달리, 이 함수는 노드와 그 자식 노드를 모두 메모리에서 제거합니다.
+	/// </summary>
+	/// <typeparam name="T">트리와 노드에 저장되는 데이터의 타입입니다.</typeparam>
+	/// <param name="node">삭제할 노드를 가리키는 포인터입니다.</param>
+	template <typename T>
+	inline void Tree<T>::Delete(Node<T>* node)
+	{
+	}
+
+	template <typename T>
+	inline void Tree<T>::Delete(const T& value)
+	{
+	}
+
+	template <typename T>
+	inline void Tree<T>::DeleteIndex(const int index)
+	{
+	}
+
+	template <typename T>
+	inline void Tree<T>::DeleteIndex(const unsigned int index)
+	{
+	}
+
+	template <typename T>
+	inline void Tree<T>::DeleteAt(Node<T>* parent, Node<T>* node)
+	{
+	}
+
+	template <typename T>
+	inline void Tree<T>::DeleteAt(Node<T>* parent, const T& value)
+	{
+	}
+
+	template <typename T>
+	inline void Tree<T>::DeleteAtIndex(Node<T>* parent, const int index)
+	{
+	}
+
+	template <typename T>
+	inline void Tree<T>::DeleteAtIndex(Node<T>* parent, const unsigned int index)
+	{
+	}
+
+	template <typename T>
+	inline Node<T>* Tree<T>::GetRoot()
+	{
+		return root;
+	}
+	
+	template <typename T>
+	inline const Node<T>* Tree<T>::GetRoot() const
 	{
 		return root;
 	}

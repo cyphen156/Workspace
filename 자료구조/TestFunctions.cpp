@@ -154,11 +154,43 @@ void testNode()
 
 void testTree()
 {
+	// Create a tree with a root node
 	Tree<int> tree(1);
-	Node<int>* child1 = CreateNode<int>(2);
-	Node<int>* child2 = CreateNode<int>(3);
-	/*tree.Insert(child1);
-	tree.Insert(child2);
-	tree.Clear();*/
-	std::cout << "Tree is Cleared." << std::endl;
+	// Insert nodes into the tree
+	Node<int>* child1 = tree.Insert(2);
+	Node<int>* child2 = tree.Insert(3);
+	Node<int>* child3 = tree.Insert(4);
+	Node<int>* child4 = tree.Insert(5);
+	std::cout << "Tree Root Data: " << tree.GetRoot()->data << std::endl;
+	std::cout << "Tree Node Count: " << tree.Size() << std::endl;
+	Node<int>* child5 = tree.InsertAt(child1, 6);
+	std::cout << "After inserting child 6 at child1:" << std::endl;
+	for (unsigned int i = 0; i < child1->childCount; ++i)
+	{
+		std::cout << "Child of child1 " << i + 1 << " Data: " << child1->children[i]->data << std::endl;
+	}
+	tree.InsertAt(child2, 7);
+	std::cout << "After inserting child 7 at child2:" << std::endl;
+	for (unsigned int i = 0; i < child2->childCount; ++i)
+	{
+		std::cout << "Child of child2 " << i + 1 << " Data: " << child2->children[i]->data << std::endl;
+	}
+	tree.InsertAt(child3, 8);
+	std::cout << "After inserting child 8 at child3:" << std::endl;
+
+	tree.PreOrderTraversal([](const Node<int>* node) {
+		std::cout << "PreOrder Visit: " << node->data << std::endl;
+		});
+	tree.InOrderTraversal([](const Node<int>* node) {
+		std::cout << "InOrder Visit: " << node->data << std::endl;
+		});
+	tree.PostOrderTraversal([](const Node<int>* node) {
+		std::cout << "PostOrder Visit: " << node->data << std::endl;
+		});
+	tree.LevelOrderTraversal([](const Node<int>* node) {
+		std::cout << "LevelOrder Visit: " << node->data << std::endl;
+		});
+	//tree.Clear();
+	std::cout << "Tree Test Completed." << std::endl;
+
 }

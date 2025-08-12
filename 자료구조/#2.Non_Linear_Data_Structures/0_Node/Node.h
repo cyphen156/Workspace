@@ -178,7 +178,7 @@ namespace Non_Linear_Data_Structures
 	template <typename T>
 	inline Node<T>* AttachChild(Node<T>* parent
 							, const T& value
-							, int initialCapacity = 2
+							, int initialCapacity
 							, bool order = false)
 	{
 		if (initialCapacity <= 0)
@@ -193,11 +193,11 @@ namespace Non_Linear_Data_Structures
 	// 한글설명 : 기존 노드를 부모에게 자식으로 추가합니다.
 	// 기존 노드를 그대로 사용하며, 값을 복사하지 않습니다.
 	template <typename T>
-	inline void AttachChild(Node<T>* parent, Node<T>* child, bool order = false)
+	inline Node<T>* AttachChild(Node<T>* parent, Node<T>* child, bool order = false)
 	{
 		if (parent == nullptr || child == nullptr) 
 		{
-			return; 
+			return nullptr; 
 		}
 
 		if (parent->childCount >= parent->capacity)
@@ -218,7 +218,7 @@ namespace Non_Linear_Data_Structures
 					parent->children[i] = child;
 					child->parent = parent;
 					parent->childCount += 1u;
-					return;
+					return child; // Return the newly attached child node
 				}
 			}
 		}
@@ -226,6 +226,9 @@ namespace Non_Linear_Data_Structures
 		child->parent = parent;
 		parent->children[parent->childCount] = child;
 		parent->childCount += 1u;
+
+		// Return the newly attached child node
+		return child;
 	}
 
 	
