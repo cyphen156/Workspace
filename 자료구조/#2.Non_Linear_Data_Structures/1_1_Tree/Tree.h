@@ -173,8 +173,8 @@ namespace Non_Linear_Data_Structures
 
 	/// <summary>
 	/// 트리에 새 노드를 삽입합니다.
-	/// 자식의 빈 자리를 찾아서 삽입합니다.
-	/// 
+	/// 루트부터 시작해서 자식의 빈 자리를 찾아서 삽입합니다.
+	/// 만약 빈자리가 없다면, 트리의 레벨을 확장하고 새 노드를 삽입합니다.
 	/// </summary>
 	/// <typeparam name="T">트리와 노드에 저장되는 데이터의 타입입니다.</typeparam>
 	/// <param name="node">트리에 삽입할 노드입니다. nullptr이면 삽입이 수행되지 않습니다.</param>
@@ -183,7 +183,8 @@ namespace Non_Linear_Data_Structures
 	template <typename T>
 	inline Node<T>* Tree<T>::Insert(Node<T>* node, bool order)
 	{
-		if (node == nullptr)
+		// 노드가 없거나 이미 부모를 가지고 있다면 삽입할 수 없습니다.
+		if (node == nullptr || node->parent != nullptr)
 		{
 			return nullptr;
 		}
@@ -198,9 +199,42 @@ namespace Non_Linear_Data_Structures
 			return root;
 		}
 
+		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
+		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
+		Linear_Data_Structures::Queue<Node<T>*> queue;
+		queue.Push(root);
+		Node<T>* current;
 
-		// 트리에 노드를 삽입합니다.
-		return InsertAt(root, node, order);	// if returns nullptr, insertion failed
+		while (!queue.Empty())
+		{
+			current = queue.Front();
+			queue.Pop();
+			// 현재 노드에 자식 노드가 있는지 확인합니다.
+			if (current->childCount < current->capacity)
+			{
+				// 현재 노드에 자식 노드를 추가할 수 있는 공간이 있다면
+				if (AttachChild<T>(current, node, order))
+				{
+					nodeCount++;
+					height = GetHeight(root); // Update height after insertion
+					return node; // 삽입된 노드를 반환합니다.
+				}
+			}
+			// 현재 노드의 자식들을 큐에 추가합니다.
+			for (unsigned int i = 0; i < current->childCount; ++i)
+			{
+				if (current->children[i] != nullptr)
+				{
+					queue.Push(current->children[i]);
+				}
+			}
+		}
+
+		// 트리의 모든 노드를 순회했지만 빈 자리를 찾지 못한 경우
+		// 그런 경우는 없다
+		// 만약 있다면 버그다
+
+		return nullptr;
 	}
 
 	template <typename T>
@@ -226,7 +260,40 @@ namespace Non_Linear_Data_Structures
 			return root;
 		}
 
-		return InsertAt(root, value, initialCapacity, order);
+		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
+		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
+		Linear_Data_Structures::Queue<Node<T>*> queue;
+		queue.Push(root);
+		Node<T>* current;
+		while (!queue.Empty())
+		{
+			current = queue.Front();
+			queue.Pop();
+			// 현재 노드에 자식 노드가 있는지 확인합니다.
+			if (current->childCount < current->capacity)
+			{
+				// 현재 노드에 자식 노드를 추가할 수 있는 공간이 있다면
+				Node<T>* newNode = AttachChild<T>(current, value, initialCapacity, order);
+				if (newNode != nullptr)
+				{
+					nodeCount++;
+					height = GetHeight(root); // Update height after insertion
+					return newNode; // 삽입된 노드를 반환합니다.
+				}
+			}
+			// 현재 노드의 자식들을 큐에 추가합니다.
+			for (unsigned int i = 0; i < current->childCount; ++i)
+			{
+				if (current->children[i] != nullptr)
+				{
+					queue.Push(current->children[i]);
+				}
+			}
+		}
+		// 트리의 모든 노드를 순회했지만 빈 자리를 찾지 못한 경우
+		// 그런 경우는 없다
+		// 만약 있다면 버그다
+		return nullptr; // 삽입에 실패한 경우 nullptr 반환
 	}
 	
 	template <typename T>
@@ -250,7 +317,38 @@ namespace Non_Linear_Data_Structures
 			}
 			return root; 
 		}
-		return InsertAt(root, value, initialCapacity, order);
+		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
+		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
+		Linear_Data_Structures::Queue<Node<T>*> queue;
+		queue.Push(root);
+		Node<T>* current;
+		while (!queue.Empty())
+		{
+			current = queue.Front();
+			queue.Pop();
+			// 현재 노드에 자식 노드가 있는지 확인합니다.
+			if (current->childCount < current->capacity)
+			{
+				// 현재 노드에 자식 노드를 추가할 수 있는 공간이 있다면
+				Node<T>* newNode = AttachChild<T>(current, value, initialCapacity, order);
+				if (newNode != nullptr)
+				{
+					nodeCount++;
+					height = GetHeight(root); // Update height after insertion
+					return newNode; // 삽입된 노드를 반환합니다.
+				}
+			}
+			// 현재 노드의 자식들을 큐에 추가합니다.
+			for (unsigned int i = 0; i < current->childCount; ++i)
+			{
+				if (current->children[i] != nullptr)
+				{
+					queue.Push(current->children[i]);
+				}
+			}
+		}
+		return nullptr; 
+
 	}
 
 	/// <summary>
@@ -323,15 +421,46 @@ namespace Non_Linear_Data_Structures
 		return newNode;
 	}
 
+
 	template <typename T>
 	inline Node<T>* Tree<T>::Remove(Node<T>* node)
 	{
-		if (node == nullptr || node->parent == nullptr)
+		if (root == nullptr)
 		{
 			return nullptr;
 		}
 		
-		return RemoveAt(root, node); // 반환된 노드는 메모리에서 제거되지 않습니다.
+		if (node == nullptr || node->parent == nullptr)
+		{
+			return nullptr;
+		}
+
+		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
+		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
+		Linear_Data_Structures::Queue<Node<T>*> queue;
+		queue.Push(root);
+		Node<T>* current;
+		
+		while (!queue.Empty())
+		{
+			current = queue.Front();
+			queue.Pop();
+			// 현재 노드가 제거할 노드와 일치하는지 확인합니다.
+			if (current == node)
+			{
+				return RemoveAt(current->parent, current);
+			}
+			// 현재 노드의 자식들을 큐에 추가합니다.
+			for (unsigned int i = 0; i < current->childCount; ++i)
+			{
+				if (current->children[i] != nullptr)
+				{
+					queue.Push(current->children[i]);
+				}
+			}
+		}
+		// 트리의 모든 노드를 순회했지만 제거할 노드를 찾지 못한 경우
+		return nullptr; // 제거할 노드를 찾지 못한 경우 nullptr 반환
 	}
 
 	template <typename T>
@@ -341,33 +470,61 @@ namespace Non_Linear_Data_Structures
 		{
 			return nullptr;
 		}
-		Node<T>* nodeToRemove = nullptr;
-		
-		return RemoveAt(root, value); 
+
+		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
+		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
+		Linear_Data_Structures::Queue<Node<T>*> queue;
+		queue.Push(root);
+		Node<T>* current;
+
+		while (!queue.Empty())
+		{
+			current = queue.Front();
+			queue.Pop();
+			// 현재 노드가 제거할 노드와 일치하는지 확인합니다.
+			if (current->data == value)
+			{
+				return RemoveAt(current->parent, current);
+			}
+			// 현재 노드의 자식들을 큐에 추가합니다.
+			for (unsigned int i = 0; i < current->childCount; ++i)
+			{
+				if (current->children[i] != nullptr)
+				{
+					queue.Push(current->children[i]);
+				}
+			}
+		}
+		// 트리의 모든 노드를 순회했지만 제거할 노드를 찾지 못한 경우
+		return nullptr; // 제거할 노드를 찾지 못한 경우 nullptr 반환
 	}
 
+	/// <summary>
+	/// 트리에서 지정된 인덱스에 해당하는 노드를 제거합니다.
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <param name="index"></param>
+	/// <returns></returns>
 	template <typename T>
 	inline Node<T>* Tree<T>::RemoveIndex(const int index)
 	{
 		if (root == nullptr || index < 0 || index >= nodeCount)
 		{
-			return nullptr; 
+			return nullptr;
 		}
-		Node<T>* nodeToRemove = nullptr;
-		
-		return RemoveAtIndex(root, index);
+
+		return RemoveAtIndex(root, index); // 트리의 루트 노드에서 제거
 	}
 
 	template <typename T>
 	inline Node<T>* Tree<T>::RemoveIndex(const unsigned int index)
 	{
-		if (root == nullptr || index < 0 || index >= nodeCount)
+		if (root == nullptr || index >= nodeCount)
 		{
 			return nullptr;
 		}
-		Node<T>* nodeToRemove = nullptr;
 
-		return RemoveAtIndex(root, index); // 부모 노드에서 제거
+		return RemoveAtIndex(root, index); // 트리의 루트 노드에서 제거
 	}
 
 
@@ -472,9 +629,18 @@ namespace Non_Linear_Data_Structures
 		}
 
 		int maxHeight = -1;
-		if (node->children[0] != nullptr)
+		for (unsigned int i = 0; i < node->childCount; ++i)
 		{
-			maxHeight = GetHeight(node->children[0]);
+			const Node<T>* child = node->children[i];
+			if (child)
+			{
+				int h = GetHeight(child);
+
+				if (h > maxHeight)
+				{
+					maxHeight = h;
+				}
+			}
 		}
 
 		return maxHeight + 1; // Add 1 for the current node
@@ -487,29 +653,37 @@ namespace Non_Linear_Data_Structures
 		{
 			return 0;
 		}
-		return GetDegree(root);
+
+		int maxDegree = 0;
+
+		Linear_Data_Structures::Queue<Node<T>*> queue;
+		queue.Push(root);
+		while (!queue.Empty())
+		{
+			const Node<T>* current = queue.Front();
+			queue.Pop();
+			int degree = static_cast<int>(current->childCount);
+			if (degree > maxDegree)
+			{
+				maxDegree = degree; 
+			}
+
+			// Add children to the queue for further processing
+			for (unsigned int i = 0; i < current->childCount; ++i)
+			{
+				if (current->children[i] != nullptr)
+				{
+					queue.Push(current->children[i]);
+				}
+			}
+		}
+		return maxDegree; // Return the maximum degree found
 	}
 
 	template <typename T>	
 	inline int Tree<T>::GetDegree(const Node<T>* node) const
 	{
-		if (node == nullptr)
-		{
-			return 0;
-		}
-		int maxDegree = 0;
-		for (unsigned int i = 0; i < node->childCount; ++i)
-		{
-			if (node->children[i] != nullptr)
-			{
-				int degree = GetDegree(node->children[i]);
-				if (degree > maxDegree)
-				{
-					maxDegree = degree;
-				}
-			}
-		}
-		return maxDegree + 1; // Add 1 for the current node
+		return node ? static_cast<int>(node->childCount) : 0;
 	}
 
 	template <typename T>	
@@ -521,6 +695,7 @@ namespace Non_Linear_Data_Structures
 		}
 		int depth = 0;
 		const Node<T>* current = node->parent;
+
 		while (current != nullptr)
 		{
 			depth++;
