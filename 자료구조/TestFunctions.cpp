@@ -4,9 +4,10 @@
 #include <vector>
 #include <algorithm>
 #include "#1.Linear_Data_Structures/Linear_Data_Structures.h"
-#include "#2.Non-linear_Data_Structures/Non-linear_Data_Structures.h"
+#include "#2.Non_Linear_Data_Structures/Non_Linear_Data_Structures.h"
 
 using namespace Linear_Data_Structures;
+using namespace Non_Linear_Data_Structures;
 /// <summary>
 /// 테스트 함수 모음집
 /// </summary>
@@ -121,8 +122,43 @@ void testAdaptorPriorityQueue()
 {
 }
 
+
 // Non-linear Data Structures Test
+void testNode()
+{
+	Node<int>* root = CreateNode<int>(1);
+	AttachChild(root, CreateNode<int>(2));
+	AttachChild(root, CreateNode<int>(3));
+	AttachChild(root, CreateNode<int>(4));
+	AttachChild(root, CreateNode<int>(5));
+	std::cout << "Root Node Data: " << root->data << std::endl;
+	std::cout << "Root Node Child Count: " << root->childCount << std::endl;
+	for (unsigned int i = 0; i < root->childCount; ++i)
+	{
+		std::cout << "Child " << i + 1 << " Data: " << root->children[i]->data << std::endl;
+	}
+
+	AttachChild(root->children[0], CreateNode<int>(3));
+	AttachChild(root->children[0], CreateNode<int>(6));
+	std::cout << "After attaching children to first child:" << std::endl;
+	for (unsigned int i = 0; i < root->children[0]->childCount; ++i)
+	{
+		std::cout << "Child of first child " << i + 1 << " Data: " << root->children[0]->children[i]->data << std::endl;
+	}
+
+	
+	DetachAllChildren(root);
+	delete root;
+	std::cout << "Node Test Completed." << std::endl;
+}
+
 void testTree()
 {
-
+	Tree<int> tree(1);
+	Node<int>* child1 = CreateNode<int>(2);
+	Node<int>* child2 = CreateNode<int>(3);
+	/*tree.Insert(child1);
+	tree.Insert(child2);
+	tree.Clear();*/
+	std::cout << "Tree is Cleared." << std::endl;
 }

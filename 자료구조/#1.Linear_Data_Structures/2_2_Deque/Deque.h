@@ -7,11 +7,13 @@ namespace Linear_Data_Structures
 	class Deque
 	{
 	public:
+		// Default constructor with initial capacity
 		Deque(int initialCapacity = 16)
 			: capacity(initialCapacity), front(0), back(-1), size(0)
 		{
 			data = new T[capacity];
 		}
+
 		// DeepCopy constructor, ensuring a new array is allocated
 		Deque(const Deque& other)
 			: capacity(other.capacity), front(other.front), back(other.back), size(other.size)
@@ -20,6 +22,14 @@ namespace Linear_Data_Structures
 			for (int i = 0; i < size; ++i)
 				data[(front + i) % capacity] = other.data[(other.front + i) % other.capacity];
 		}
+
+		// Destructor to clean up allocated memory
+		~Deque()
+		{
+			delete[] data;
+		}
+
+		// Assignment operator, ensuring a new array is allocated
 		Deque& operator=(const Deque& other)
 		{
 			if (this != &other)
@@ -37,10 +47,7 @@ namespace Linear_Data_Structures
 			}
 			return *this;
 		}
-		~Deque()
-		{
-			delete[] data;
-		}
+
 	private:
 		T* data;
 		int capacity;

@@ -7,6 +7,7 @@ namespace Linear_Data_Structures
 	class Queue
 	{
 	public:
+		// Default constructor with initial capacity
 		Queue(int initialCapacity = 16) 
 			: front(0), back(-1), size(0), capacity(initialCapacity)
 		{
@@ -22,11 +23,13 @@ namespace Linear_Data_Structures
 				data[i] = other.data[(front + i) % capacity];
 		}
 		
+		// Destructor to clean up allocated memory
 		~Queue()
 		{
 			delete[] data;
 		}
 
+		// Assignment operator to handle deep copy
 		Queue& operator=(const Queue& other)
 		{
 			if (this != &other)

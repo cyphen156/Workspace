@@ -10,11 +10,12 @@ namespace Linear_Data_Structures
 		T data;
 		int priority;
 
+		// Default constructor
 		PriorityQueueNode()
 			: priority(0), data(T())
-		{
-		}
+		{}
 
+		// Constructor with parameters
 		PriorityQueueNode(int priority, const T& value)
 			: priority(priority), data(value)
 		{}
@@ -35,6 +36,7 @@ namespace Linear_Data_Structures
 	class PriorityQueue
 	{
 	public:
+		// Default constructor with initial capacity
 		PriorityQueue(int initialCapacity = 16)
 			: capacity(initialCapacity), size(0)
 		{
@@ -52,6 +54,13 @@ namespace Linear_Data_Structures
 			}
 		}
 
+		// Destructor
+		~PriorityQueue()
+		{
+			delete[] data;
+		}
+
+		// Assignment operator, ensuring a new array is allocated
 		PriorityQueue& operator=(const PriorityQueue& other)
 		{
 			if (this != &other)
@@ -66,11 +75,6 @@ namespace Linear_Data_Structures
 				}
 			}
 			return *this;
-		}
-
-		~PriorityQueue()
-		{
-			delete[] data;
 		}
 
 		// modified methods

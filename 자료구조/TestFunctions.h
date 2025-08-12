@@ -11,4 +11,5 @@ void testAdaptorQueue();
 void testAdaptorPriorityQueue();
 
 // Non-linear Data Structures Test
+void testNode();
 void testTree();

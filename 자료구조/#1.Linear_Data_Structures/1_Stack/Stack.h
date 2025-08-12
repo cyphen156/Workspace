@@ -7,6 +7,7 @@ namespace Linear_Data_Structures
 	class Stack
 	{
 	public:
+		// Default constructor with initial capacity
 		Stack(int initialCapacity = 16) 
 			: capacity(initialCapacity),
 			top(-1)
@@ -23,6 +24,13 @@ namespace Linear_Data_Structures
 				data[i] = other.data[i];
 		}
 
+		// Destructor
+		~Stack()
+		{
+			delete[] data;
+		}
+
+		// Assignment operator, ensuring a new array is allocated
 		Stack& operator=(const Stack& other)
 		{
 			if (this != &other)
@@ -37,11 +45,6 @@ namespace Linear_Data_Structures
 				}
 			}
 			return *this;
-		}
-
-		~Stack()
-		{
-			delete[] data;
 		}
 
 		// modified methods
