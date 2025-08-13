@@ -39,7 +39,7 @@ namespace Non_Linear_Data_Structures
 		{
 			if (initialCapacity == 0)
 			{
-				initialCapacity = 2; // Ensure a minimum initial capacity
+				initialCapacity = 2u; // Ensure a minimum initial capacity
 			}
 			root = CreateNode<T>(value, initialCapacity);
 		}
@@ -62,21 +62,19 @@ namespace Non_Linear_Data_Structures
 		// 한글설명 : 이 생성자는 트리의 깊은 복사본을 만듭니다.
 		// 루트 노드와 모든 자식 노드에 대해 새로운 메모리를 할당합니다.
 		inline Tree(const Tree& other)
-			: root(nullptr)
-			, nodeCount(0)
+			: root(nullptr), nodeCount(0)
 		{
-			if (other.root == nullptr)
-			{
-				return;
-			}
-
-			root = CreateNode<T>(other.root->data, other.root->capacity);
-			nodeCount = 1;
-			
-			// Use a stack to perform a depth-first traversal and copy nodes
-			
+			CopyFrom(other);
 		}
 		
+		// move constructor
+		inline Tree(Tree&& other) noexcept
+			: root(other.root), nodeCount(other.nodeCount)
+		{
+			other.root = nullptr;
+			other.nodeCount = 0;
+		}
+
 		// Destructor
 		inline ~Tree()
 		{ 
@@ -84,64 +82,27 @@ namespace Non_Linear_Data_Structures
 		}
 		
 		// Assignment operator
-
 		inline Tree& operator=(const Tree& other)
 		{
-			if (this == &other)
+			if (this != &other)
 			{
-				return *this; // Self-assignment check
-			}
-
-			Clear(); // Clear the current tree
-
-			if (other.root == nullptr)
-			{
-				root = nullptr;
-				nodeCount = 0;
-				return *this;
-			}
-
-			root = CreateNode<T>(other.root->data, other.root->capacity);
-			nodeCount = 1;
-
-			// Use a stack to perform a depth-first traversal and copy nodes
-			Linear_Data_Structures::Stack<Node<T>*> stack;
-			stack.Push(root);
-			Linear_Data_Structures::Queue<Node<T>*> queue;
-			queue.Push(other.root);
-			Node<T>* currentNode;
-			Node<T>* otherNode;
-			while (!queue.Empty())
-			{
-				otherNode = queue.Front();
-				queue.Pop();
-				currentNode = stack.Top();
-				stack.Pop();
-				for (unsigned int i = 0; i < otherNode->childCount; ++i)
-				{
-					Node<T>* newChild = CreateNode<T>(otherNode->children[i]->data, otherNode->children[i]->capacity);
-					if (AttachChild<T>(currentNode, newChild, /*order=*/true))
-					{
-						nodeCount++;
-						stack.Push(newChild);
-						queue.Push(otherNode->children[i]);
-					}
-				}
+				Clear();
+				CopyFrom(other);
 			}
 			return *this;
 		}
 
+		// Move assignment operator
 		inline Tree& operator=(Tree&& other) noexcept
 		{
-			if (this == &other)
+			if (this != &other)
 			{
-				return *this; // Self-assignment check
+				Clear();
+				root = other.root;
+				nodeCount = other.nodeCount;
+				other.root = nullptr;
+				other.nodeCount = 0;
 			}
-			Clear(); // Clear the current tree
-			root = other.root; // Move the root pointer
-			nodeCount = other.nodeCount; // Move the node count
-			other.root = nullptr; // Set the other tree's root to nullptr
-			other.nodeCount = 0; // Reset the other tree's node count
 			return *this;
 		}
 
@@ -213,6 +174,49 @@ namespace Non_Linear_Data_Structures
 	private:
 		Node<T>* root;		// Root node of the tree
 		int nodeCount;		// Count of nodes in the tree
+
+		inline void CopyFrom(const Tree& other)
+		{
+			if (other.root == nullptr)
+			{
+				root = nullptr;
+				nodeCount = 0;
+				return;
+			}
+
+			// 루트 생성
+			root = CreateNode<T>(other.root->data, other.root->capacity);
+			nodeCount = 1;
+
+			// other: BFS로 순회, this: 동일 구조 재구성
+			Linear_Data_Structures::Queue<const Node<T>*> otherQueue;
+			Linear_Data_Structures::Queue<Node<T>*> copyQueue;
+
+			otherQueue.Push(other.root);
+			copyQueue.Push(root);
+
+			while (!otherQueue.Empty())
+			{
+				const Node<T>* ocur = otherQueue.Front(); otherQueue.Pop();
+				Node<T>* current = copyQueue.Front(); copyQueue.Pop();
+
+				for (unsigned int i = 0; i < ocur->childCount; ++i)
+				{
+					const Node<T>* otherCurrent = ocur->children[i];
+					if (otherCurrent == nullptr) continue;
+
+					Node<T>* child = CreateNode<T>(otherCurrent->data, otherCurrent->capacity);
+					// order=true: 단순 append(혹은 네 AttachChild가 정렬 고려하면 그 정책 유지)
+					if (AttachChild<T>(current, child, /*order=*/true))
+					{
+						++nodeCount;
+						otherQueue.Push(otherCurrent);
+						copyQueue.Push(child);
+					}
+					// Attach 실패 시: 정책상 생략(메모리 부족 같은 예외 상황). 필요하면 assert나 실패 처리 추가 가능.
+				}
+			}
+		}
 	};
 
 	/// <summary>
@@ -599,11 +603,21 @@ namespace Non_Linear_Data_Structures
 	template <typename T>
 	inline Node<T>* Tree<T>::RemoveAt(Node<T>* parent, Node<T>* node)
 	{
-		if (node->parent != parent)
+		if (node == nullptr) 
 		{
 			return nullptr;
 		}
 		
+		if (parent == nullptr && node != root)
+		{
+			return nullptr;
+		}
+
+		if (node != root && node->parent != parent)
+		{
+			return nullptr;
+		}
+
 		Node<T>* target = DetachChild<T>(parent, node);     // 1) 분리 먼저
 		if (target == nullptr)
 		{
@@ -672,7 +686,7 @@ namespace Non_Linear_Data_Structures
 			return nullptr;
 		}
 		
-		Node<T>* target = DetachChild<T>(parent, index);
+		Node<T>* target = DetachChildAtIndex<T>(parent, index);
 
 		if (target == nullptr)
 		{
@@ -701,7 +715,7 @@ namespace Non_Linear_Data_Structures
 			return nullptr;
 		}
 		
-		Node<T>* target = DetachChild<T>(parent, index);
+		Node<T>* target = DetachChildAtIndex<T>(parent, index);
 
 		if (target == nullptr)
 		{
@@ -884,6 +898,11 @@ namespace Non_Linear_Data_Structures
 
 		nodeCount = temp;
 		DeleteChild<T>(parent, node);
+
+		if (node == root)
+		{
+			root = nullptr;
+		}
 	}
 
 	template <typename T>
@@ -932,7 +951,8 @@ namespace Non_Linear_Data_Structures
 		}
 
 		nodeCount = temp;
-		DeleteChild<T>(parent, index);
+
+		DeleteChildAtIndex<T>(parent, index);
 	}
 
 	template <typename T>
@@ -949,7 +969,7 @@ namespace Non_Linear_Data_Structures
 			return; // 노드 제거 후 남는 노드 수가 음수인 경우
 		}
 		nodeCount = temp;
-		DeleteChild<T>(parent, index);
+		DeleteChildAtIndex<T>(parent, index);
 	}
 
 	template <typename T>

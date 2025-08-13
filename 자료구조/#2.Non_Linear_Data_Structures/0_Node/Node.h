@@ -342,7 +342,7 @@ namespace Non_Linear_Data_Structures
 	// 분리된 자식 노드가 삭제되지 않습니다.
 	// 남은 자식 노드를 왼쪽으로 이동하여 빈 공간을 채웁니다.
 	template <typename T>
-	inline Node<T>* DetachChild(Node<T>* parent, unsigned int index)
+	inline Node<T>* DetachChildAtIndex(Node<T>* parent, unsigned int index)
 	{
 		if (parent == nullptr || index >= parent->childCount)
 		{
@@ -370,13 +370,13 @@ namespace Non_Linear_Data_Structures
 
 	// overloaded DetachChild function
 	template <typename T>
-	inline Node<T>* DetachChild(Node<T>* parent, int index)
+	inline Node<T>* DetachChildAtIndex(Node<T>* parent, int index)
 	{
 		if (index < 0)
 		{
 			return nullptr; // 인덱스가 음수인 경우
 		}
-		return DetachChild<T>(parent, static_cast<unsigned int>(index));
+		return DetachChildAtIndex<T>(parent, static_cast<unsigned int>(index));
 	}
 
 	// Detach All Children
@@ -516,7 +516,7 @@ namespace Non_Linear_Data_Structures
 	// 한글설명 : 부모 노드에서 특정 인덱스의 자식 노드를 삭제합니다.
 	// 자식 노드가 삭제되며, 남은 자식 노드를 왼쪽으로 이동하여 빈 공간을 채웁니다.
 	template <typename T>
-	inline void DeleteChild(Node<T>* parent, unsigned int index)
+	inline void DeleteChildAtIndex(Node<T>* parent, unsigned int index)
 	{
 		if (parent == nullptr || index >= parent->childCount)
 		{
@@ -542,13 +542,13 @@ namespace Non_Linear_Data_Structures
 
 	// overloaded DeleteChild function
 	template <typename T>
-	inline void DeleteChild(Node<T>* parent, int index)
+	inline void DeleteChildAtIndex(Node<T>* parent, int index)
 	{
 		if (index < 0)
 		{
 			return; // 인덱스가 음수인 경우
 		}
-		DeleteChild<T>(parent, static_cast<unsigned int>(index));
+		DetachChildAtIndex<T>(parent, static_cast<unsigned int>(index));
 	}
 
 	// DeleteAllChildren
