@@ -152,45 +152,28 @@ void testNode()
 	std::cout << "Node Test Completed." << std::endl;
 }
 
+/// <summary>
+/// Tree.h에 있는 모든 기능을 테스팅
+/// 곙계테스트 포함
+/// </summary>
 void testTree()
 {
-	// Create a tree with a root node
-	Tree<int> tree(1);
-	// Insert nodes into the tree
-	Node<int>* child1 = tree.Insert(2);
-	Node<int>* child2 = tree.Insert(3);
-	Node<int>* child3 = tree.Insert(4);
-	Node<int>* child4 = tree.Insert(5);
-	std::cout << "Tree Root Data: " << tree.GetRoot()->data << std::endl;
+	Tree<int> tree;
+	tree.Insert(1);
+	tree.Insert(2);
+	tree.Insert(3, 4, true); // Insert with initial capacity and order
+	tree.Insert(4, 5, false); // Insert without order
+	tree.Insert(5, 6, true); // Insert with order
 	std::cout << "Tree Node Count: " << tree.Size() << std::endl;
-	Node<int>* child5 = tree.InsertAt(child1, 6);
-	std::cout << "After inserting child 6 at child1:" << std::endl;
-	for (unsigned int i = 0; i < child1->childCount; ++i)
-	{
-		std::cout << "Child of child1 " << i + 1 << " Data: " << child1->children[i]->data << std::endl;
-	}
-	tree.InsertAt(child2, 7);
-	std::cout << "After inserting child 7 at child2:" << std::endl;
-	for (unsigned int i = 0; i < child2->childCount; ++i)
-	{
-		std::cout << "Child of child2 " << i + 1 << " Data: " << child2->children[i]->data << std::endl;
-	}
-	tree.InsertAt(child3, 8);
-	std::cout << "After inserting child 8 at child3:" << std::endl;
-
+	// Pre-order traversal
 	tree.PreOrderTraversal([](const Node<int>* node) {
-		std::cout << "PreOrder Visit: " << node->data << std::endl;
-		});
-	tree.InOrderTraversal([](const Node<int>* node) {
-		std::cout << "InOrder Visit: " << node->data << std::endl;
-		});
-	tree.PostOrderTraversal([](const Node<int>* node) {
-		std::cout << "PostOrder Visit: " << node->data << std::endl;
-		});
+		std::cout << "Node Data: " << node->data << std::endl;
+	});
+	// Level-order traversal
 	tree.LevelOrderTraversal([](const Node<int>* node) {
-		std::cout << "LevelOrder Visit: " << node->data << std::endl;
-		});
-	//tree.Clear();
-	std::cout << "Tree Test Completed." << std::endl;
-
+		std::cout << "Node Data: " << node->data << std::endl;
+	});
+	std::cout << "Subtree Node Count: " << tree.CountSubtreeNodes(tree.GetRoot()) << std::endl;
+	tree.Clear();
+	std::cout << "Tree Cleared." << std::endl;
 }

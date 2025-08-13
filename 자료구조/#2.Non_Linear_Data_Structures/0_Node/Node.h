@@ -280,7 +280,7 @@ namespace Non_Linear_Data_Structures
 
 	// DetachChild with Node
 	// Use this function to detach a child node from the parent node.
-	// // The detached child node will not be deleted.
+	// The detached child node will not be deleted.
 	// Remaining child nodes will be shifted to the left to fill the gap.
 	// 한글설명 : 노드를 부모 노드에서 분리합니다.
 	// 분리된 노드가 삭제되지 않습니다.

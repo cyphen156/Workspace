@@ -15,25 +15,19 @@ namespace Non_Linear_Data_Structures
 		inline Tree()
 			: root(nullptr)
 			, nodeCount(0)
-			, height(-1)
 		{}
 
 		// Constructor with root node
 		inline Tree(const Node<T>* node)
 			: root(const_cast<Node<T>*>(node))
 			, nodeCount(0)
-			, height(-1)
 		{
 			if (root == nullptr)
 			{
 				return;
 			}
 
-			// Initialize nodeCount and height based on the root node
-			nodeCount = 1;	// Start with the root node
-			height = 0;		// Start with height 0 for the root node
-			// Use a stack to perform a depth-first traversal to count nodes and calculate height
-			
+			nodeCount = 1;
 		}
 		
 		// Constructor with value
@@ -42,7 +36,6 @@ namespace Non_Linear_Data_Structures
 		inline Tree(const T& value, unsigned int initialCapacity = 2u)
 			: root(nullptr)
 			, nodeCount(1)
-			, height(0)
 		{
 			if (initialCapacity == 0)
 			{
@@ -55,7 +48,6 @@ namespace Non_Linear_Data_Structures
 		inline Tree(const T& value, int initialCapacity)
 			: root(nullptr)
 			, nodeCount(1)
-			, height(0)
 		{
 			if (initialCapacity <= 0)
 			{
@@ -72,7 +64,6 @@ namespace Non_Linear_Data_Structures
 		inline Tree(const Tree& other)
 			: root(nullptr)
 			, nodeCount(0)
-			, height(-1)
 		{
 			if (other.root == nullptr)
 			{
@@ -81,7 +72,6 @@ namespace Non_Linear_Data_Structures
 
 			root = CreateNode<T>(other.root->data, other.root->capacity);
 			nodeCount = 1;
-			height = 0;
 			
 			// Use a stack to perform a depth-first traversal and copy nodes
 			
@@ -90,16 +80,69 @@ namespace Non_Linear_Data_Structures
 		// Destructor
 		inline ~Tree()
 		{ 
-			//Clear();
+			Clear();
 		}
 		
 		// Assignment operator
+
 		inline Tree& operator=(const Tree& other)
 		{
+			if (this == &other)
+			{
+				return *this; // Self-assignment check
+			}
+
+			Clear(); // Clear the current tree
+
+			if (other.root == nullptr)
+			{
+				root = nullptr;
+				nodeCount = 0;
+				return *this;
+			}
+
+			root = CreateNode<T>(other.root->data, other.root->capacity);
+			nodeCount = 1;
+
+			// Use a stack to perform a depth-first traversal and copy nodes
+			Linear_Data_Structures::Stack<Node<T>*> stack;
+			stack.Push(root);
+			Linear_Data_Structures::Queue<Node<T>*> queue;
+			queue.Push(other.root);
+			Node<T>* currentNode;
+			Node<T>* otherNode;
+			while (!queue.Empty())
+			{
+				otherNode = queue.Front();
+				queue.Pop();
+				currentNode = stack.Top();
+				stack.Pop();
+				for (unsigned int i = 0; i < otherNode->childCount; ++i)
+				{
+					Node<T>* newChild = CreateNode<T>(otherNode->children[i]->data, otherNode->children[i]->capacity);
+					if (AttachChild<T>(currentNode, newChild, /*order=*/true))
+					{
+						nodeCount++;
+						stack.Push(newChild);
+						queue.Push(otherNode->children[i]);
+					}
+				}
+			}
+			return *this;
 		}
 
 		inline Tree& operator=(Tree&& other) noexcept
 		{
+			if (this == &other)
+			{
+				return *this; // Self-assignment check
+			}
+			Clear(); // Clear the current tree
+			root = other.root; // Move the root pointer
+			nodeCount = other.nodeCount; // Move the node count
+			other.root = nullptr; // Set the other tree's root to nullptr
+			other.nodeCount = 0; // Reset the other tree's node count
+			return *this;
 		}
 
 		// modified methods
@@ -155,6 +198,8 @@ namespace Non_Linear_Data_Structures
 		bool Empty() const;							// Check if the tree is empty
 		int Size() const;							// Get the size of the tree
 
+		int CountSubtreeNodes(const Node<T>* n);	// Count the number of nodes in a subtree rooted at node n
+
 		// Tree traversal methods
 		// These methods take a function pointer to visit each node
 		// DFS (Depth-First Search) Traversal methods
@@ -168,7 +213,6 @@ namespace Non_Linear_Data_Structures
 	private:
 		Node<T>* root;		// Root node of the tree
 		int nodeCount;		// Count of nodes in the tree
-		int height;			// Height of the tree
 	};
 
 	/// <summary>
@@ -195,7 +239,6 @@ namespace Non_Linear_Data_Structures
 			root = node;
 			root->parent = nullptr;
 			nodeCount = 1;
-			height = 0;
 			return root;
 		}
 
@@ -216,7 +259,6 @@ namespace Non_Linear_Data_Structures
 				if (AttachChild<T>(current, node, order))
 				{
 					nodeCount++;
-					height = GetHeight(root); // Update height after insertion
 					return node; // 삽입된 노드를 반환합니다.
 				}
 			}
@@ -255,7 +297,6 @@ namespace Non_Linear_Data_Structures
 			{
 				root->parent = nullptr;
 				nodeCount = 1;
-				height = 0;
 			}
 			return root;
 		}
@@ -277,7 +318,6 @@ namespace Non_Linear_Data_Structures
 				if (newNode != nullptr)
 				{
 					nodeCount++;
-					height = GetHeight(root); // Update height after insertion
 					return newNode; // 삽입된 노드를 반환합니다.
 				}
 			}
@@ -313,7 +353,6 @@ namespace Non_Linear_Data_Structures
 			{
 				root->parent = nullptr;
 				nodeCount = 1;
-				height = 0;
 			}
 			return root; 
 		}
@@ -334,7 +373,6 @@ namespace Non_Linear_Data_Structures
 				if (newNode != nullptr)
 				{
 					nodeCount++;
-					height = GetHeight(root); // Update height after insertion
 					return newNode; // 삽입된 노드를 반환합니다.
 				}
 			}
@@ -371,7 +409,6 @@ namespace Non_Linear_Data_Structures
 		if (AttachChild<T>(target, node, order))
 		{
 			nodeCount++;
-			height = GetHeight(root); // Update height after insertion
 			return node; // Return the newly inserted node
 		}
 		
@@ -395,7 +432,6 @@ namespace Non_Linear_Data_Structures
 		if (newNode != nullptr)
 		{
 			nodeCount++;
-			height = GetHeight(root);
 		}
 
 		return newNode; 
@@ -416,12 +452,16 @@ namespace Non_Linear_Data_Structures
 		if (newNode != nullptr)
 		{
 			nodeCount++;
-			height = GetHeight(root);
 		}
 		return newNode;
 	}
 
-
+	/// <summary>
+	/// 트리에서 지정된 노드를 찾아 제거합니다
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <param name="node"></param>
+	/// <returns></returns>
 	template <typename T>
 	inline Node<T>* Tree<T>::Remove(Node<T>* node)
 	{
@@ -484,7 +524,7 @@ namespace Non_Linear_Data_Structures
 			// 현재 노드가 제거할 노드와 일치하는지 확인합니다.
 			if (current->data == value)
 			{
-				return RemoveAt(current->parent, current);
+				return RemoveAt(current->parent, value);
 			}
 			// 현재 노드의 자식들을 큐에 추가합니다.
 			for (unsigned int i = 0; i < current->childCount; ++i)
@@ -499,53 +539,187 @@ namespace Non_Linear_Data_Structures
 		return nullptr; // 제거할 노드를 찾지 못한 경우 nullptr 반환
 	}
 
+	// overloaded RemoveIndex methods
+	template <typename T>
+	inline Node<T>* Tree<T>::RemoveIndex(const int index)
+	{
+		return RemoveIndex(static_cast<unsigned int>(index));
+	}
+	
 	/// <summary>
 	/// 트리에서 지정된 인덱스에 해당하는 노드를 제거합니다.
+	/// 루트부터 시작하여 인덱스에 해당하는 노드를 찾아 제거합니다.
+	/// 레벨 순회 방식으로 구현되어 있습니다.
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	/// <param name="index"></param>
 	/// <returns></returns>
 	template <typename T>
-	inline Node<T>* Tree<T>::RemoveIndex(const int index)
-	{
-		if (root == nullptr || index < 0 || index >= nodeCount)
-		{
-			return nullptr;
-		}
-
-		return RemoveAtIndex(root, index); // 트리의 루트 노드에서 제거
-	}
-
-	template <typename T>
 	inline Node<T>* Tree<T>::RemoveIndex(const unsigned int index)
 	{
-		if (root == nullptr || index >= nodeCount)
+		if (root == nullptr || index >= static_cast<unsigned int>(nodeCount))
 		{
 			return nullptr;
 		}
 
-		return RemoveAtIndex(root, index); // 트리의 루트 노드에서 제거
+		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
+		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
+		Linear_Data_Structures::Queue<Node<T>*> queue;
+		queue.Push(root);
+		Node<T>* current;
+		unsigned int currentIndex = 0;
+		while (!queue.Empty())
+		{
+			current = queue.Front();
+			queue.Pop();
+			if (currentIndex == index)
+			{
+				return RemoveAt(current->parent, current);
+			}
+			currentIndex++;
+			for (unsigned int i = 0; i < current->childCount; ++i)
+			{
+				if (current->children[i] != nullptr)
+				{
+					queue.Push(current->children[i]);
+				}
+			}
+		}
+		return nullptr; 
 	}
 
-
+	/// <summary>
+	/// 특정 부모 노드에서 지정된 노드를 제거합니다.
+	/// 부모 노드는 이미 특정되어 있어야 한다.
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <param name="parent"></param>
+	/// <param name="node"></param>
+	/// <returns></returns>
 	template <typename T>
 	inline Node<T>* Tree<T>::RemoveAt(Node<T>* parent, Node<T>* node)
 	{
+		if (node->parent != parent)
+		{
+			return nullptr;
+		}
+		
+		Node<T>* target = DetachChild<T>(parent, node);     // 1) 분리 먼저
+		if (target == nullptr)
+		{
+			return nullptr;
+		}
+
+		// 노드가 제거된 후 남는 노드 수를 재계산합니다.
+		int removed = CountSubtreeNodes(target);
+		
+		// 음수가 발생한다면 에러입니다.
+		int temp = nodeCount - removed;
+
+		if (temp < 0)
+		{
+			// 노드가 제거된 후 남는 노드 수가 음수라면
+			// 다시 부모 노드에 붙입니다.
+			AttachChild<T>(parent, target, /*order=*/true);
+			return nullptr;
+		}
+
+		nodeCount = temp;
+		return target;
 	}
 
 	template <typename T>
 	inline Node<T>* Tree<T>::RemoveAt(Node<T>* parent, const T& value)
 	{
+		if (parent == nullptr)
+		{
+			return nullptr;
+		}
+
+		Node<T>* target = DetachChild<T>(parent, value);
+		if (target == nullptr)
+		{
+			return nullptr;
+		}
+
+		int removed = CountSubtreeNodes(target);
+
+		int temp = nodeCount - removed;
+
+		if (temp < 0)
+		{
+			AttachChild<T>(parent, target, /*order=*/true);
+			return nullptr;
+		}
+
+		nodeCount = temp;
+		return target;
 	}
 		
+	/// <summary>
+	/// 특정 부모 노드에서 지정된 인덱스에 해당하는 노드를 제거합니다.
+	/// 항상 직계 자식 노드만을 대상으로 합니다.
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <param name="parent"></param>
+	/// <param name="index"></param>
+	/// <returns></returns>
 	template <typename T>
 	inline Node<T>* Tree<T>::RemoveAtIndex(Node<T>* parent, const int index)
 	{
+		if (parent == nullptr || index < 0 || index >= static_cast<int>(parent->childCount))
+		{
+			return nullptr;
+		}
+		
+		Node<T>* target = DetachChild<T>(parent, index);
+
+		if (target == nullptr)
+		{
+			return nullptr;
+		}
+
+		int removed = CountSubtreeNodes(target);
+
+		int temp = nodeCount - removed;
+
+		if (temp < 0)
+		{
+			AttachChild<T>(parent, target, /*order=*/true);
+			return nullptr;
+		}
+
+		nodeCount = temp;
+		return target;
 	}
 
 	template <typename T>
 	inline Node<T>* Tree<T>::RemoveAtIndex(Node<T>* parent, const unsigned int index)
 	{
+		if (parent == nullptr || index >= parent->childCount)
+		{
+			return nullptr;
+		}
+		
+		Node<T>* target = DetachChild<T>(parent, index);
+
+		if (target == nullptr)
+		{
+			return nullptr;
+		}
+
+		int removed = CountSubtreeNodes(target);
+
+		int temp = nodeCount - removed;
+
+		if (temp < 0)
+		{
+			AttachChild<T>(parent, target, /*order=*/true);
+			return nullptr;
+		}
+
+		nodeCount = temp;
+		return target;
 	}
 
 	/// <summary>
@@ -554,6 +728,7 @@ namespace Non_Linear_Data_Structures
 	template <typename T>
 	inline void Tree<T>::Delete()
 	{
+		delete this; // 트리 객체를 삭제합니다.
 	}
 
 	/// <summary>
@@ -565,43 +740,231 @@ namespace Non_Linear_Data_Structures
 	template <typename T>
 	inline void Tree<T>::Delete(Node<T>* node)
 	{
+		// 트리에서 지정된 노드를 찾아 삭제합니다.
+		if (node == nullptr)
+		{
+			return; // 노드가 nullptr이면 아무 작업도 하지 않습니다.
+		}
+		
+		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
+		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
+		Linear_Data_Structures::Queue<Node<T>*> queue;
+		queue.Push(root);
+		Node<T>* current;
+		while (!queue.Empty())
+		{
+			current = queue.Front();
+			queue.Pop();
+			// 현재 노드가 삭제할 노드와 일치하는지 확인합니다.
+			if (current == node)
+			{
+				DeleteAt(current->parent, current);
+				return; // 삭제 후 함수 종료
+			}
+			// 현재 노드의 자식들을 큐에 추가합니다.
+			for (unsigned int i = 0; i < current->childCount; ++i)
+			{
+				if (current->children[i] != nullptr)
+				{
+					queue.Push(current->children[i]);
+				}
+			}
+		}
 	}
 
 	template <typename T>
 	inline void Tree<T>::Delete(const T& value)
 	{
-	}
+		// 트리에서 지정된 값을 가진 노드를 찾아 삭제합니다.
+		if (root == nullptr)
+		{
+			return; // 트리가 비어있으면 아무 작업도 하지 않습니다.
+		}
 
+		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
+		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
+		Linear_Data_Structures::Queue<Node<T>*> queue;
+		queue.Push(root);
+		Node<T>* current;
+		while (!queue.Empty())
+		{
+			current = queue.Front();
+			queue.Pop();
+			// 현재 노드가 삭제할 노드와 일치하는지 확인합니다.
+			if (current->data == value)
+			{
+				DeleteAt(current->parent, current);
+				return; // 삭제 후 함수 종료
+			}
+			// 현재 노드의 자식들을 큐에 추가합니다.
+			for (unsigned int i = 0; i < current->childCount; ++i)
+			{
+				if (current->children[i] != nullptr)
+				{
+					queue.Push(current->children[i]);
+				}
+			}
+		}
+	}
+	
+	// overloaded DeleteIndex methods
 	template <typename T>
 	inline void Tree<T>::DeleteIndex(const int index)
 	{
+		DeleteIndex(static_cast<unsigned int>(index));
 	}
 
+	/// <summary>
+	/// 트리의 전체 노드중 지정된 인덱스에 해당하는 노드를 삭제합니다.
+	/// BFS(너비 우선 탐색) 방식으로 트리를 순회하여 인덱스에 해당하는 노드를 찾아 삭제합니다.
+	/// 전체 노드 수를 기준으로 인덱스를 계산합니다.
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <param name="index"></param>
 	template <typename T>
 	inline void Tree<T>::DeleteIndex(const unsigned int index)
 	{
+		if (root == nullptr || index >= static_cast<unsigned int>(nodeCount))
+		{
+			return;
+		}
+		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
+		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
+		Linear_Data_Structures::Queue<Node<T>*> queue;
+		queue.Push(root);
+		Node<T>* current;
+		unsigned int currentIndex = 0;
+		
+		while (!queue.Empty())
+		{
+			current = queue.Front();
+			queue.Pop();
+			if (currentIndex == index)
+			{
+				DeleteAt(current->parent, current);
+				return; // 삭제 후 함수 종료
+			}
+			currentIndex++;
+			for (unsigned int i = 0; i < current->childCount; ++i)
+			{
+				if (current->children[i] != nullptr)
+				{
+					queue.Push(current->children[i]);
+				}
+			}
+		}
 	}
 
 	template <typename T>
 	inline void Tree<T>::DeleteAt(Node<T>* parent, Node<T>* node)
 	{
+		if (node == nullptr)
+		{
+			return; // 잘못된 입력
+		}
+
+		if (parent == nullptr && node != root)
+		{
+			return;
+		}
+
+		// 노드가 루트가 아니면서 부모를 갖지 않은 경우
+		if (node != root && node->parent != parent)
+		{
+			return; 
+		}
+
+		int removed = CountSubtreeNodes(node);
+		int temp = nodeCount - removed;
+
+		if (temp < 0)
+		{
+			return;
+		}
+
+		nodeCount = temp;
+		DeleteChild<T>(parent, node);
 	}
 
 	template <typename T>
 	inline void Tree<T>::DeleteAt(Node<T>* parent, const T& value)
 	{
+		if (parent == nullptr)
+		{
+			return; // 잘못된 입력
+		}
+
+		Node<T>* target = nullptr;
+		for (int i = 0; i < parent->childCount; ++i)
+		{
+			if (parent->children[i] != nullptr && parent->children[i]->data == value)
+			{
+				target = parent->children[i];
+				break; 
+			}
+		}
+
+		int removed = CountSubtreeNodes(target);
+		int temp = nodeCount - removed;
+
+		if (temp < 0)
+		{
+			return;
+		}
+
+		nodeCount = temp;
+		DeleteChild<T>(parent, value);
 	}
 
 	template <typename T>
 	inline void Tree<T>::DeleteAtIndex(Node<T>* parent, const int index)
 	{
+		if (parent == nullptr || index < 0 || index >= static_cast<int>(parent->childCount))
+		{
+			return; // 잘못된 입력
+		}
+
+		int removed = CountSubtreeNodes(parent->children[index]);
+		int temp = nodeCount - removed;
+		if (temp < 0)
+		{
+			return; // 노드 제거 후 남는 노드 수가 음수인 경우
+		}
+
+		nodeCount = temp;
+		DeleteChild<T>(parent, index);
 	}
 
 	template <typename T>
 	inline void Tree<T>::DeleteAtIndex(Node<T>* parent, const unsigned int index)
 	{
+		if (parent == nullptr || index >= parent->childCount)
+		{
+			return; // 잘못된 입력
+		}
+		int removed = CountSubtreeNodes(parent->children[index]);
+		int temp = nodeCount - removed;
+		if (temp < 0)
+		{
+			return; // 노드 제거 후 남는 노드 수가 음수인 경우
+		}
+		nodeCount = temp;
+		DeleteChild<T>(parent, index);
 	}
 
+	template <typename T>
+	inline void Tree<T>::Clear()
+	{
+		if (root == nullptr)
+		{ 
+			nodeCount = 0; 
+			return; 
+		}
+
+		Delete(root);
+		root = nullptr; // 트리의 루트를 nullptr로 설정하여 트리를 비웁니다.
+		nodeCount = 0; // 노드 수를 0으로 초기화합니다.
+	}
 	template <typename T>
 	inline Node<T>* Tree<T>::GetRoot()
 	{
@@ -617,7 +980,7 @@ namespace Non_Linear_Data_Structures
 	template <typename T>	
 	inline int Tree<T>::GetHeight() const
 	{
-		return height;
+		return GetHeight(root);
 	}
 
 	template <typename T>	
@@ -656,7 +1019,7 @@ namespace Non_Linear_Data_Structures
 
 		int maxDegree = 0;
 
-		Linear_Data_Structures::Queue<Node<T>*> queue;
+		Linear_Data_Structures::Queue<const Node<T>*> queue;
 		queue.Push(root);
 		while (!queue.Empty())
 		{
@@ -714,6 +1077,40 @@ namespace Non_Linear_Data_Structures
 	inline int Tree<T>::Size() const
 	{
 		return nodeCount;
+	}
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <param name="n"></param>
+	/// <returns></returns>
+	template <typename T>
+	inline int Tree<T>::CountSubtreeNodes(const Node<T>* node)
+	{
+		if (node == nullptr)
+		{
+			return 0;
+		}
+
+		int count = 0;
+		Linear_Data_Structures::Queue<const Node<T>*> queue;
+		queue.Push(node);
+		while (!queue.Empty()) 
+		{
+			const Node<T>* current = queue.Front();
+			queue.Pop();
+			++count;
+			for (unsigned i = 0; i < current->childCount; ++i)
+			{
+				if (current->children[i])
+				{
+					queue.Push(current->children[i]);
+				}
+			}
+		}
+
+		return count;
 	}
 
 	/// <summary>
