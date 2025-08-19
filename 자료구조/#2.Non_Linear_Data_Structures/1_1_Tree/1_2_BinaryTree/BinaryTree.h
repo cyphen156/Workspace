@@ -51,7 +51,7 @@ namespace Non_Linear_Data_Structures
 
 			// Create a temporary tree to convert the node to a binary tree
 			// 임시 트리를 생성하여 노드를 이진 트리로 변환합니다.
-			Tree<T>::temp = Tree<T>(node);
+			Tree<T> temp = Tree<T>(node);
 
 			temp.convertToBinaryTree();
 			this->root = temp.GetRoot();
@@ -78,7 +78,7 @@ namespace Non_Linear_Data_Structures
 		// 이진 트리 이동 생성자
 		// 트리 자체를 이동합니다.
 		inline explicit BinaryTree(BinaryTree&& other) noexcept 
-			: Tree<T>(std::move(other)) 
+			: Tree<T>(/*std::move(other)*/) 
 		{
 			// Ensure the node is a valid binary tree node
 			

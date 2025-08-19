@@ -34,7 +34,7 @@ namespace Non_Linear_Data_Structures
 				return;
 			}
 
-			nodeCount = 1;
+			nodeCount = CountSubtreeNodes(root);
 		}
 		
 		// Constructor with value
@@ -166,6 +166,7 @@ namespace Non_Linear_Data_Structures
 		bool Empty() const;							// Check if the tree is empty
 		int Size() const;							// Get the size of the tree
 
+		bool IsTreeMember(const Node<T>* node) const;
 		int CountSubtreeNodes(const Node<T>* n);	// Count the number of nodes in a subtree rooted at node n
 
 		// Tree traversal methods
@@ -295,12 +296,20 @@ namespace Non_Linear_Data_Structures
 		{
 			root = node;
 			root->parent = nullptr;
-			nodeCount = 1;
+			nodeCount = CountSubtreeNodes(root);
 			return root;
 		}
 
 		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
 		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
+
+		const bool wasMember = IsTreeMember(node);
+		if (wasMember)
+		{
+			// 이미 트리의 일부인 경우, 노드를 제거하고 새로 삽입합니다.
+			Remove(node);
+		}
+
 		Linear_Data_Structures::Queue<Node<T>*> queue;
 		queue.Push(root);
 		Node<T>* current;
@@ -315,7 +324,7 @@ namespace Non_Linear_Data_Structures
 				// 현재 노드에 자식 노드를 추가할 수 있는 공간이 있다면
 				if (AttachChild<T>(current, node, order))
 				{
-					nodeCount++;
+					nodeCount += CountSubtreeNodes(node);
 					return node; // 삽입된 노드를 반환합니다.
 				}
 			}
@@ -463,9 +472,17 @@ namespace Non_Linear_Data_Structures
 			return nullptr;
 		}
 
+		const bool wasMember = IsTreeMember(node);
+
+		if (wasMember)
+		{
+			// 이미 트리의 일부인 경우, 노드를 제거하고 새로 삽입합니다.
+			Remove(node);
+		}
+
 		if (AttachChild<T>(target, node, order))
 		{
-			nodeCount++;
+			nodeCount += CountSubtreeNodes(node);
 			return node; // Return the newly inserted node
 		}
 		
@@ -522,42 +539,26 @@ namespace Non_Linear_Data_Structures
 	template <typename T>
 	inline Node<T>* Tree<T>::Remove(Node<T>* node)
 	{
-		if (root == nullptr)
-		{
-			return nullptr;
-		}
-		
-		if (node == nullptr || node->parent == nullptr)
+		if (node == nullptr || root == nullptr)
 		{
 			return nullptr;
 		}
 
-		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
-		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
-		Linear_Data_Structures::Queue<Node<T>*> queue;
-		queue.Push(root);
-		Node<T>* current;
-		
-		while (!queue.Empty())
+		if (!IsTreeMember(node))
 		{
-			current = queue.Front();
-			queue.Pop();
-			// 현재 노드가 제거할 노드와 일치하는지 확인합니다.
-			if (current == node)
-			{
-				return RemoveAt(current->parent, current);
-			}
-			// 현재 노드의 자식들을 큐에 추가합니다.
-			for (unsigned int i = 0; i < current->childCount; ++i)
-			{
-				if (current->children[i] != nullptr)
-				{
-					queue.Push(current->children[i]);
-				}
-			}
+			return nullptr; // 다른 트리 소속 방지
 		}
-		// 트리의 모든 노드를 순회했지만 제거할 노드를 찾지 못한 경우
-		return nullptr; // 제거할 노드를 찾지 못한 경우 nullptr 반환
+
+		if (node == root)
+		{
+			Node<T>* out = root;
+			root = nullptr;
+			nodeCount = 0;
+			out->parent = nullptr;
+			return out;
+		}
+
+		return RemoveAt(node->parent, node);
 	}
 
 	template <typename T>
@@ -617,6 +618,16 @@ namespace Non_Linear_Data_Structures
 		if (root == nullptr || index >= static_cast<unsigned int>(nodeCount))
 		{
 			return nullptr;
+		}
+
+		if (index == 0)
+		{
+			// 루트 분리
+			Node<T>* out = root;
+			root = nullptr;
+			nodeCount = 0;
+			if (out) out->parent = nullptr;
+			return out;
 		}
 
 		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
@@ -807,36 +818,15 @@ namespace Non_Linear_Data_Structures
 	template <typename T>
 	inline void Tree<T>::Delete(Node<T>* node)
 	{
-		// 트리에서 지정된 노드를 찾아 삭제합니다.
-		if (node == nullptr)
+		if (node == nullptr || root == nullptr)
 		{
-			return; // 노드가 nullptr이면 아무 작업도 하지 않습니다.
+			return;
 		}
-		
-		// 트리가 비어있지 않은 경우, 루트부터 시작하여 노드를 삽입합니다.
-		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
-		Linear_Data_Structures::Queue<Node<T>*> queue;
-		queue.Push(root);
-		Node<T>* current;
-		while (!queue.Empty())
+		if (!IsTreeMember(node))
 		{
-			current = queue.Front();
-			queue.Pop();
-			// 현재 노드가 삭제할 노드와 일치하는지 확인합니다.
-			if (current == node)
-			{
-				DeleteAt(current->parent, current);
-				return; // 삭제 후 함수 종료
-			}
-			// 현재 노드의 자식들을 큐에 추가합니다.
-			for (unsigned int i = 0; i < current->childCount; ++i)
-			{
-				if (current->children[i] != nullptr)
-				{
-					queue.Push(current->children[i]);
-				}
-			}
+			return;
 		}
+		DeleteAt(node->parent, node);
 	}
 
 	template <typename T>
@@ -930,15 +920,19 @@ namespace Non_Linear_Data_Structures
 			return; // 잘못된 입력
 		}
 
-		if (parent == nullptr && node != root)
+		if (node == root)
 		{
+			int removed = CountSubtreeNodes(root);
+			if (removed <= 0) { return; }
+			nodeCount -= removed;
+			DeleteNode<T>(root);
+			root = nullptr;
 			return;
 		}
 
-		// 노드가 루트가 아니면서 부모를 갖지 않은 경우
-		if (node != root && node->parent != parent)
+		if (parent == nullptr || node->parent != parent)
 		{
-			return; 
+			return;
 		}
 
 		int removed = CountSubtreeNodes(node);
@@ -951,11 +945,6 @@ namespace Non_Linear_Data_Structures
 
 		nodeCount = temp;
 		DeleteChild<T>(parent, node);
-
-		if (node == root)
-		{
-			root = nullptr;
-		}
 	}
 
 	template <typename T>
@@ -1034,7 +1023,7 @@ namespace Non_Linear_Data_Structures
 			return; 
 		}
 
-		Delete(root);
+		DeleteNode<T>(root);		
 		root = nullptr; // 트리의 루트를 nullptr로 설정하여 트리를 비웁니다.
 		nodeCount = 0; // 노드 수를 0으로 초기화합니다.
 	}
@@ -1151,6 +1140,25 @@ namespace Non_Linear_Data_Structures
 	{
 		return nodeCount;
 	}
+
+	template <typename T>
+	inline bool Tree<T>::IsTreeMember(const Node<T>* node) const
+	{
+		if (root == nullptr || node == nullptr)
+		{
+			return false;
+		}
+
+		const Node<T>* current = node;
+
+		while (current->parent != nullptr)
+		{
+			current = current->parent;
+		}
+
+		return current == root;
+	}
+
 
 	/// <summary>
 	/// 

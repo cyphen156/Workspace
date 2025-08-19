@@ -21,6 +21,9 @@ namespace Non_Linear_Data_Structures
 		Node<T>** children;
 	};
 
+	template <typename T>
+	inline Node<T>* DetachChild(Node<T>* parent, Node<T>* target);
+
 	// create a new Node with initial children capacity
 	template <typename T>
 	inline Node<T>* CreateNode(const T& value, unsigned int initialCapacity = 2u)
@@ -198,6 +201,11 @@ namespace Non_Linear_Data_Structures
 		if (parent == nullptr || child == nullptr) 
 		{
 			return nullptr; 
+		}
+
+		if (child->parent != nullptr) 
+		{
+			DetachChild<T>(child->parent, child);
 		}
 
 		if (parent->childCount >= parent->capacity)
@@ -548,7 +556,7 @@ namespace Non_Linear_Data_Structures
 		{
 			return; // 인덱스가 음수인 경우
 		}
-		DetachChildAtIndex<T>(parent, static_cast<unsigned int>(index));
+		DeleteChildAtIndex<T>(parent, static_cast<unsigned int>(index));
 	}
 
 	// DeleteAllChildren
@@ -577,43 +585,91 @@ namespace Non_Linear_Data_Structures
 	}
 
 	template <typename T>
-	inline const Node<T>* FindChild(const T& value)
+	inline Node<T>* FindChild(Node<T>* parent, const T& value) 
 	{
-		for (int i = 0; i < childCount; ++i)
+		if (parent == nullptr)
 		{
-			if (children[i]->data == value)
+			return nullptr;
+		}
+		
+		for (unsigned int i = 0; i < parent->childCount; ++i)
+		{
+			if (parent->children[i] && parent->children[i]->data == value)
 			{
-				return &children[i]; 
+				return parent->children[i];
 			}
 		}
-		return nullptr; // 해당 값을 가진 자식 노드를 찾지 못한 경우
+
+		return nullptr;
 	}
 
 	template <typename T>
-	inline const Node<T>* FindChild(const Node<T>* node)
+	inline const Node<T>* FindChild(const Node<T>* parent, const T& value) 
 	{
-		for (int i = 0; i < childCount; ++i)
+		if (parent == nullptr)
 		{
-			if (children[i] == node)
+			return nullptr;
+		}
+
+		for (unsigned int i = 0; i < parent->childCount; ++i)
+		{
+			if (parent->children[i] && parent->children[i]->data == value)
 			{
-				return &children[i];
+				return parent->children[i];
 			}
 		}
-		return nullptr; // 해당 값을 가진 자식 노드를 찾지 못한 경우
+
+		return nullptr;
+	}
+
+	// 노드 포인터로 찾기 - 대칭 오버로드
+	template <typename T>
+	inline Node<T>* FindChild(Node<T>* parent, const Node<T>* target) 
+	{
+		if (parent == nullptr || target == nullptr)
+		{
+			return nullptr;
+		}
+		for (unsigned int i = 0; i < parent->childCount; ++i)
+		{
+			if (parent->children[i] == target)
+			{
+				return parent->children[i];
+			}
+		}
+
+		return nullptr;
 	}
 
 	template <typename T>
-	inline const int GetChildIndex(const Node<T>* target)
+	inline const Node<T>* FindChild(const Node<T>* parent, const Node<T>* target) {
+		if (parent == nullptr || target == nullptr)
+		{
+			return nullptr;
+		}
+		for (unsigned int i = 0; i < parent->childCount; ++i)
+		{
+			if (parent->children[i] == target)
+			{
+				return parent->children[i];
+			}
+		}
+
+		return nullptr;
+	}
+
+	template <typename T>
+	inline int GetChildIndex(const Node<T>* parent, const Node<T>* target)
 	{
 		// 찾는 대상이 nullptr이거나 자식 배열이 nullptr인 경우 -1 반환
-		if (target == nullptr || children == nullptr)
+		if (parent == nullptr || target == nullptr || parent->children == nullptr)
 		{
 			return -1; // 잘못된 입력
 		}
 
-		for (unsigned int i = 0u; i < childCount; ++i)
+		for (unsigned int i = 0u; i < parent->childCount; ++i)
 		{
-			if (children[i] == target)
+			if (parent->children[i] == target)
 			{
 				return static_cast<int>(i);
 			}
