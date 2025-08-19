@@ -3,17 +3,16 @@
 #include "../0_Node/Node.h"
 #include "../../#1.Linear_Data_Structures/1_Stack/Stack.h"
 #include "../../#1.Linear_Data_Structures/2_1_Queue/Queue.h"
-
-enum class TraversalType
-{
-	PreOrder,
-	InOrder,
-	PostOrder,
-	LevelOrder
-};
-
 namespace Non_Linear_Data_Structures
 {
+	enum class TraversalType
+	{
+		PreOrder,
+		InOrder,
+		PostOrder,
+		LevelOrder
+	};
+
 	// Tree class definition
 	template <typename T>
 	class Tree

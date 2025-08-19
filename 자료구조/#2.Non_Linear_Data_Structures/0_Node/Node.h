@@ -575,4 +575,49 @@ namespace Non_Linear_Data_Structures
 		node->childCount = 0u;   // 부모는 유지
 		return true; // 모든 자식 노드를 성공적으로 삭제했음을 나타냅니다.
 	}
+
+	template <typename T>
+	inline const Node<T>* FindChild(const T& value)
+	{
+		for (int i = 0; i < childCount; ++i)
+		{
+			if (children[i]->data == value)
+			{
+				return &children[i]; 
+			}
+		}
+		return nullptr; // 해당 값을 가진 자식 노드를 찾지 못한 경우
+	}
+
+	template <typename T>
+	inline const Node<T>* FindChild(const Node<T>* node)
+	{
+		for (int i = 0; i < childCount; ++i)
+		{
+			if (children[i] == node)
+			{
+				return &children[i];
+			}
+		}
+		return nullptr; // 해당 값을 가진 자식 노드를 찾지 못한 경우
+	}
+
+	template <typename T>
+	inline const int GetChildIndex(const Node<T>* target)
+	{
+		// 찾는 대상이 nullptr이거나 자식 배열이 nullptr인 경우 -1 반환
+		if (target == nullptr || children == nullptr)
+		{
+			return -1; // 잘못된 입력
+		}
+
+		for (unsigned int i = 0u; i < childCount; ++i)
+		{
+			if (children[i] == target)
+			{
+				return static_cast<int>(i);
+			}
+		}
+		return -1; // 노드를 찾지 못한 경우 -1 반환
+	}
 }
