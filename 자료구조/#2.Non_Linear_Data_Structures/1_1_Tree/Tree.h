@@ -4,6 +4,14 @@
 #include "../../#1.Linear_Data_Structures/1_Stack/Stack.h"
 #include "../../#1.Linear_Data_Structures/2_1_Queue/Queue.h"
 
+enum class TraversalType
+{
+	PreOrder,
+	InOrder,
+	PostOrder,
+	LevelOrder
+};
+
 namespace Non_Linear_Data_Structures
 {
 	// Tree class definition
@@ -76,7 +84,7 @@ namespace Non_Linear_Data_Structures
 		}
 
 		// Destructor
-		inline ~Tree()
+		virtual inline ~Tree()
 		{ 
 			Clear();
 		}
@@ -107,20 +115,20 @@ namespace Non_Linear_Data_Structures
 		}
 
 		// modified methods
-		Node<T>* Insert(Node<T>* node, bool order = false);							// Insert a node into the tree
-		Node<T>* Insert(const T& value												// Insert a value into the tree
+		virtual Node<T>* Insert(Node<T>* node, bool order = false);							// Insert a node into the tree
+		virtual Node<T>* Insert(const T& value												// Insert a value into the tree
 					, unsigned int initialCapacity = 2
 					, bool order = false);													
-		Node<T>* Insert(const T& value												// Insert a value into the tree
+		virtual Node<T>* Insert(const T& value												// Insert a value into the tree
 					, int initialCapacity
 					, bool order = false);		
 
-		Node<T>* InsertAt(Node<T>* target, Node<T>* node, bool order = false);		// Insert a node at a specific position
-		Node<T>* InsertAt(Node<T>* target											// Insert a value at a specific position with order
+		virtual Node<T>* InsertAt(Node<T>* target, Node<T>* node, bool order = false);		// Insert a node at a specific position
+		virtual Node<T>* InsertAt(Node<T>* target											// Insert a value at a specific position with order
 					, const T& value
 					, unsigned int initialCapacity = 2
 					, bool order = false);
-		Node<T>* InsertAt(Node<T>* target											// Insert a value at a specific position
+		virtual Node<T>* InsertAt(Node<T>* target											// Insert a value at a specific position
 					, const T& value
 					, int initialCapacity
 					, bool order = false);
@@ -171,6 +179,52 @@ namespace Non_Linear_Data_Structures
 		// BFS (Breadth-First Search) Traversal methods
 		void LevelOrderTraversal(void (*visit)(const Node<T>*)) const;	// Level-order traversal == Level by Level
 	
+		// Helper methods
+		// value 기반
+		Node<T>* FindNode(const T& value);
+		const Node<T>* FindNode(const T& value) const;
+
+		// 시작 노드 기준 value 기반
+		Node<T>* FindNode(const Node<T>* start, const T& value);
+		const Node<T>* FindNode(const Node<T>* start, const T& value) const;
+
+		// BFS 인덱스 기반 (트리 전체)
+		Node<T>* FindNodeByIndex(int index);
+		const Node<T>* FindNodeByIndex(int index) const;
+
+		Node<T>* FindNodeByIndex(unsigned int index);
+		const Node<T>* FindNodeByIndex(unsigned int index) const;
+
+		// 시작 노드 기준 인덱스
+		Node<T>* FindNodeAtIndex(const Node<T>* start, int index);
+		const Node<T>* FindNodeAtIndex(const Node<T>* start, int index) const;
+
+		Node<T>* FindNodeAtIndex(const Node<T>* start, unsigned int index);
+		const Node<T>* FindNodeAtIndex(const Node<T>* start, unsigned int index) const;
+
+		int GetIndex(const Node<T>* node, TraversalType type) const;							// Find the index of a node in the tree
+		int GetIndex(const Node<T>* node, const Node<T>* start, TraversalType type) const;		// Find the index of a node starting from a specific node
+		int GetIndex(const T& value, TraversalType type) const;								// Find the index of a node with the given value
+		int GetIndex(const T& value, const Node<T>* start, TraversalType type) const;			// Find the index of a node with the given value starting from a specific node
+
+		// Contains methods
+		bool Contains(const Node<T>* n) const;
+		bool Contains(const T& value) const;
+		bool Contains(const Node<T>* start, const Node<T>* n) const;		// Check if a node is contained in the tree starting from a specific node
+		bool Contains(const Node<T>* start, const T& value) const;		// Check if a value is contained in the tree starting from a specific node
+
+		// Convert methods
+		void ConvertToBinaryTree(const Tree<T>& other);						// Convert a general tree to a binary tree
+		void ConvertToBinaryTree(const Node<T>* node);						// Convert a general tree to a binary tree starting from a specific node
+
+		// 트리 전체 바이너리로 내보내기
+		void ExportAsBinary(Tree<T>& outTree) const;
+		void ExportAsBinary(Node<T>*& outRoot, int& outCount) const;
+
+		// 트리의 특정 노드부터 바이너리로 내보내기
+		static void ExportAsBinary(const Node<T>* start, Tree<T>& outTree);
+		static void ExportAsBinary(const Node<T>* start, Node<T>*& outRoot, int& outCount);
+
 	private:
 		Node<T>* root;		// Root node of the tree
 		int nodeCount;		// Count of nodes in the tree
