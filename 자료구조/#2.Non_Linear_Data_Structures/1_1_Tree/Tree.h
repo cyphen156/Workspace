@@ -29,6 +29,11 @@ namespace Non_Linear_Data_Structures
 			: root(const_cast<Node<T>*>(node))
 			, nodeCount(0)
 		{
+			if (node->parent != nullptr) 
+			{
+				return;
+			}
+
 			if (root == nullptr)
 			{
 				return;
@@ -42,25 +47,27 @@ namespace Non_Linear_Data_Structures
 		// 한글설명 : 이 생성자는 주어진 값을 가진 단일 루트 노드로 트리를 만듭니다.
 		inline Tree(const T& value, unsigned int initialCapacity = 2u)
 			: root(nullptr)
-			, nodeCount(1)
+			, nodeCount(0)
 		{
 			if (initialCapacity == 0)
 			{
 				initialCapacity = 2u; // Ensure a minimum initial capacity
 			}
 			root = CreateNode<T>(value, initialCapacity);
+			nodeCount++;
 		}
 
 		// Overloaded constructor with value and initial capacity
 		inline Tree(const T& value, int initialCapacity)
 			: root(nullptr)
-			, nodeCount(1)
+			, nodeCount(0)
 		{
 			if (initialCapacity <= 0)
 			{
 				initialCapacity = 2; // Ensure a minimum initial capacity
 			}
 			root = CreateNode<T>(value, static_cast<unsigned int>(initialCapacity));
+			nodeCount++;
 		}
 		
 		// DeepCopy constructor
@@ -285,8 +292,7 @@ namespace Non_Linear_Data_Structures
 	template <typename T>
 	inline Node<T>* Tree<T>::Insert(Node<T>* node, bool order)
 	{
-		// 노드가 없거나 이미 부모를 가지고 있다면 삽입할 수 없습니다.
-		if (node == nullptr || node->parent != nullptr)
+		if (node == nullptr)
 		{
 			return nullptr;
 		}
@@ -304,10 +310,11 @@ namespace Non_Linear_Data_Structures
 		// 순회 방식은 너비 우선 탐색(BFS)으로 구현합니다.
 
 		const bool wasMember = IsTreeMember(node);
+
 		if (wasMember)
 		{
 			// 이미 트리의 일부인 경우, 노드를 제거하고 새로 삽입합니다.
-			Remove(node);
+			RemoveAt(node->parent, node);
 		}
 
 		Linear_Data_Structures::Queue<Node<T>*> queue;
