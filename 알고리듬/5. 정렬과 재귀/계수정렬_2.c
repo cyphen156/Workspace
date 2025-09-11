@@ -1,6 +1,6 @@
 #define MAX_SIZE 0x7fffffff
 
-extern int arr[MAX_SIZE] = { 0 };
+int arr[MAX_SIZE] = { 0 };
 
 void Insert(int data)
 {

@@ -1,0 +1,85 @@
+#include <stdlib.h>
+
+void Merge(int arr[], int left, int right, int mid)
+{
+    int lSize = mid - left + 1;
+    int rSize = right - mid;
+
+    int* lArr = (int*)malloc((lSize) * sizeof(int));
+    int* rArr = (int*)malloc((rSize) * sizeof(int));
+
+    if (lArr == NULL || rArr == NULL)
+    {
+        if (lArr != NULL) 
+        { 
+            free(lArr); 
+        }
+        if (rArr != NULL) 
+        { 
+            free(rArr); 
+        }
+        return;
+    }
+
+    for (int i = 0; i < lSize; ++i)
+    {
+        lArr[i] = arr[left + i];
+    }
+
+    for (int i = 0; i < rSize; ++i)
+    {
+        rArr[i] = arr[mid + 1 + i];
+    }
+
+    int i = 0;
+    int j = 0;
+    int k = left;
+
+    // 두 쪽 모두 남아있는 동안 병합
+    while (i < lSize && j < rSize)
+    {
+        if (lArr[i] <= rArr[j])
+        {
+            arr[k] = lArr[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = rArr[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < lSize)
+    {
+        arr[k] = lArr[i];
+        i++;
+        k++;
+    }
+
+    while (j < rSize)
+    {
+        arr[k] = rArr[j];
+        j++;
+        k++;
+    }
+    
+    free(lArr);
+    free(rArr);
+}
+
+void MergeSort(int arr[], int left, int right)
+{
+    // size <= 2
+    if (left >= right)
+    {
+        return;
+    }
+
+    int mid = left + (right - left) / 2;
+    
+    MergeSort(arr, left, mid);
+    MergeSort(arr, mid + 1, right);
+    Merge(arr, left, right, mid);
+}
