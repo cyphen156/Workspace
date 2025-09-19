@@ -3,7 +3,7 @@
 typedef struct Node
 {
     int linkCount;
-    Node* to[MAX_SIZE];
+    struct Node* to[MAX_SIZE];
 }Node;
 
 int main(void)
